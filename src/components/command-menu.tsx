@@ -54,7 +54,7 @@ type CommandLinkItem = {
   title: string
   href: string
 
-  icon?: React.ComponentType<LucideProps>
+  icon?: React.ElementType
   iconImage?: string
   keywords?: string[]
   openInNewTab?: boolean
@@ -232,10 +232,7 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
     })
   }, [setIsDuckFollowerVisible])
 
-  const blogLinks = useMemo(
-    () => posts.map(postToCommandLinkItem),
-    [posts]
-  )
+  const blogLinks = useMemo(() => posts.map(postToCommandLinkItem), [posts])
 
   return (
     <>
@@ -287,7 +284,6 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
             links={PORTFOLIO_LINKS}
             onLinkSelect={handleOpenLink}
           />
-
 
           <CommandLinkGroup
             heading="Blog"
@@ -422,7 +418,7 @@ function CommandLinkGroup({
 }: {
   heading: string
   links: CommandLinkItem[]
-  fallbackIcon?: React.ComponentType<LucideProps>
+  fallbackIcon?: React.ElementType
   onLinkSelect: (href: string, openInNewTab?: boolean) => void
 }) {
   return (
