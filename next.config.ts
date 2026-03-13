@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.simpleicons.org",
+        port: "",
+      },
     ],
     qualities: [75, 100],
   },

@@ -24,22 +24,12 @@ export function SiteFooter({
           Built by{" "}
           <a
             className="link transition-[color] hover:text-foreground"
-            href="https://x.com/iamncdai"
+            href="https://www.linkedin.com/in/shakil-ahmed-billal/"
             target="_blank"
             rel="noopener"
           >
-            ncdai
+            Shakil Ahmed Billal
           </a>
-          . The source code is available on{" "}
-          <a
-            className="link transition-[color] hover:text-foreground"
-            href={SOURCE_CODE_GITHUB_URL}
-            target="_blank"
-            rel="noopener"
-          >
-            GitHub
-          </a>
-          .
         </p>
 
         <div className="screen-line-before screen-line-after flex w-full before:z-1 after:z-1">
@@ -57,7 +47,7 @@ export function SiteFooter({
 
             <a
               className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href="https://x.com/iamncdai?utm_source=chanhdai.com"
+              href="https://x.com/shakildev99?utm_source=shakil.dev"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -69,7 +59,7 @@ export function SiteFooter({
 
             <a
               className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href="https://github.com/ncdai?utm_source=chanhdai.com"
+              href="https://github.com/shakil-ahmed-billal?utm_source=shakil.dev"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -81,7 +71,7 @@ export function SiteFooter({
 
             <a
               className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href="https://www.linkedin.com/in/ncdai?utm_source=chanhdai.com"
+              href="https://www.linkedin.com/in/shakil-ahmed-billal"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -99,21 +89,6 @@ export function SiteFooter({
             >
               <RssIcon className="size-4" />
               <span className="sr-only">RSS</span>
-            </a>
-
-            <Separator />
-
-            <a
-              className="flex text-muted-foreground transition-[color] hover:text-foreground"
-              href={
-                process.env.NEXT_PUBLIC_DMCA_URL ||
-                "https://www.dmca.com/ProtectionPro.aspx"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icons.dmca className="h-4.5 w-auto" />
-              <span className="sr-only">DMCA.com Protection Status</span>
             </a>
           </div>
         </div>

@@ -41,7 +41,7 @@ function ChanhDaiMarkMotion() {
   return (
     <ChanhDaiMark
       data-visible={visible}
-      className="translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
+      className="h-6 w-auto translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
     />
   )
 }
@@ -49,5 +49,9 @@ function ChanhDaiMarkMotion() {
 export function SiteHeaderMark() {
   const pathname = usePathname()
   const isHome = ["/", "/index"].includes(pathname)
-  return isHome ? <ChanhDaiMarkMotion /> : <ChanhDaiMark />
+  return isHome ? (
+    <ChanhDaiMarkMotion />
+  ) : (
+    <ChanhDaiMark className="h-6 w-auto" />
+  )
 }

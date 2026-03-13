@@ -2,50 +2,75 @@ import type { Experience } from "../types/experiences"
 
 export const EXPERIENCES: Experience[] = [
   {
-  "id": "softvence",
-  "companyName": "Softvence agency",
-  "companyLogo": "https://assets.chanhdai.com/images/companies/shadcraft.svg?v=2",
-  "companyWebsite": "https://shadcraft.com",
-  "positions": [
-    {
-      "id": "1",
-      "title": "Frontend Developer",
-      "employmentPeriod": {
-        "start": "01.2025"
+    id: "softvence",
+    companyName: "BD Calling (Softvence)",
+    companyLogo: "/experience/softvence.webp", // Placeholder BD Calling Logo
+    companyWebsite: "https://softvence.agency",
+    positions: [
+      {
+        id: "1",
+        title: "Front-End Developer",
+        employmentPeriod: {
+          start: "04.2025",
+        },
+        employmentType: "Full-time",
+        icon: "code",
+        description:
+          "- Developed scalable, responsive web applications using React and Next.js.\n- Converted Figma designs into pixel-perfect, accessible user interfaces.\n- Integrated RESTful APIs and optimized client-side data fetching.\n- Improved performance through lazy loading, code splitting, and caching strategies.\n- Collaborated with backend engineers and product teams to deliver production-ready features.",
+        skills: ["React", "Next.js", "Figma", "REST API", "Optimization"],
+        isExpanded: true,
       },
-      "employmentType": "Full-time",
-      "icon": "code",
-      "description": "- Work on the registry and React component library.\n- Design and build Pro application components and blocks, from Figma to production-ready React.",
-      "skills": [
-        "TypeScript",
-        "Next.js",
-        "Tailwind CSS",
-        "shadcn/registry",
-        "Figma"
-      ],
-      "isExpanded": true
-    },
-    {
-      "id": "2",
-      "title": "Team Leader",
-      "employmentPeriod": {
-        "start": "04.2026"
+    ],
+    isCurrentEmployer: true,
+  },
+  {
+    id: "qwik-it",
+    companyName: "Qwik IT Services",
+    companyLogo: "/experience/qwikit.webp", // Placeholder Qwik IT Logo
+    companyWebsite: "https://www.qwikit.ca",
+    positions: [
+      {
+        id: "1",
+        title: "Frontend Developer Intern",
+        employmentPeriod: {
+          start: "03.2025",
+          end: "04.2025",
+        },
+        employmentType: "Internship",
+        description:
+          "- Built reusable UI components following scalable frontend architecture.\n- Worked with REST APIs and GraphQL for dynamic data-driven applications.\n- Ensured cross-browser compatibility and responsive layouts.\n- Supported CI/CD pipelines using GitHub Actions.",
+        skills: [
+          "Frontend Architecture",
+          "GraphQL",
+          "REST API",
+          "GitHub Actions",
+          "UI Components",
+        ],
+        isExpanded: false,
       },
-      "employmentType": "Full-time",
-      "description": "- Lead a team of front-end developers to deliver high-quality projects.\n- Collaborated with backend engineers and product teams to deliver production-ready features.\n- Developed scalable, responsive web applications using React and Next.js.\n- Converted Figma designs into pixel-perfect, accessible user interfaces.\n- Integrated RESTful APIs and optimized client-side data fetching.\n- Improved performance through lazy loading, code splitting, and caching strategies.",
-      "skills": [
-        "Leadership",
-        "Project Management",
-        "Team Coordination",
-        "React",
-        "Next.js",
-        "Figma",
-        "API Integration",
-        "Performance Optimization"
-      ],
-      "isExpanded": false
-    }
-  ],
-  "isCurrentEmployer": true
-}
+    ],
+    isCurrentEmployer: false,
+  },
+  {
+    id: "msab-bd",
+    companyName: "Msab BD",
+    companyLogo: "https://avatars.githubusercontent.com/u/124806346?s=200&v=4", // Placeholder Msab BD Logo
+    companyWebsite: "#", // No website provided
+    positions: [
+      {
+        id: "1",
+        title: "Web Developer",
+        employmentPeriod: {
+          start: "01.2025",
+          end: "03.2025",
+        },
+        employmentType: "Full-time",
+        description:
+          "- Developed full-stack web solutions using React, Node.js, and MongoDB.\n- Maintained clean, modular, and well-documented codebases.\n- Enhanced frontend performance with optimized rendering strategies.",
+        skills: ["React", "Node.js", "MongoDB", "Frontend Performance"],
+        isExpanded: false,
+      },
+    ],
+    isCurrentEmployer: false,
+  },
 ]
