@@ -111,6 +111,9 @@ export const metadata: Metadata = {
     },
   },
   manifest: "/manifest.webmanifest",
+  verification: {
+    google: "dZkZPVPwFyN2ooLmk5LtOaPscW92DBHGbmwMwG3Dr_0",
+  },
 }
 
 export const viewport: Viewport = {
