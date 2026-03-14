@@ -39,7 +39,7 @@ export function ProfileHeader() {
 
         <div className="border-t border-edge">
           <div className="flex items-center gap-2 pl-4">
-            <h1 className="-translate-y-px text-3xl font-semibold tracking-tight">
+            <h1 className="text-md -translate-y-px font-semibold tracking-tight md:text-3xl">
               {USER.displayName}
             </h1>
 
