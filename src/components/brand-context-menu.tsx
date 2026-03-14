@@ -7,8 +7,8 @@ import { toast } from "sonner"
 
 import { copyText } from "@/utils/copy"
 
-import { ChanhDaiMark, getMarkSVG } from "./chanhdai-mark"
-import { getWordmarkSVG } from "./chanhdai-wordmark"
+import { SiteMark, getMarkSVG } from "./site-mark"
+import { getWordmarkSVG } from "./site-wordmark"
 import {
   ContextMenu,
   ContextMenuContent,
@@ -31,7 +31,7 @@ export function BrandContextMenu({ children }: { children: React.ReactNode }) {
             toast.success("Mark as SVG copied")
           }}
         >
-          <ChanhDaiMark />
+          <SiteMark />
           Copy Mark as SVG
         </ContextMenuItem>
 
@@ -49,14 +49,14 @@ export function BrandContextMenu({ children }: { children: React.ReactNode }) {
         </ContextMenuItem>
 
         <ContextMenuItem asChild>
-          <Link href="/blog/chanhdai-brand">
+          <Link href="/blog/xhakil-brand">
             <TriangleDashedIcon />
             Brand Guidelines
           </Link>
         </ContextMenuItem>
 
         <ContextMenuItem asChild>
-          <a href="https://assets.chanhdai.com/chanhdai-brand.zip" download>
+          <a href="https://xhakil.vercel.app/xhakil-brand.zip" download>
             <DownloadIcon />
             Download Brand Assets
           </a>

@@ -212,7 +212,7 @@ function Prose({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "prose prose-sm max-w-none prose-ncdai font-mono text-foreground prose-zinc dark:prose-invert",
+        "prose prose-sm max-w-none prose-shakil-ahmed-billal font-mono text-foreground prose-zinc dark:prose-invert",
         className
       )}
       {...props}

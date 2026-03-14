@@ -14,6 +14,7 @@ import { Projects } from "@/features/portfolio/components/projects"
 import { SocialLinks } from "@/features/portfolio/components/social-links-v2"
 import { TechStack } from "@/features/portfolio/components/tech-stack"
 import { TestimonialsMarquee } from "@/features/portfolio/components/testimonials-marquee"
+import { SITE_INFO } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
 import { cn } from "@/lib/utils"
 
@@ -82,8 +83,28 @@ function getPageJsonLd(): WithContext<PageSchema> {
     mainEntity: {
       "@type": "Person",
       name: USER.displayName,
+      givenName: USER.firstName,
+      familyName: USER.lastName,
+      jobTitle: USER.jobTitle,
+      worksFor: {
+        "@type": "Organization",
+        name: USER.jobs[0].company,
+        url: USER.jobs[0].website,
+      },
+      url: SITE_INFO.url,
       identifier: USER.username,
       image: USER.avatar,
+      description: USER.bio,
+      gender: USER.gender,
+      sameAs: [
+        "https://github.com/shakil-ahmed-billal",
+        "https://linkedin.com/in/shakil-ahmed-billal",
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Dhaka",
+        addressCountry: "Bangladesh",
+      },
     },
   }
 }

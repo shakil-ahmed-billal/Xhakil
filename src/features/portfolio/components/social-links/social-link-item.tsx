@@ -6,7 +6,13 @@ import type { SocialLink } from "@/features/portfolio/types/social-links"
 import { cn } from "@/lib/utils"
 import { addQueryParams } from "@/utils/url"
 
-export function SocialLinkItem({ icon, title, subtitle, href }: SocialLink) {
+export function SocialLinkItem({
+  icon,
+  title,
+  subtitle,
+  href,
+  theme,
+}: SocialLink) {
   return (
     <a
       className={cn(
@@ -19,15 +25,38 @@ export function SocialLinkItem({ icon, title, subtitle, href }: SocialLink) {
       rel="noopener"
     >
       <div className="relative size-12 shrink-0">
-        <Image
-          className="rounded-xl select-none corner-squircle supports-corner-shape:rounded-[50%]"
-          src={icon}
-          alt={title}
-          width={48}
-          height={48}
-          quality={100}
-          unoptimized
-        />
+        {theme ? (
+          <>
+            <Image
+              className="hidden rounded-xl select-none corner-squircle [html.light_&]:block dark:ring-white/15 supports-corner-shape:rounded-[50%]"
+              src={icon.replace(".webp", "-light.webp")}
+              alt={title}
+              width={48}
+              height={48}
+              quality={100}
+              unoptimized
+            />
+            <Image
+              className="hidden rounded-xl select-none corner-squircle [html.dark_&]:block dark:ring-white/15 supports-corner-shape:rounded-[50%]"
+              src={icon.replace(".webp", "-dark.webp")}
+              alt={title}
+              width={48}
+              height={48}
+              quality={100}
+              unoptimized
+            />
+          </>
+        ) : (
+          <Image
+            className="rounded-xl select-none corner-squircle supports-corner-shape:rounded-[50%]"
+            src={icon}
+            alt={title}
+            width={48}
+            height={48}
+            quality={100}
+            unoptimized
+          />
+        )}
         <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 corner-squircle ring-inset dark:ring-white/15 supports-corner-shape:rounded-[50%]" />
       </div>
 

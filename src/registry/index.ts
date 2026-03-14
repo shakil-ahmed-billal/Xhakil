@@ -6,8 +6,8 @@ import { hook } from "./hooks/_registry"
 import { lib } from "./lib/_registry"
 
 export const registry = {
-  name: "ncdai",
-  homepage: "https://chanhdai.com/components",
+  name: "shakil-ahmed-billal",
+  homepage: "https://xhakil.vercel.app/components",
   items: [
     ...lib,
     ...hook,

@@ -3,7 +3,7 @@
 import { useRef } from "react"
 
 import { BrandContextMenu } from "@/components/brand-context-menu"
-import { ChanhDaiMark } from "@/components/chanhdai-mark"
+import { SiteMark } from "@/components/site-mark"
 import { Magnet } from "@/components/react-bits/magnet"
 import { cn } from "@/lib/utils"
 
@@ -22,7 +22,7 @@ export function ProfileCover() {
         )}
       >
         <Magnet containerRef={containerRef} magnetStrength={6}>
-          <ChanhDaiMark id="js-cover-mark" className="h-10 w-auto sm:h-12" />
+          <SiteMark id="js-cover-mark" className="h-10 w-auto sm:h-12" />
         </Magnet>
       </div>
     </BrandContextMenu>

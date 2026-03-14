@@ -18,6 +18,14 @@ export const EDUCATION: Education[] = [
         icon: "education",
         description:
           "Focus on Core Computer Science subjects, Software Engineering, and Web Technologies.",
+        skills: [
+          "Data Structures",
+          "Algorithms",
+          "Database Management",
+          "Software Engineering",
+          "Web Development",
+          "Networking",
+        ],
         isExpanded: true,
       },
     ],

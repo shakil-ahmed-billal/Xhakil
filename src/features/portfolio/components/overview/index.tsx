@@ -21,6 +21,7 @@ import {
 } from "./intro-item"
 import { JobItem } from "./job-item"
 import { PhoneItem } from "./phone-item"
+import { ResumeModal } from "./resume-modal"
 
 export function Overview() {
   return (
@@ -61,7 +62,8 @@ export function Overview() {
 
           <EmailItem email={USER.email} />
 
-          <IntroItem>
+
+          {/* <IntroItem>
             <IntroItemIcon>
               <LinkIcon />
             </IntroItemIcon>
@@ -73,7 +75,7 @@ export function Overview() {
                 {urlToName(USER.website)}
               </IntroItemLink>
             </IntroItemContent>
-          </IntroItem>
+          </IntroItem> */}
 
           <IntroItem>
             <IntroItemIcon>{getGenderIcon(USER.gender)}</IntroItemIcon>
@@ -81,6 +83,8 @@ export function Overview() {
               {USER.pronouns}
             </IntroItemContent>
           </IntroItem>
+          <ResumeModal />
+
         </div>
       </PanelContent>
     </Panel>

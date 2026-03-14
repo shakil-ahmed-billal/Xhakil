@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "ncdai",
-  "homepage": "https://chanhdai.com/components",
+  "name": "shakil-ahmed-billal",
+  "homepage": "https://xhakil.vercel.app/components",
   "items": [
     {
       "name": "utils",
       "title": "Utility Functions",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -22,7 +22,7 @@
     {
       "name": "haptic",
       "title": "Haptic Feedback",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Trigger haptic feedback on mobile devices.",
       "files": [
         {
@@ -62,7 +62,7 @@
     {
       "name": "theme-switcher",
       "title": "Theme Switcher",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Toggle between system, light, and dark themes in Next.js apps.",
       "dependencies": [
         "next-themes",
@@ -75,13 +75,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://chanhdai.com/components/theme-switcher",
+      "docs": "https://xhakil.vercel.app/components/theme-switcher",
       "type": "registry:component"
     },
     {
       "name": "text-flip",
       "title": "Text Flip",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Animated text that cycles through items with a smooth flip transition.",
       "dependencies": [
         "motion"
@@ -92,13 +92,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://chanhdai.com/components/text-flip",
+      "docs": "https://xhakil.vercel.app/components/text-flip",
       "type": "registry:component"
     },
     {
       "name": "apple-hello-effect",
       "title": "Apple Hello Effect",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "SVG writing animation inspired by Apple's Hello screen.",
       "dependencies": [
         "motion"
@@ -109,16 +109,16 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://chanhdai.com/components/apple-hello-effect",
+      "docs": "https://xhakil.vercel.app/components/apple-hello-effect",
       "type": "registry:component"
     },
     {
       "name": "wheel-picker",
       "title": "Wheel Picker",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "iOS-like wheel picker for React with smooth inertia scrolling and infinite loop support.",
       "dependencies": [
-        "@ncdai/react-wheel-picker"
+        "@shakil-ahmed-billal/react-wheel-picker"
       ],
       "files": [
         {
@@ -126,20 +126,20 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://chanhdai.com/components/react-wheel-picker",
+      "docs": "https://xhakil.vercel.app/components/react-wheel-picker",
       "type": "registry:component"
     },
     {
       "name": "typography",
       "title": "Typography",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Custom prose styles for headings, links, inline code, and emphasis.",
       "devDependencies": [
         "@tailwindcss/typography"
       ],
       "css": {
         "@plugin @tailwindcss/typography": {},
-        "@utility prose-ncdai": {
+        "@utility prose-shakil-ahmed-billal": {
           "@apply prose-headings:tracking-tight prose-headings:text-balance prose-h2:font-semibold": {},
           "@apply prose-a:font-medium prose-a:wrap-break-word prose-a:text-foreground prose-a:underline prose-a:underline-offset-4": {},
           "@apply prose-code:rounded-md prose-code:border prose-code:bg-muted/50 prose-code:px-[0.3rem] prose-code:py-[0.2rem] prose-code:text-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none": {},
@@ -152,7 +152,7 @@
     {
       "name": "work-experience",
       "title": "Work Experience",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Display work experiences with role details, company logos, and durations.",
       "dependencies": [
         "react-markdown",
@@ -164,7 +164,7 @@
       "registryDependencies": [
         "collapsible",
         "separator",
-        "https://chanhdai.com/r/typography.json"
+        "https://xhakil.vercel.app/r/typography.json"
       ],
       "files": [
         {
@@ -172,13 +172,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://chanhdai.com/components/work-experience",
+      "docs": "https://xhakil.vercel.app/components/work-experience",
       "type": "registry:component"
     },
     {
       "name": "shimmering-text",
       "title": "Shimmering Text",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Smooth, light-sweeping shimmer animation for text.",
       "dependencies": [
         "motion"
@@ -194,13 +194,13 @@
     {
       "name": "slide-to-unlock",
       "title": "Slide to Unlock",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Interactive slider inspired by the classic iPhone 'slide to unlock' gesture.",
       "dependencies": [
         "motion"
       ],
       "registryDependencies": [
-        "https://chanhdai.com/r/shimmering-text.json"
+        "https://xhakil.vercel.app/r/shimmering-text.json"
       ],
       "files": [
         {
@@ -208,26 +208,26 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://chanhdai.com/components/slide-to-unlock",
+      "docs": "https://xhakil.vercel.app/components/slide-to-unlock",
       "type": "registry:component"
     },
     {
       "name": "testimonials-marquee",
       "title": "Testimonials Marquee",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Scrolling marquee to showcase user testimonials.",
       "registryDependencies": [
         "@kibo-ui/marquee",
-        "https://chanhdai.com/r/testimonial.json"
+        "https://xhakil.vercel.app/r/testimonial.json"
       ],
-      "docs": "https://chanhdai.com/components/testimonials-marquee",
+      "docs": "https://xhakil.vercel.app/components/testimonials-marquee",
       "type": "registry:component",
       "files": []
     },
     {
       "name": "testimonial",
       "title": "Testimonial",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Display user feedback with author info, avatar, and verified badge.",
       "files": [
         {
@@ -240,7 +240,7 @@
     {
       "name": "github-stars",
       "title": "GitHub Stars",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Display GitHub repo star count with formatted numbers and full-count tooltip.",
       "registryDependencies": [
         "button",
@@ -257,7 +257,7 @@
     {
       "name": "scroll-fade-effect",
       "title": "Scroll Fade Effect",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Fade content edges as you scroll, for both vertical and horizontal layouts.",
       "files": [
         {
@@ -344,7 +344,7 @@
     {
       "name": "consent-manager",
       "title": "Consent Manager",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Cookie and tracking consent banner for Next.js, built on c15t.",
       "dependencies": [
         "@c15t/nextjs"
@@ -363,7 +363,7 @@
     {
       "name": "copy-button",
       "title": "Copy Button",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Copy text to clipboard with visual feedback and animation.",
       "dependencies": [
         "lucide-react",
@@ -387,7 +387,7 @@
     {
       "name": "code-block-command",
       "title": "Code Block Command",
-      "author": "ncdai <dai@chanhdai.com>",
+      "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
       "description": "Display install commands with package manager switcher and copy button.",
       "dependencies": [
         "@base-ui/react",
@@ -396,8 +396,8 @@
         "jotai"
       ],
       "registryDependencies": [
-        "https://chanhdai.com/r/copy-button.json",
-        "https://chanhdai.com/r/scroll-fade-effect.json"
+        "https://xhakil.vercel.app/r/copy-button.json",
+        "https://xhakil.vercel.app/r/scroll-fade-effect.json"
       ],
       "files": [
         {

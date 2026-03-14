@@ -11,7 +11,7 @@ const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
     id: "quaric",
     companyName: "Quaric",
-    companyLogo: "https://assets.chanhdai.com/images/companies/quaric.svg",
+    companyLogo: "https://xhakil.vercel.app/images/companies/quaric.svg",
     positions: [
       {
         id: "2",

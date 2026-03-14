@@ -1,4 +1,4 @@
-export function ChanhDaiWordmark({
+export function SiteWordmark({
   className,
   ...props
 }: React.ComponentProps<"img">) {

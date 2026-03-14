@@ -4,7 +4,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/base/ui/tooltip"
+} from "@/components/ui/tooltip"
 
 import { TECH_STACK } from "../data/tech-stack"
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel"
@@ -21,62 +21,53 @@ export function TechStack() {
           {TECH_STACK.map((tech) => {
             return (
               <li key={tech.key} className="flex">
-                <Tooltip>
-                  <TooltipTrigger
-                    render={
-                      <a
-                        href={tech.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={tech.title}
-                      >
-                        {tech.theme ? (
-                          <>
-                            <Image
-                              src={
-                                tech.simpleIcon
-                                  ? `https://cdn.simpleicons.org/${typeof tech.simpleIcon === "string" ? tech.simpleIcon : tech.key}/black`
-                                  : `https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-light.svg`
-                              }
-                              alt={`${tech.title} light icon`}
-                              width={32}
-                              height={32}
-                              className="hidden [html.light_&]:block"
-                              unoptimized
-                            />
-                            <Image
-                              src={
-                                tech.simpleIcon
-                                  ? `https://cdn.simpleicons.org/${typeof tech.simpleIcon === "string" ? tech.simpleIcon : tech.key}/white`
-                                  : `https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-dark.svg`
-                              }
-                              alt={`${tech.title} dark icon`}
-                              width={32}
-                              height={32}
-                              className="hidden [html.dark_&]:block"
-                              unoptimized
-                            />
-                          </>
-                        ) : (
-                          <Image
-                            src={
-                              tech.simpleIcon
-                                ? `https://cdn.simpleicons.org/${typeof tech.simpleIcon === "string" ? tech.simpleIcon : tech.key}`
-                                : `https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}.svg`
-                            }
-                            alt={`${tech.title} icon`}
-                            width={32}
-                            height={32}
-                            unoptimized
-                          />
-                        )}
-                      </a>
-                    }
-                  />
-                  <TooltipContent>
-                    <p>{tech.title}</p>
-                  </TooltipContent>
-                </Tooltip>
+                <a
+                  href={tech.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={tech.title}
+                >
+                  {tech.theme ? (
+                    <>
+                      <Image
+                        src={
+                          tech.simpleIcon
+                            ? `https://cdn.simpleicons.org/${typeof tech.simpleIcon === "string" ? tech.simpleIcon : tech.key}/black`
+                            : `https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-light.svg`
+                        }
+                        alt={`${tech.title} light icon`}
+                        width={32}
+                        height={32}
+                        className="hidden [html.light_&]:block"
+                        unoptimized
+                      />
+                      <Image
+                        src={
+                          tech.simpleIcon
+                            ? `https://cdn.simpleicons.org/${typeof tech.simpleIcon === "string" ? tech.simpleIcon : tech.key}/white`
+                            : `https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-dark.svg`
+                        }
+                        alt={`${tech.title} dark icon`}
+                        width={32}
+                        height={32}
+                        className="hidden [html.dark_&]:block"
+                        unoptimized
+                      />
+                    </>
+                  ) : (
+                    <Image
+                      src={
+                        tech.simpleIcon
+                          ? `https://cdn.simpleicons.org/${typeof tech.simpleIcon === "string" ? tech.simpleIcon : tech.key}`
+                          : `https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}.svg`
+                      }
+                      alt={`${tech.title} icon`}
+                      width={32}
+                      height={32}
+                      unoptimized
+                    />
+                  )}
+                </a>
               </li>
             )
           })}

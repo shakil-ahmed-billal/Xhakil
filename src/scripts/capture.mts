@@ -6,8 +6,8 @@ import puppeteer from "puppeteer-core"
 
 const executablePath =
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-const url = process.env.URL || "https://ncdai.localhost:3004"
-const outputDir = path.join(process.cwd(), ".ncdai/screenshots")
+const url = process.env.URL || "https://shakil-ahmed-billal.localhost:3004"
+const outputDir = path.join(process.cwd(), ".shakil-ahmed-billal/screenshots")
 
 const SIZE = {
   // Full HD

@@ -11,12 +11,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const allPosts = getAllDocs()
 
-  const posts = allPosts.map((post) => ({
-    url: `${SITE_INFO.url}/blog/${post.slug}`,
-    lastModified: new Date(
-      post.metadata.updatedAt || post.metadata.createdAt
-    ).toISOString(),
-  }))
+  const posts = allPosts.map((post) => {
+    const isComponent = post.metadata.category === "components"
+    const route = isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`
+
+    return {
+      url: `${SITE_INFO.url}${route}`,
+      lastModified: new Date(
+        post.metadata.updatedAt || post.metadata.createdAt
+      ).toISOString(),
+    }
+  })
 
   return [
     ...routes,

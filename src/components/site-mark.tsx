@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 
-export function ChanhDaiMark({
+export function SiteMark({
   className,
   ...props
 }: React.ComponentProps<"img">) {

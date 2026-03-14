@@ -1,24 +1,24 @@
 {
-  "name": "chanhdai.com",
+  "name": "xhakil",
   "version": "0.1.0",
   "description": "A minimal, pixel-perfect dev portfolio, shadcn registry, and blog.",
-  "homepage": "https://chanhdai.com",
+  "homepage": "https://xhakil.vercel.app",
   "license": "MIT",
   "author": {
-    "name": "Nguyen Chanh Dai",
-    "email": "dai@chanhdai.com",
-    "url": "https://github.com/ncdai"
+    "name": "Shakil Ahmed Billal",
+    "email": "shakil.dev99@gmail.com",
+    "url": "https://github.com/shakil-ahmed-billal"
   },
   "contributors": [
     {
-      "name": "Nguyen Chanh Dai",
-      "email": "dai@chanhdai.com",
-      "url": "https://github.com/ncdai"
+      "name": "Shakil Ahmed Billal",
+      "email": "shakil.dev99@gmail.com",
+      "url": "https://github.com/shakil-ahmed-billal"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ncdai/chanhdai.com.git"
+    "url": "git+https://github.com/shakil-ahmed-billal/xhakil.git"
   },
   "scripts": {
     "dev": "next dev",

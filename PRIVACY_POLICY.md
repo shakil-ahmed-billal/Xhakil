@@ -2,7 +2,7 @@
 
 **Last updated:** March 3, 2026
 
-The website `chanhdai.com` is a personal portfolio, blog, and shadcn registry created and maintained by Chánh Đại (“I”, “me”, or “my”). I respect your privacy and am committed to handling your data in a transparent, minimal, and secure way.
+The website `xhakil.vercel.app` is a personal portfolio, blog, and shadcn registry created and maintained by Shakil Ahmed Billal (“I”, “me”, or “my”). I respect your privacy and am committed to handling your data in a transparent, minimal, and secure way.
 
 When you visit this website, some data may be collected to operate the site, understand how it is used, and improve your experience. This document explains what is collected, how it is used, and what rights you may have.
 
@@ -19,7 +19,7 @@ This information is used only to respond to you and maintain communication. It i
 
 ### 1.2. Usage Data
 
-When you access `chanhdai.com`, the system may automatically collect certain technical and usage data, for example:
+When you access `xhakil.vercel.app`, the system may automatically collect certain technical and usage data, for example:
 
 - Information about your device and browser (e.g. browser type, operating system, screen size, language).
 - Timestamps of visits, pages viewed, links clicked, and time spent on pages.
@@ -71,7 +71,7 @@ Current configuration:
 The website may additionally rely on:
 
 - **Hosting and CDN infrastructure**: The site is hosted on **Vercel**. Vercel may log IP addresses and HTTP request information for operational, security, and performance monitoring purposes.
-- **External Content & Assets**: The site may load images, fonts, or other assets from third-party networks (e.g., `assets.chanhdai.com`, `images.unsplash.com`, `unavatar.io`). When your browser retrieves these resources, your IP address is visible to these providers.
+- **External Content & Assets**: The site may load images, fonts, or other assets from third-party networks (e.g., `assets.xhakil.vercel.app`, `images.unsplash.com`, `unavatar.io`). When your browser retrieves these resources, your IP address is visible to these providers.
 - **GitHub APIs**: To display some public data from GitHub (such as my own contributions or repositories). This data relates only to my GitHub account, not to yours.
 
 Each of these providers has its own privacy practices. Data handled by them is subject to their respective privacy policies in addition to this document.
@@ -128,8 +128,8 @@ However, no system can be completely secure. I cannot guarantee absolute protect
 
 If you have any questions about this Privacy Policy, or if you want to make a request related to your data, you can contact me at:
 
-- **Email:** `dai@chanhdai.com`
-- **GitHub:** `https://github.com/ncdai`
+- **Email:** `shakil.dev99@gmail.com`
+- **GitHub:** `https://github.com/shakil-ahmed-billal`
 
 ## 9. Changes to This Policy
 

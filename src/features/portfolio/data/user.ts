@@ -17,17 +17,17 @@ export const USER: User = {
   phoneNumber: "Kzg4MDEzMDgwNDg0Nzg=", // E.164 format, base64 encoded (https://t.io.vn/base64-string-converter)
   email: "c2hha2lsLmRldjk5QGdtYWlsLmNvbQ==", // base64 encoded
   website: "https://xhakil.vercel.app",
-  jobTitle: "Full-Stack Developer",
+  jobTitle: "Team Leader",
   jobs: [
     {
-      title: "Front-End Developer",
-      company: "BD Calling (Softvence)",
-      website: "https://bdcalling.com",
+      title: "Team Leader",
+      company: "Softvence",
+      website: "https://softvence.agency",
       experienceId: "softvence",
     },
     {
-      title: "Frontend Developer Intern",
-      company: "Qwik IT Services",
+      title: "Frontend Developer",
+      company: "Qwik IT",
       website: "https://qwokit.com",
       experienceId: "qwik-it",
     },

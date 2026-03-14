@@ -49,7 +49,8 @@ export async function generateMetadata({
     return notFound()
   }
 
-  const { title, description, image, createdAt, updatedAt } = doc.metadata
+  const { title, description, image, createdAt, updatedAt, keywords } =
+    doc.metadata
 
   const postUrl = getDocUrl(doc)
   const ogImage =
@@ -59,6 +60,7 @@ export async function generateMetadata({
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: postUrl,
     },
@@ -83,24 +85,69 @@ export async function generateMetadata({
   }
 }
 
-function getPageJsonLd(doc: Doc): WithContext<PageSchema> {
+function getPageJsonLd(doc: Doc): WithContext<PageSchema | any> {
+  const publishedTime = new Date(doc.metadata.createdAt).toISOString()
+  const modifiedTime = new Date(
+    doc.metadata.updatedAt || doc.metadata.createdAt
+  ).toISOString()
+
   return {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: doc.metadata.title,
-    description: doc.metadata.description,
-    image:
-      doc.metadata.image ||
-      `/og/simple?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
-    url: `${SITE_INFO.url}${getDocUrl(doc)}`,
-    datePublished: new Date(doc.metadata.createdAt).toISOString(),
-    dateModified: new Date(doc.metadata.updatedAt).toISOString(),
-    author: {
-      "@type": "Person",
-      name: USER.displayName,
-      identifier: USER.username,
-      image: USER.avatar,
-    },
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        headline: doc.metadata.title,
+        description: doc.metadata.description,
+        image:
+          doc.metadata.image ||
+          `${SITE_INFO.url}/og/simple?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
+        url: `${SITE_INFO.url}${getDocUrl(doc)}`,
+        datePublished: publishedTime,
+        dateModified: modifiedTime,
+        author: {
+          "@type": "Person",
+          name: USER.displayName,
+          url: SITE_INFO.url,
+          identifier: USER.username,
+          image: `${SITE_INFO.url}${USER.avatar}`,
+        },
+        publisher: {
+          "@type": "Person",
+          name: USER.displayName,
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_INFO.url}${USER.avatar}`,
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${SITE_INFO.url}${getDocUrl(doc)}`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: SITE_INFO.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${SITE_INFO.url}/blog`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: doc.metadata.title,
+            item: `${SITE_INFO.url}${getDocUrl(doc)}`,
+          },
+        ],
+      },
+    ],
   }
 }
 

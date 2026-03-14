@@ -37,12 +37,13 @@ import {
 } from "@/components/ui/command"
 import type { DocPreview } from "@/features/doc/types/document"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
+import { RESUME_DATA } from "@/features/portfolio/data/resumes"
 import { useDuckFollowerVisibility } from "@/hooks/use-duck-follower-visibility"
 import { trackEvent } from "@/lib/events"
 import { copyToClipboardWithEvent } from "@/utils/copy"
 
-import { ChanhDaiMark, getMarkSVG } from "./chanhdai-mark"
-import { getWordmarkSVG } from "./chanhdai-wordmark"
+import { SiteMark, getMarkSVG } from "./site-mark"
+import { getWordmarkSVG } from "./site-wordmark"
 import { ComponentIcon, Icons } from "./icons"
 import { Button } from "./ui/button"
 import { Kbd, KbdGroup } from "./ui/kbd"
@@ -62,7 +63,7 @@ const MENU_LINKS: CommandLinkItem[] = [
   {
     title: "Home",
     href: "/",
-    icon: ChanhDaiMark,
+    icon: SiteMark,
   },
   {
     title: "Blog",
@@ -140,6 +141,17 @@ const OTHER_LINK_ITEMS: CommandLinkItem[] = [
     openInNewTab: true,
   },
 ]
+
+const RESUME_LINKS: CommandLinkItem[] = Object.entries(RESUME_DATA).flatMap(
+  ([category, files]) =>
+    files.map((file) => ({
+      title: `${file.name} (Resume)`,
+      href: `/resume/${category}/${file.file}`,
+      icon: FileTextIcon,
+      keywords: ["resume", "cv", category.toLowerCase(), file.name.toLowerCase()],
+      openInNewTab: true,
+    }))
+)
 
 export function CommandMenu({ posts }: { posts?: DocPreview[] }) {
   const router = useRouter()
@@ -296,6 +308,12 @@ export function CommandMenu({ posts }: { posts?: DocPreview[] }) {
           />
 
           <CommandLinkGroup
+            heading="Resumes"
+            links={RESUME_LINKS}
+            onLinkSelect={handleOpenLink}
+          />
+
+          <CommandLinkGroup
             heading="Social Links"
             links={SOCIAL_LINK_ITEMS}
             onLinkSelect={handleOpenLink}
@@ -310,7 +328,7 @@ export function CommandMenu({ posts }: { posts?: DocPreview[] }) {
                 )
               }}
             >
-              <ChanhDaiMark />
+              <SiteMark />
               Copy Mark as SVG
             </CommandItem>
 
@@ -327,7 +345,7 @@ export function CommandMenu({ posts }: { posts?: DocPreview[] }) {
             </CommandItem>
 
             <CommandItem asChild>
-              <a href="https://assets.chanhdai.com/chanhdai-brand.zip" download>
+              <a href="https://xhakil.vercel.app/xhakil-brand.zip" download>
                 <DownloadIcon />
                 Download Brand Assets
               </a>
@@ -511,7 +529,7 @@ function CommandMenuFooter() {
       <div className="flex h-10" />
 
       <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 rounded-b-2xl border-t px-4 text-xs font-medium">
-        <ChanhDaiMark className="size-6 text-muted-foreground" />
+        <SiteMark className="size-6 text-muted-foreground" />
 
         <div className="flex shrink-0 items-center gap-2">
           <span>{ENTER_ACTION_LABELS[selectedCommandKind]}</span>

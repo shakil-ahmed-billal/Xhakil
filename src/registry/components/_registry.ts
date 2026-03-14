@@ -7,7 +7,7 @@ export const components: Registry["items"] = [
     name: "theme-switcher",
     type: "registry:component",
     title: "Theme Switcher",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Toggle between system, light, and dark themes in Next.js apps.",
     dependencies: ["next-themes", "lucide-react", "motion"],
@@ -17,13 +17,13 @@ export const components: Registry["items"] = [
         type: "registry:component",
       },
     ],
-    docs: "https://chanhdai.com/components/theme-switcher",
+    docs: "https://xhakil.vercel.app/components/theme-switcher",
   },
   {
     name: "text-flip",
     type: "registry:component",
     title: "Text Flip",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Animated text that cycles through items with a smooth flip transition.",
     dependencies: ["motion"],
@@ -33,13 +33,13 @@ export const components: Registry["items"] = [
         type: "registry:component",
       },
     ],
-    docs: "https://chanhdai.com/components/text-flip",
+    docs: "https://xhakil.vercel.app/components/text-flip",
   },
   {
     name: "apple-hello-effect",
     type: "registry:component",
     title: "Apple Hello Effect",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description: "SVG writing animation inspired by Apple's Hello screen.",
     dependencies: ["motion"],
     files: [
@@ -48,35 +48,35 @@ export const components: Registry["items"] = [
         type: "registry:component",
       },
     ],
-    docs: "https://chanhdai.com/components/apple-hello-effect",
+    docs: "https://xhakil.vercel.app/components/apple-hello-effect",
   },
   {
     name: "wheel-picker",
     type: "registry:component",
     title: "Wheel Picker",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "iOS-like wheel picker for React with smooth inertia scrolling and infinite loop support.",
-    dependencies: ["@ncdai/react-wheel-picker"],
+    dependencies: ["@shakil-ahmed-billal/react-wheel-picker"],
     files: [
       {
         path: "components/wheel-picker/wheel-picker.tsx",
         type: "registry:component",
       },
     ],
-    docs: "https://chanhdai.com/components/react-wheel-picker",
+    docs: "https://xhakil.vercel.app/components/react-wheel-picker",
   },
   {
     name: "typography",
     type: "registry:component",
     title: "Typography",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Custom prose styles for headings, links, inline code, and emphasis.",
     devDependencies: ["@tailwindcss/typography"],
     css: {
       "@plugin @tailwindcss/typography": {},
-      "@utility prose-ncdai": {
+      "@utility prose-shakil-ahmed-billal": {
         "@apply prose-headings:tracking-tight prose-headings:text-balance prose-h2:font-semibold":
           {},
         "@apply prose-a:font-medium prose-a:wrap-break-word prose-a:text-foreground prose-a:underline prose-a:underline-offset-4":
@@ -91,7 +91,7 @@ export const components: Registry["items"] = [
     name: "work-experience",
     type: "registry:component",
     title: "Work Experience",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display work experiences with role details, company logos, and durations.",
     dependencies: ["react-markdown", "lucide-react"],
@@ -107,13 +107,13 @@ export const components: Registry["items"] = [
         type: "registry:component",
       },
     ],
-    docs: "https://chanhdai.com/components/work-experience",
+    docs: "https://xhakil.vercel.app/components/work-experience",
   },
   {
     name: "shimmering-text",
     type: "registry:component",
     title: "Shimmering Text",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description: "Smooth, light-sweeping shimmer animation for text.",
     dependencies: ["motion"],
     files: [
@@ -127,7 +127,7 @@ export const components: Registry["items"] = [
     name: "slide-to-unlock",
     type: "registry:component",
     title: "Slide to Unlock",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Interactive slider inspired by the classic iPhone 'slide to unlock' gesture.",
     dependencies: ["motion"],
@@ -138,25 +138,25 @@ export const components: Registry["items"] = [
         type: "registry:component",
       },
     ],
-    docs: "https://chanhdai.com/components/slide-to-unlock",
+    docs: "https://xhakil.vercel.app/components/slide-to-unlock",
   },
   {
     name: "testimonials-marquee",
     type: "registry:component",
     title: "Testimonials Marquee",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description: "Scrolling marquee to showcase user testimonials.",
     registryDependencies: [
       "@kibo-ui/marquee",
       getRegistryItemUrl("testimonial"),
     ],
-    docs: "https://chanhdai.com/components/testimonials-marquee",
+    docs: "https://xhakil.vercel.app/components/testimonials-marquee",
   },
   {
     name: "testimonial",
     type: "registry:component",
     title: "Testimonial",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display user feedback with author info, avatar, and verified badge.",
     files: [
@@ -170,7 +170,7 @@ export const components: Registry["items"] = [
     name: "github-stars",
     type: "registry:component",
     title: "GitHub Stars",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display GitHub repo star count with formatted numbers and full-count tooltip.",
     registryDependencies: ["button", "tooltip"],
@@ -185,7 +185,7 @@ export const components: Registry["items"] = [
     name: "scroll-fade-effect",
     type: "registry:component",
     title: "Scroll Fade Effect",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Fade content edges as you scroll, for both vertical and horizontal layouts.",
     files: [
@@ -281,7 +281,7 @@ export const components: Registry["items"] = [
     name: "consent-manager",
     type: "registry:component",
     title: "Consent Manager",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Cookie and tracking consent banner for Next.js, built on c15t.",
     dependencies: ["@c15t/nextjs"],
@@ -297,7 +297,7 @@ export const components: Registry["items"] = [
     name: "copy-button",
     type: "registry:component",
     title: "Copy Button",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description: "Copy text to clipboard with visual feedback and animation.",
     dependencies: ["lucide-react", "motion"],
     registryDependencies: ["button"],
@@ -316,7 +316,7 @@ export const components: Registry["items"] = [
     name: "code-block-command",
     type: "registry:component",
     title: "Code Block Command",
-    author: "ncdai <dai@chanhdai.com>",
+    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display install commands with package manager switcher and copy button.",
     dependencies: ["@base-ui/react", "lucide-react", "motion", "jotai"],

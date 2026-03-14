@@ -6,4 +6,6 @@ export type SocialLink = {
   subtitle?: string
   /** External profile URL opened when the item is clicked. */
   href: string
+  /** Whether the icon has light and dark theme versions. */
+  theme?: boolean
 }

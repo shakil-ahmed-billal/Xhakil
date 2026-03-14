@@ -26,6 +26,10 @@ export type DocMetadata = {
    * Last updated date as an ISO date string (e.g. YYYY-MM-DD).
    */
   updatedAt: string
+  /**
+   * SEO keywords for the post.
+   */
+  keywords?: string | string[]
 }
 
 export type Doc = {
