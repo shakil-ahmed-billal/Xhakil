@@ -2,11 +2,9 @@ import type { Metadata } from "next"
 import type { ProfilePage as PageSchema, WithContext } from "schema-dts"
 
 import { About } from "@/features/portfolio/components/about"
-
 import { Blog } from "@/features/portfolio/components/blog"
-
 import { Certifications } from "@/features/portfolio/components/certifications"
-
+import { Education } from "@/features/portfolio/components/education"
 import { Experiences } from "@/features/portfolio/components/experiences"
 import { GitHubContributions } from "@/features/portfolio/components/github-contributions"
 import { Overview } from "@/features/portfolio/components/overview"
@@ -14,7 +12,6 @@ import { ProfileCover } from "@/features/portfolio/components/profile-cover"
 import { ProfileHeader } from "@/features/portfolio/components/profile-header"
 import { Projects } from "@/features/portfolio/components/projects"
 import { SocialLinks } from "@/features/portfolio/components/social-links-v2"
-
 import { TechStack } from "@/features/portfolio/components/tech-stack"
 import { TestimonialsMarquee } from "@/features/portfolio/components/testimonials-marquee"
 import { USER } from "@/features/portfolio/data/user"
@@ -60,16 +57,17 @@ export default function Page() {
         <Experiences />
         <Separator />
 
-        <Projects />
+        <Education />
         <Separator />
 
+        <Projects />
+        <Separator />
 
         <Certifications />
         <Separator />
 
-
         <Blog />
-        <Separator /> 
+        <Separator />
       </div>
     </>
   )

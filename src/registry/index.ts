@@ -1,6 +1,5 @@
 import type { Registry } from "shadcn/schema"
 
-
 import { components } from "./components/_registry"
 import { examples } from "./examples/_registry"
 import { hook } from "./hooks/_registry"
@@ -13,7 +12,6 @@ export const registry = {
     ...lib,
     ...hook,
     ...components,
-
 
     // Internal use only
     ...examples,

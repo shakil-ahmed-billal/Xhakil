@@ -1,6 +1,6 @@
 import { RssIcon } from "lucide-react"
 
-import { SITE_INFO, SOURCE_CODE_GITHUB_URL } from "@/config/site"
+import { SITE_INFO } from "@/config/site"
 import { cn } from "@/lib/utils"
 
 import { Icons } from "./icons"

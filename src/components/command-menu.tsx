@@ -1,7 +1,6 @@
 "use client"
 
 import { useCommandState } from "cmdk"
-import type { LucideProps } from "lucide-react"
 import {
   AwardIcon,
   BookmarkIcon,
@@ -19,7 +18,6 @@ import {
   SunMediumIcon,
   TextIcon,
   TextInitialIcon,
-  TriangleDashedIcon,
   TypeIcon,
 } from "lucide-react"
 import Image from "next/image"
@@ -69,7 +67,7 @@ const MENU_LINKS: CommandLinkItem[] = [
   {
     title: "Blog",
     href: "/blog",
-    icon: RssIcon,
+    icon: TextIcon,
   },
 ]
 
@@ -143,7 +141,7 @@ const OTHER_LINK_ITEMS: CommandLinkItem[] = [
   },
 ]
 
-export function CommandMenu({ posts }: { posts: DocPreview[] }) {
+export function CommandMenu({ posts }: { posts?: DocPreview[] }) {
   const router = useRouter()
 
   const { setTheme, resolvedTheme } = useTheme()
@@ -232,7 +230,13 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
     })
   }, [setIsDuckFollowerVisible])
 
-  const blogLinks = useMemo(() => posts.map(postToCommandLinkItem), [posts])
+  const blogLinks = useMemo(
+    () =>
+      Array.isArray(posts)
+        ? posts.filter((post) => post.category !== "components")
+        : [],
+    [posts]
+  )
 
   return (
     <>
@@ -287,8 +291,7 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
 
           <CommandLinkGroup
             heading="Blog"
-            links={blogLinks}
-            fallbackIcon={TextIcon}
+            links={blogLinks.map(postToCommandLinkItem)}
             onLinkSelect={handleOpenLink}
           />
 
@@ -321,13 +324,6 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
             >
               <TypeIcon />
               Copy Logotype as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => handleOpenLink("/blog/chanhdai-brand")}
-            >
-              <TriangleDashedIcon />
-              Brand Guidelines
             </CommandItem>
 
             <CommandItem asChild>
@@ -434,7 +430,7 @@ function CommandLinkGroup({
           >
             {link?.iconImage ? (
               <Image
-                className="rounded-sm corner-squircle supports-corner-shape:rounded-[50%]"
+                className="h-4 w-auto rounded-sm object-contain corner-squircle supports-corner-shape:rounded-[50%]"
                 src={link.iconImage}
                 alt={link.title}
                 width={16}
@@ -450,6 +446,14 @@ function CommandLinkGroup({
       })}
     </CommandGroup>
   )
+}
+
+function postToCommandLinkItem(post: DocPreview): CommandLinkItem {
+  return {
+    title: post.title,
+    href: post.slug,
+    icon: post.category === "components" ? ComponentIcon : FileTextIcon,
+  }
 }
 
 type CommandKind = "command" | "page" | "link"
@@ -524,19 +528,4 @@ function CommandMenuFooter() {
       </div>
     </>
   )
-}
-
-function postToCommandLinkItem(post: DocPreview): CommandLinkItem {
-  const isComponent = post.category === "components"
-
-  const IconComponent = isComponent
-    ? (props: LucideProps) => <ComponentIcon {...props} variant={post.slug} />
-    : undefined
-
-  return {
-    title: post.title,
-    href: isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`,
-    keywords: isComponent ? ["component"] : undefined,
-    icon: IconComponent,
-  }
 }

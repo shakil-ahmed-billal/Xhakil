@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils"
+
 export function ChanhDaiMark({
   className,
   ...props
@@ -7,13 +9,13 @@ export function ChanhDaiMark({
       <img
         src="/shakil/dark-logo.webp"
         alt="Shakil Logo"
-        className={`${className || ""} hidden dark:block`}
+        className={cn("hidden h-4 w-auto object-contain dark:block", className)}
         {...props}
       />
       <img
         src="/shakil/light-logo.webp"
         alt="Shakil Logo"
-        className={`${className || ""} block dark:hidden`}
+        className={cn("block h-4 w-auto object-contain dark:hidden", className)}
         {...props}
       />
     </>

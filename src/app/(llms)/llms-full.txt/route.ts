@@ -1,9 +1,5 @@
-import { format } from "date-fns"
-
-import { SITE_INFO } from "@/config/site"
 import { getAllDocs } from "@/features/doc/data/documents"
 import { getLLMText } from "@/features/doc/lib/get-llm-text"
-
 import { CERTIFICATIONS } from "@/features/portfolio/data/certifications"
 import { EXPERIENCES } from "@/features/portfolio/data/experiences"
 import { PROJECTS } from "@/features/portfolio/data/projects"
@@ -12,6 +8,22 @@ import { TECH_STACK } from "@/features/portfolio/data/tech-stack"
 import { USER } from "@/features/portfolio/data/user"
 
 const allPosts = getAllDocs()
+
+async function getBlogContent() {
+  const posts = allPosts.filter(
+    (post) => post.metadata?.category !== "components"
+  )
+  const blogTexts = await Promise.all(
+    posts.map(async (post) => {
+      const skills = post.metadata.category
+        ? `\n\nSkills: ${post.metadata.category}`
+        : ""
+      const contentText = await getLLMText(post)
+      return `### ${post.metadata.title}\n\nURL: ${SITE_INFO.url}/blog/${post.slug}${skills}\n\n${contentText.trim()}`
+    })
+  )
+  return blogTexts.join("\n\n")
+}
 
 const aboutText = `## About
 
@@ -54,22 +66,14 @@ ${PROJECTS.map((item) => {
 }).join("\n\n")}
 `
 
-
 const certificationsText = `## Certifications
 
 ${CERTIFICATIONS.map((item) => `- [${item.title}](${item.credentialURL})`).join("\n")}`
 
-async function getBlogContent() {
-  const text = await Promise.all(
-    allPosts.map(
-      async (item) =>
-        `---\ntitle: "${item.metadata.title}"\ndescription: "${item.metadata.description}"\nlast_updated: "${format(new Date(item.metadata.updatedAt), "MMMM d, yyyy")}"\nsource: "${SITE_INFO.url}/blog/${item.slug}"\n---\n\n${await getLLMText(item)}`
-    )
-  )
-  return text.join("\n\n")
-}
+import { SITE_INFO } from "@/config/site"
 
 async function getContent() {
+  const blogContent = await getBlogContent()
   return `<SYSTEM>This document contains comprehensive information about ${USER.displayName}'s professional profile, portfolio, and blog content. It includes personal details, work experience, projects, achievements, certifications, and all published blog posts. This data is formatted for consumption by Large Language Models (LLMs) to provide accurate and up-to-date information about ${USER.displayName}'s background, skills, and expertise as a Design Engineer.</SYSTEM>
 
 # chanhdai.com
@@ -83,7 +87,7 @@ ${certificationsText}
 
 ## Blog
 
-${await getBlogContent()}`
+${blogContent}`
 }
 
 export const revalidate = false

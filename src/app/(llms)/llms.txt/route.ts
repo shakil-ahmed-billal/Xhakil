@@ -11,10 +11,15 @@ const content = `# ${SITE_INFO.name}
 - [Experience](${SITE_INFO.url}/experience.md): Highlights from my career and key roles I've taken on.
 - [Projects](${SITE_INFO.url}/projects.md): Selected projects that show my skills and creativity.
 - [Certifications](${SITE_INFO.url}/certifications.md): Certifications and credentials I've earned.
+- [Blog](${SITE_INFO.url}/blog): Highlights from my career and key roles I've taken on.
 
-## Blog
-
-${allPosts.map((item) => `- [${item.metadata.title}](${SITE_INFO.url}/blog/${item.slug}.mdx): ${item.metadata.description}`).join("\n")}
+${allPosts
+  .filter((post) => post.metadata?.category !== "components")
+  .map(
+    (post) =>
+      `- [${post.metadata.title}](${SITE_INFO.url}/blog/${post.slug}): ${post.metadata.description}`
+  )
+  .join("\n")}
 `
 
 export const revalidate = false
