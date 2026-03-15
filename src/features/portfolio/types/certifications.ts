@@ -12,6 +12,10 @@ export type Certification = {
    */
   issuerIconName?: string
   /**
+   * Public URL or link to the issuer's website.
+   */
+  issuerURL?: string
+  /**
    * Issue date in ISO format (YYYY-MM-DD). Parsed and formatted in the UI via Day.js.
    */
   issueDate: string
