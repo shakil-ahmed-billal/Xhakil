@@ -54,13 +54,9 @@ export const metadata: Metadata = {
   creator: USER.displayName,
   openGraph: {
     siteName: SITE_INFO.name,
-    url: "/",
-    type: "profile",
+    url: SITE_INFO.url,
+    type: "website",
     locale: "en_US",
-    firstName: USER.firstName,
-    lastName: USER.lastName,
-    username: USER.username,
-    gender: USER.gender,
     images: [
       {
         url: SITE_INFO.ogImage,

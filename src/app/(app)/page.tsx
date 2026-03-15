@@ -19,6 +19,8 @@ import { USER } from "@/features/portfolio/data/user"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
+  title: `${USER.displayName} – ${USER.jobTitle}`,
+  description: USER.bio,
   alternates: {
     canonical: "/",
   },
