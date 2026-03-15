@@ -43,7 +43,7 @@ export const USER: User = {
 <p class="text-muted-foreground">* Peak metrics recorded; actual current figures may vary.</p>
 `,
   avatar: "/profile/shakil.webp", // Use github avatar instead
-  ogImage: "/shakil/dark-logo.webp",
+  ogImage: "/images/screenshot-desktop-dark.png",
   namePronunciationUrl: "/voice/shakil-ahmed-billal.mp3",
   timeZone: "Asia/Dhaka",
   keywords: [
