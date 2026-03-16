@@ -19,11 +19,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const isComponent = post.metadata.category === "components"
     const route = isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`
 
+    const dateStr = post.metadata.updatedAt || post.metadata.createdAt
+    const lastModified = dateStr ? new Date(dateStr) : new Date()
+
     return {
       url: `${baseUrl}${route}`,
-      lastModified: new Date(
-        post.metadata.updatedAt || post.metadata.createdAt
-      ).toISOString(),
+      lastModified: isNaN(lastModified.getTime())
+        ? new Date().toISOString()
+        : lastModified.toISOString(),
     }
   })
 
