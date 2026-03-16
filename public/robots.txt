@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xhakil.vercel.app/sitemap.xml
