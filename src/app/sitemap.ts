@@ -4,8 +4,12 @@ import { SITE_INFO } from "@/config/site"
 import { getAllDocs } from "@/features/doc/data/documents"
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = SITE_INFO.url.endsWith("/")
+    ? SITE_INFO.url.slice(0, -1)
+    : SITE_INFO.url
+
   const routes = [""].map((route) => ({
-    url: `${SITE_INFO.url}${route}`,
+    url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
   }))
 
@@ -16,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const route = isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`
 
     return {
-      url: `${SITE_INFO.url}${route}`,
+      url: `${baseUrl}${route}`,
       lastModified: new Date(
         post.metadata.updatedAt || post.metadata.createdAt
       ).toISOString(),
@@ -26,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...routes,
     {
-      url: `${SITE_INFO.url}/blog`,
+      url: `${baseUrl}/blog`,
       lastModified: new Date().toISOString(),
     },
     ...posts,
