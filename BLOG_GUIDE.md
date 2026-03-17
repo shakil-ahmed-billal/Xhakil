@@ -17,6 +17,7 @@ Every post MUST start with this metadata:
 ---
 title: "How to Start a Backend Project"
 description: "A complete step-by-step guide for beginners."
+category: "blog"
 image: "https://images.unsplash.com/photo-xxx"
 createdAt: "2026-03-15"
 updatedAt: "2026-03-15"

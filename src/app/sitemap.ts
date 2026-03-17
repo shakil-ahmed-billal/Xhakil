@@ -8,34 +8,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? SITE_INFO.url.slice(0, -1)
     : SITE_INFO.url
 
-  const routes = [""].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-  }))
+  const now = new Date().toISOString()
 
-  const allPosts = getAllDocs()
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+  ]
 
-  const posts = allPosts.map((post) => {
-    const isComponent = post.metadata.category === "components"
-    const route = isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`
+  const allDocs = getAllDocs()
 
-    const dateStr = post.metadata.updatedAt || post.metadata.createdAt
+  const docRoutes: MetadataRoute.Sitemap = allDocs.map((doc) => {
+    const isComponent = doc.metadata.category === "components"
+    const path = isComponent
+      ? `/components/${doc.slug}`
+      : `/blog/${doc.slug}`
+
+    const dateStr = doc.metadata.updatedAt || doc.metadata.createdAt
     const lastModified = dateStr ? new Date(dateStr) : new Date()
 
     return {
-      url: `${baseUrl}${route}`,
-      lastModified: isNaN(lastModified.getTime())
-        ? new Date().toISOString()
-        : lastModified.toISOString(),
+      url: `${baseUrl}${path}`,
+      lastModified: isNaN(lastModified.getTime()) ? now : lastModified.toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     }
   })
 
-  return [
-    ...routes,
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date().toISOString(),
-    },
-    ...posts,
-  ]
+  return [...staticRoutes, ...docRoutes]
 }

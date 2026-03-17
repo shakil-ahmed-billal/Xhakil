@@ -1,9 +1,17 @@
 import { USER } from "@/features/portfolio/data/user"
 import type { NavItem } from "@/types/nav"
 
+function getSiteUrl() {
+  if (process.env.APP_URL) return process.env.APP_URL
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  }
+  return "https://xhakil.vercel.app"
+}
+
 export const SITE_INFO = {
   name: USER.displayName,
-  url: process.env.APP_URL || "https://xhakil.vercel.app",
+  url: getSiteUrl(),
   ogImage: USER.ogImage,
   description: USER.bio,
   keywords: USER.keywords,
