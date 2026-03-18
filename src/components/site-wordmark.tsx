@@ -5,13 +5,13 @@ export function SiteWordmark({
   return (
     <>
       <img
-        src="/shakil/dark-logo.webp"
+        src="/shakil/shakil-light.svg"
         alt="Shakil Wordmark"
         className={`${className || ""} hidden dark:block`}
         {...props}
       />
       <img
-        src="/shakil/light-logo.webp"
+        src="/shakil/shakil-dark.svg"
         alt="Shakil Wordmark"
         className={`${className || ""} block dark:hidden`}
         {...props}

@@ -70,6 +70,11 @@ const MENU_LINKS: CommandLinkItem[] = [
     href: "/blog",
     icon: TextIcon,
   },
+  {
+    title: "Contact",
+    href: "/contact",
+    icon: TextInitialIcon,
+  },
 ]
 
 const PORTFOLIO_LINKS: CommandLinkItem[] = [
@@ -345,7 +350,7 @@ export function CommandMenu({ posts }: { posts?: DocPreview[] }) {
             </CommandItem>
 
             <CommandItem asChild>
-              <a href="https://xhakil.vercel.app/xhakil-brand.zip" download>
+              <a href="/xhakil-brand.zip" download>
                 <DownloadIcon />
                 Download Brand Assets
               </a>

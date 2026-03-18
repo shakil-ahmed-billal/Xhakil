@@ -31,6 +31,10 @@ export const MAIN_NAV: NavItem[] = [
     title: "Blog",
     href: "/blog",
   },
+  {
+    title: "Contact",
+    href: "/contact",
+  },
 ]
 
 export const X_USERNAME = "@shakil.dev99"

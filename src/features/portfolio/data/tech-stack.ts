@@ -196,4 +196,12 @@ export const TECH_STACK: TechStack[] = [
     categories: ["Tools"],
     simpleIcon: true,
   },
+  {
+    key: "betterauth",
+    title: "Better Auth",
+    href: "https://www.better-auth.com/",
+    categories: ["Tools", "Authentication"],
+    simpleIcon: true,
+
+  }
 ]

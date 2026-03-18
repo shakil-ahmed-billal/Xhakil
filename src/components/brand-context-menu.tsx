@@ -56,7 +56,7 @@ export function BrandContextMenu({ children }: { children: React.ReactNode }) {
         </ContextMenuItem>
 
         <ContextMenuItem asChild>
-          <a href="https://xhakil.vercel.app/xhakil-brand.zip" download>
+          <a href="/xhakil-brand.zip" download>
             <DownloadIcon />
             Download Brand Assets
           </a>

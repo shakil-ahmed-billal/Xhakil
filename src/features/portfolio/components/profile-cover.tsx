@@ -22,7 +22,7 @@ export function ProfileCover() {
         )}
       >
         <Magnet containerRef={containerRef} magnetStrength={6}>
-          <SiteMark id="js-cover-mark" className="h-10 w-auto sm:h-12" />
+          <SiteMark id="js-cover-mark" className="h-14 w-auto sm:h-20" />
         </Magnet>
       </div>
     </BrandContextMenu>

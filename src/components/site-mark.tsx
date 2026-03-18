@@ -7,13 +7,13 @@ export function SiteMark({
   return (
     <>
       <img
-        src="/shakil/dark-logo.webp"
+        src="/shakil/shakil-light.svg"
         alt="Shakil Logo"
         className={cn("hidden h-4 w-auto object-contain dark:block", className)}
         {...props}
       />
       <img
-        src="/shakil/light-logo.webp"
+        src="/shakil/shakil-dark.svg"
         alt="Shakil Logo"
         className={cn("block h-4 w-auto object-contain dark:hidden", className)}
         {...props}
