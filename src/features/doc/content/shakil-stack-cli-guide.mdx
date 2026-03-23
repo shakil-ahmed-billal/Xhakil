@@ -1,0 +1,196 @@
+---
+title: "The Evolution of Full-Stack: Introducing Shakil-Stack CLI"
+description: "Master the art of rapid application development with Shakil-Stack CLI. Scaffold production-ready Next.js and Node.js (EchoNet) apps in seconds. Created by Shakil Ahmed Billal."
+category: "blog"
+image: "/blog/shakil-stack.png"
+new: true
+keywords: ["shakil-stack", "cli", "fullstack", "nextjs", "express", "prisma", "better-auth", "generator", "shakil-ahmed-billal"]
+createdAt: "2026-03-24"
+updatedAt: "2026-03-24"
+---
+
+---
+
+## Introduction
+
+In the fast-paced world of web development, speed and consistency are the names of the game. Every developer knows the pain of setting up a new project from scratch: configuring the backend architecture, setting up the frontend, integrating the database, and wiring authentication.
+
+What if you could skip the repetitive boilerplate and jump straight into the logic that matters?
+
+Shakil Ahmed Billal, a dedicated software engineer and the creator of this ecosystem, recognized this friction. After years of building complex applications and perfecting the EchoNet backend pattern, he decided to package this knowledge into a powerful tool for the community.
+
+Shakil-Stack CLI is a high-performance, developer-first full-stack project generator designed to scaffold production-ready applications mirroring the elite EchoNet backend architecture paired with a state-of-the-art Next.js frontend.
+
+---
+
+<FramedImage
+  src="/blog/shakil-stack.png"
+  alt="Shakil-Stack CLI - Full-Stack Scaffolding"
+/>
+
+---
+
+## The Vision of a Better Workflow
+
+Shakil-Stack was born from a simple idea: developers should spend more time creating and less time configuring. Shakil Ahmed Billal spent months refining the modular structure of EchoNet to ensure it could handle any scale, from a single developer’s side project to a high-traffic enterprise application. 
+
+By using this CLI, you are not just getting a template; you are adopting a battle-tested architecture designed for longevity and maintainability.
+
+---
+
+## Key Features
+
+### Backend Excellence (EchoNet Style)
+The backend is designed as a modular fortress.
+- **Modular Architecture:** A clean, scalable src/app/module pattern that keeps your codebase organized. Each feature lives in its own directory with its own routes, controllers, and services.
+- **Prisma 7+:** Leverage the next generation of database ORMs with pre-configured PostgreSQL adapters for type-safe database interactions.
+- **Better Auth Integration:** Pre-built authentication schemas including User, Session, and Account models, ready for modern authentication flows.
+- **Security First:** Integrated Helmet, CORS, Rate Limiting, and XSS Sanitization right out of the box to protect your application from common vulnerabilities.
+- **Robust Error Handling:** A centralized global error handler and a structured ApiError class for consistent API responses and easier debugging.
+
+### Modern Frontend (Next.js)
+Speed meets visual excellence on the client side.
+- **App Router:** Built on the latest Next.js 14/15 patterns for optimal performance, server-side rendering, and SEO.
+- **TypeScript and Tailwind:** Pre-configured for a type-safe, visually stunning development experience. It supports the latest Tailwind CSS v4 features.
+- **Clean Structure:** Dedicated directories for hooks, services, lib, and types to ensure long-term maintainability and separation of concerns.
+
+---
+
+## Getting Started: Global Installation
+
+You can install Shakil-Stack globally on your machine to have it ready whenever inspiration strikes.
+
+To install the CLI globally, run:
+
+```bash
+npm install -g @shakil-dev/shakil-stack
+```
+
+Alternatively, you can use it instantly without installation using npx:
+
+```bash
+npx @shakil-dev/shakil-stack init my-awesome-app
+```
+
+---
+
+## Detailed Project Setup and Run Process
+
+Once you have initialized your project, follow these detailed steps to get everything running in your local development environment.
+
+### 1. Initialize the Stack
+Run the initialization command and follow the prompts.
+
+```bash
+shakil-stack init my-awesome-app
+cd my-awesome-app
+```
+
+### 2. Configure Environment Variables
+Navigate to the backend directory and update your environment configuration. Shakil-Stack uses Prisma, so a valid database connection is required.
+
+```bash
+cd backend
+cp .env.example .env
+```
+Open the `.env` file and update the `DATABASE_URL` with your PostgreSQL connection string.
+
+### 3. Database Migration
+Synchronize your database schema with the predefined models.
+
+```bash
+# From the backend directory
+shakil-stack prisma migrate
+shakil-stack prisma generate
+```
+
+### 4. Running the Development Servers
+Shakil-Stack projects consist of a backend and a frontend. You need to run them in parallel.
+
+**Terminal 1 (Backend):**
+```bash
+cd backend
+npm run dev
+```
+
+**Terminal 2 (Frontend):**
+```bash
+cd frontend
+npm run dev
+```
+
+Your backend will typically be running on `http://localhost:5000` (or as configured) and your frontend on `http://localhost:3000`.
+
+---
+
+## Advanced Usage: Scaffolding Modules
+
+Generating a new feature module is where the CLI truly shines. Instead of manually creating multiple files for a new feature, use the generate (g) command.
+
+```bash
+# Run this in the project root
+shakil-stack g module Product
+```
+
+The CLI instantly creates the following files within `backend/src/app/modules/Product/`:
+- `product.controller.ts`: Handles HTTP requests and responses.
+- `product.service.ts`: Houses the core business logic and database interactions.
+- `product.route.ts`: Defines the API endpoints for the module.
+- `product.interface.ts`: Defines the TypeScript interfaces for the data.
+- `product.validation.ts`: Zod schema validation for request bodies and parameters.
+- `product.constant.ts`: Centralizes module-specific constants.
+
+---
+
+## Contributing and Community
+
+This project is an open-source initiative by Shakil Ahmed Billal. Contributions are highly encouraged. Whether you are fixing a bug, adding a feature, or improving documentation, your help is welcome.
+
+### Repository
+Check out the source code and contribute here: [github.com/shakil-ahmed-billal/shakil-stack-cli](https://github.com/shakil-ahmed-billal/shakil-stack-cli)
+
+### Code of Conduct
+We are committed to providing a friendly, safe, and welcoming environment for all. This project follows the **Contributor Covenant Code of Conduct**. Please read the full version in the repository before contributing.
+
+---
+
+## Staying Up to Date: Updating the CLI
+
+The project is constantly evolving with new features, security patches, and performance improvements. It is highly recommended to keep your global installation updated to the latest version.
+
+### Check Your Current Version
+To check which version of the CLI you are currently running, use:
+
+```bash
+shakil-stack --version
+```
+
+### Update to the Latest Version
+When a new version is released, you can update your global installation using the following command:
+
+```bash
+npm install -g @shakil-dev/shakil-stack@latest
+```
+
+If you are using npx, you don't need to worry about updating, as npx always fetches the latest version by default when you run it. However, for a faster experience, the global installation is preferred.
+
+---
+
+## Final Thoughts
+
+Development should be about solving problems, not fighting boilerplate. Shakil-Stack CLI is the culmination of Shakil Ahmed Billal's experience in building scalable systems, provided to you to jumpstart your next big idea.
+
+<Callout>
+  **Pro Tip:** Use the global installation to quickly experiment with new backend patterns without any setup overhead.
+</Callout>
+
+---
+
+## Summary
+
+- **Productivity:** Scaffold a complete full-stack project in seconds.
+- **Architectural Integrity:** Follows the battle-tested EchoNet modular pattern.
+- **Safety:** Full TypeScript integration and automated security headers.
+- **Modern:** Powered by Prisma 7+, Next.js App Router, and Better Auth.
+
+Happy Coding!
