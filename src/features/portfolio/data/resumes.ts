@@ -6,12 +6,16 @@ export interface Resume {
 export const RESUME_DATA: Record<string, Resume[]> = {
   Developer: [
     {
-      name: "Backend Developer",
-      file: "Shakil_Ahmed_Billal_Backend_Developer_resume.pdf",
+      name: "Flutter Developer",
+      file: "Shakil_Ahmed_Billal_Flutter_Developer_resume.pdf",
     },
     {
       name: "Frontend Developer",
       file: "Shakil_Ahmed_Billal_Frontend_Developer_resume.pdf",
+    },
+    {
+      name: "Backend Developer",
+      file: "Shakil_Ahmed_Billal_Backend_Developer_resume.pdf",
     },
     {
       name: "Full Stack Developer",
@@ -24,12 +28,20 @@ export const RESUME_DATA: Record<string, Resume[]> = {
   ],
   Engineer: [
     {
-      name: "Backend Engineer",
-      file: "Shakil_Ahmed_Billal_Backend_Engineer_resume.pdf",
+      name: "Flutter Engineer",
+      file: "Shakil_Ahmed_Billal_Flutter_Engineer_resume.pdf",
+    },
+    {
+      name: "Software Engineer",
+      file: "Shakil_Ahmed_Billal_Software_Engineer_resume.pdf",
     },
     {
       name: "Frontend Engineer",
       file: "Shakil_Ahmed_Billal_Frontend_Engineer_resume.pdf",
+    },
+    {
+      name: "Backend Engineer",
+      file: "Shakil_Ahmed_Billal_Backend_Engineer_resume.pdf",
     },
     {
       name: "Full Stack Engineer",
@@ -38,10 +50,6 @@ export const RESUME_DATA: Record<string, Resume[]> = {
     {
       name: "MERN Stack Engineer",
       file: "Shakil_Ahmed_Billal_MERN_Stack_Engineer_resume.pdf",
-    },
-    {
-      name: "Software Engineer",
-      file: "Shakil_Ahmed_Billal_Software_Engineer_resume.pdf",
     },
   ],
 }

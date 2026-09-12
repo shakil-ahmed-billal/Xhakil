@@ -3,8 +3,8 @@ import type { Experience } from "../types/experiences"
 export const EXPERIENCES: Experience[] = [
   {
     id: "softvence",
-    companyName: "Softvence",
-    companyLogo: "/experience/softvence.webp", // Placeholder BD Calling Logo
+    companyName: "Softvence Agency",
+    companyLogo: "/experience/softvence.webp", // Softvence Agency Logo
     companyWebsite: "https://softvence.agency",
     positions: [
       {
@@ -12,17 +12,27 @@ export const EXPERIENCES: Experience[] = [
         title: "Team Leader",
         employmentPeriod: {
           start: "01.2026",
+          end: "08.2026",
         },
         employmentType: "Full-time",
         icon: "business",
         description:
-          "- Overseeing the development team and managing project timelines.\n- Mentoring junior and mid-level developers to enhance code quality and best practices.\n- Coordinating between stakeholders and the technical team to ensure smooth feature delivery.\n- Driving technical architecture decisions and code review processes.",
-        skills: ["Team Leadership", "Project Management", "Code Review", "Mentoring"],
+          "- Overseeing a cross-functional mobile app development team, planning sprints, assigning tasks, and managing project timelines to ensure consistent, on-schedule delivery of Flutter-based products.\n- Mentoring Flutter developers on Dart best practices, state management patterns, clean architecture, and efficient widget composition to elevate overall code quality.\n- Coordinating closely between business stakeholders, designers, and the technical team to translate product requirements into clear, actionable development tasks and smooth feature delivery.\n- Driving key Flutter app architecture decisions, including module structuring, state management strategy, and API integration patterns, while leading thorough code review processes.\n- Establishing coding standards, Git workflow guidelines, and CI/CD release practices to improve team productivity and reduce production incidents across app releases.",
+        skills: [
+          "Team Leadership",
+          "Flutter",
+          "Dart",
+          "Clean Architecture",
+          "State Management",
+          "CI/CD",
+          "Code Review",
+          "Sprint Planning",
+        ],
         isExpanded: true,
       },
       {
         id: "1",
-        title: "Front-End Developer",
+        title: "Flutter Developer",
         employmentPeriod: {
           start: "04.2025",
           end: "01.2026",
@@ -30,8 +40,18 @@ export const EXPERIENCES: Experience[] = [
         employmentType: "Full-time",
         icon: "code",
         description:
-          "- Developed scalable, responsive web applications using React and Next.js.\n- Converted Figma designs into pixel-perfect, accessible user interfaces.\n- Integrated RESTful APIs and optimized client-side data fetching.\n- Improved performance through lazy loading, code splitting, and caching strategies.\n- Collaborated with backend engineers and product teams to deliver production-ready features.",
-        skills: ["React", "Next.js", "Figma", "REST API", "Optimization"],
+          "- Developed scalable, high-performance, cross-platform mobile applications for Android and iOS using Flutter and Dart, following clean architecture and reusable widget-based design principles.\n- Converted complex Figma designs into pixel-perfect, fully responsive Flutter UI, ensuring consistent look and feel across a wide range of device sizes and screen resolutions.\n- Integrated RESTful APIs, GraphQL endpoints, and Firebase services such as Authentication, Firestore, and Cloud Messaging to build dynamic, real-time, data-driven mobile applications.\n- Improved app performance and user experience through widget tree optimization, lazy loading, efficient state management, image caching, and reduction of unnecessary rebuilds.\n- Collaborated closely with backend engineers, UI/UX designers, and product managers in an agile environment to deliver production-ready mobile features on tight deadlines.\n- Handled app release management, including versioning, build configuration, and deployment to the Google Play Store and Apple App Store using CI/CD pipelines.",
+        skills: [
+          "Flutter",
+          "Dart",
+          "Android",
+          "iOS",
+          "Firebase",
+          "REST APIs",
+          "GraphQL",
+          "Figma to Flutter UI",
+          "App Store & Google Play",
+        ],
         isExpanded: false,
       },
     ],
@@ -40,48 +60,31 @@ export const EXPERIENCES: Experience[] = [
   {
     id: "qwik-it",
     companyName: "Qwik IT Services",
-    companyLogo: "/experience/qwikit.webp", // Placeholder Qwik IT Logo
+    companyLogo: "/experience/qwikit.webp", // Qwik IT Logo
     companyWebsite: "https://www.qwikit.ca",
     positions: [
       {
         id: "1",
-        title: "Frontend Developer Intern",
+        title: "Flutter Developer",
         employmentPeriod: {
-          start: "03.2025",
+          start: "03.2024",
           end: "04.2025",
         },
-        employmentType: "Internship",
+        employmentType: "Remote",
+        icon: "code",
         description:
-          "- Built reusable UI components following scalable frontend architecture.\n- Worked with REST APIs and GraphQL for dynamic data-driven applications.\n- Ensured cross-browser compatibility and responsive layouts.\n- Supported CI/CD pipelines using GitHub Actions.",
+          "- Built reusable, well-documented Flutter widgets and components following a scalable, modular app architecture that could be shared across multiple screens and features.\n- Worked with REST APIs, GraphQL, and Firebase to fetch, cache, and synchronize data for dynamic, data-driven mobile applications used by real end users.\n- Ensured cross-platform compatibility, pixel-consistent layouts, and smooth performance across a variety of Android and iOS devices and screen sizes.\n- Supported and maintained CI/CD pipelines for automated build, test, and deployment of the mobile application using GitHub Actions, reducing manual release effort.\n- Participated in daily stand-ups, sprint planning, and code reviews, gaining hands-on experience with agile development practices in a remote, distributed team setting.",
         skills: [
-          "Frontend Architecture",
+          "Flutter",
+          "Dart",
+          "Cross-Platform",
+          "REST APIs",
+          "Firebase",
           "GraphQL",
-          "REST API",
+          "CI/CD",
           "GitHub Actions",
-          "UI Components",
+          "Agile Development",
         ],
-        isExpanded: false,
-      },
-    ],
-    isCurrentEmployer: false,
-  },
-  {
-    id: "msab-bd",
-    companyName: "Msab BD",
-    companyLogo: "https://avatars.githubusercontent.com/u/124806346?s=200&v=4", // Placeholder Msab BD Logo
-    companyWebsite: "#", // No website provided
-    positions: [
-      {
-        id: "1",
-        title: "Web Developer",
-        employmentPeriod: {
-          start: "01.2025",
-          end: "03.2025",
-        },
-        employmentType: "Full-time",
-        description:
-          "- Developed full-stack web solutions using React, Node.js, and MongoDB.\n- Maintained clean, modular, and well-documented codebases.\n- Enhanced frontend performance with optimized rendering strategies.",
-        skills: ["React", "Node.js", "MongoDB", "Frontend Performance"],
         isExpanded: false,
       },
     ],

@@ -3,7 +3,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import type { BlogPosting as PageSchema, WithContext } from "schema-dts"
+import type { Graph } from "schema-dts"
 
 import {
   Tooltip,
@@ -85,7 +85,7 @@ export async function generateMetadata({
   }
 }
 
-function getPageJsonLd(doc: Doc): WithContext<PageSchema | any> {
+function getPageJsonLd(doc: Doc): Graph {
   const publishedTime = new Date(doc.metadata.createdAt).toISOString()
   const modifiedTime = new Date(
     doc.metadata.updatedAt || doc.metadata.createdAt
@@ -114,10 +114,7 @@ function getPageJsonLd(doc: Doc): WithContext<PageSchema | any> {
         publisher: {
           "@type": "Person",
           name: USER.displayName,
-          logo: {
-            "@type": "ImageObject",
-            url: `${SITE_INFO.url}${USER.avatar}`,
-          },
+          image: `${SITE_INFO.url}${USER.avatar}`,
         },
         mainEntityOfPage: {
           "@type": "WebPage",

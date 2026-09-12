@@ -36,15 +36,15 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import type { DocPreview } from "@/features/doc/types/document"
-import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 import { RESUME_DATA } from "@/features/portfolio/data/resumes"
+import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 import { useDuckFollowerVisibility } from "@/hooks/use-duck-follower-visibility"
 import { trackEvent } from "@/lib/events"
 import { copyToClipboardWithEvent } from "@/utils/copy"
 
-import { SiteMark, getMarkSVG } from "./site-mark"
-import { getWordmarkSVG } from "./site-wordmark"
 import { ComponentIcon, Icons } from "./icons"
+import { getMarkSVG, SiteMark } from "./site-mark"
+import { getWordmarkSVG } from "./site-wordmark"
 import { Button } from "./ui/button"
 import { Kbd, KbdGroup } from "./ui/kbd"
 import { Separator } from "./ui/separator"
@@ -153,7 +153,12 @@ const RESUME_LINKS: CommandLinkItem[] = Object.entries(RESUME_DATA).flatMap(
       title: `${file.name} (Resume)`,
       href: `/resume/${category}/${file.file}`,
       icon: FileTextIcon,
-      keywords: ["resume", "cv", category.toLowerCase(), file.name.toLowerCase()],
+      keywords: [
+        "resume",
+        "cv",
+        category.toLowerCase(),
+        file.name.toLowerCase(),
+      ],
       openInNewTab: true,
     }))
 )

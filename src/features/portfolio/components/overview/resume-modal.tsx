@@ -11,8 +11,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/base/ui/dialog"
-import { ScrollFadeEffect } from "@/registry/components/scroll-fade-effect/scroll-fade-effect"
 import { RESUME_DATA } from "@/features/portfolio/data/resumes"
+import { ScrollFadeEffect } from "@/registry/components/scroll-fade-effect/scroll-fade-effect"
 
 import { IntroItem, IntroItemContent, IntroItemIcon } from "./intro-item"
 

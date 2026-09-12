@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import type { ProfilePage as PageSchema, WithContext } from "schema-dts"
 
+import { SITE_INFO } from "@/config/site"
 import { About } from "@/features/portfolio/components/about"
 import { Blog } from "@/features/portfolio/components/blog"
 import { Certifications } from "@/features/portfolio/components/certifications"
@@ -14,7 +15,6 @@ import { Projects } from "@/features/portfolio/components/projects"
 import { SocialLinks } from "@/features/portfolio/components/social-links-v2"
 import { TechStack } from "@/features/portfolio/components/tech-stack"
 import { TestimonialsMarquee } from "@/features/portfolio/components/testimonials-marquee"
-import { SITE_INFO } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
 import { cn } from "@/lib/utils"
 

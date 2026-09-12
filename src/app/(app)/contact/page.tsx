@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 
-import { USER } from "@/features/portfolio/data/user"
 import { SITE_INFO } from "@/config/site"
-import { ProfileCover } from "@/features/portfolio/components/profile-cover"
 import { AvatarElectricEffect } from "@/features/portfolio/components/avatar-electric-effect"
-import { SocialLinks } from "@/features/portfolio/components/social-links-v2"
 import { ContactForm } from "@/features/portfolio/components/contact-form"
+import { ProfileCover } from "@/features/portfolio/components/profile-cover"
+import { SocialLinks } from "@/features/portfolio/components/social-links-v2"
+import { USER } from "@/features/portfolio/data/user"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -46,8 +46,7 @@ export default function ContactPage() {
           <ProfileCover />
         </div>
         <Separator />
-        <div className="flex flex-col md:flex-row gap-12 border-x border-edge p-6 md:p-12 screen-line-before screen-line-after">
-          
+        <div className="screen-line-before screen-line-after flex flex-col gap-12 border-x border-edge p-6 md:flex-row md:p-12">
           {/* Left Column: Avatar & Info */}
           <div className="flex-1 space-y-6">
             <div className="flex items-center gap-4">
@@ -63,27 +62,33 @@ export default function ContactPage() {
                 <h1 className="text-xl font-semibold tracking-tight">
                   {USER.displayName}
                 </h1>
-                <p className="text-muted-foreground font-mono text-sm mt-1">{USER.jobTitle}</p>
+                <p className="mt-1 font-mono text-sm text-muted-foreground">
+                  {USER.jobTitle}
+                </p>
               </div>
             </div>
 
             <div className="prose dark:prose-invert">
-              <p className="text-muted-foreground leading-relaxed text-sm">
-                I&apos;m always open to discussing product design work, architecture, or partnership opportunities.
-                Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                I&apos;m always open to discussing product design work,
+                architecture, or partnership opportunities. Whether you have a
+                question or just want to say hi, I&apos;ll try my best to get
+                back to you!
               </p>
             </div>
           </div>
 
           {/* Right Column: Contact Form */}
           <div className="flex-1">
-            <h2 className="text-2xl font-semibold tracking-tight mb-6">Send a Message</h2>
+            <h2 className="mb-6 text-2xl font-semibold tracking-tight">
+              Send a Message
+            </h2>
             <ContactForm />
           </div>
         </div>
 
         <Separator />
-        
+
         <SocialLinks />
         <Separator />
       </div>

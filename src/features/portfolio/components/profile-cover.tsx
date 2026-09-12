@@ -3,8 +3,8 @@
 import { useRef } from "react"
 
 import { BrandContextMenu } from "@/components/brand-context-menu"
-import { SiteMark } from "@/components/site-mark"
 import { Magnet } from "@/components/react-bits/magnet"
+import { SiteMark } from "@/components/site-mark"
 import { cn } from "@/lib/utils"
 
 export function ProfileCover() {

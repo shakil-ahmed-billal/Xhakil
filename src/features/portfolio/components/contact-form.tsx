@@ -1,10 +1,11 @@
 "use client"
 
+import emailjs from "@emailjs/browser"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Loader2Icon, SendIcon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
-import { Loader2Icon, SendIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -17,8 +18,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import emailjs from "@emailjs/browser"
-import { contactSchema, type ContactFormData } from "../validators/contact"
+
+import { type ContactFormData, contactSchema } from "../validators/contact"
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -40,7 +41,9 @@ export function ContactForm() {
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error("EmailJS environment variables are not properly configured.")
+        throw new Error(
+          "EmailJS environment variables are not properly configured."
+        )
       }
 
       const templateParams = {
@@ -89,7 +92,11 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="john@example.com" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="john@example.com"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,7 +120,11 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isSubmitting} className="w-full sm:w-full">
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full sm:w-full"
+        >
           {isSubmitting ? (
             <>
               <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />

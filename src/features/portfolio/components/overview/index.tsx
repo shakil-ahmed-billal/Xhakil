@@ -1,14 +1,7 @@
-import {
-  LinkIcon,
-  MapPinIcon,
-  MarsIcon,
-  NonBinaryIcon,
-  VenusIcon,
-} from "lucide-react"
+import { MapPinIcon, MarsIcon, NonBinaryIcon, VenusIcon } from "lucide-react"
 
 import { USER } from "@/features/portfolio/data/user"
 import type { User } from "@/features/portfolio/types/user"
-import { urlToName } from "@/utils/url"
 
 import { Panel, PanelContent } from "../panel"
 import { CurrentLocalTimeItem } from "./current-local-time-item"
@@ -62,7 +55,6 @@ export function Overview() {
 
           <EmailItem email={USER.email} />
 
-
           {/* <IntroItem>
             <IntroItemIcon>
               <LinkIcon />
@@ -84,7 +76,6 @@ export function Overview() {
             </IntroItemContent>
           </IntroItem>
           <ResumeModal />
-
         </div>
       </PanelContent>
     </Panel>

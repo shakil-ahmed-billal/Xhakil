@@ -7,38 +7,44 @@ export const USER: User = {
   username: "shakil-ahmed-billal",
   gender: "male",
   pronouns: "he/him",
-  bio: "Passionate full-stack developer with strong expertise in building responsive, scalable, and high-performance web applications.",
+  bio: "Passionate Flutter Developer with strong expertise in building high-performance, cross-platform mobile applications for Android and iOS using Flutter and Dart.",
   flipSentences: [
     "Creating with code. Small details matter.",
-    "Full-Stack Developer",
+    "Flutter Developer",
+    "Cross-Platform Mobile Engineer",
     "Open Source Contributor",
   ],
   address: "Dhaka, Bangladesh",
   phoneNumber: "Kzg4MDEzMDgwNDg0Nzg=", // E.164 format, base64 encoded (https://t.io.vn/base64-string-converter)
   email: "c2hha2lsLmRldjk5QGdtYWlsLmNvbQ==", // base64 encoded
-  website: "https://xhakil.vercel.app",
-  jobTitle: "Team Leader",
+  website: "https://xhakil.site",
+  jobTitle: "Flutter Developer",
   jobs: [
     {
       title: "Team Leader",
-      company: "Softvence",
+      company: "Softvence Agency",
       website: "https://softvence.agency",
       experienceId: "softvence",
     },
     {
-      title: "Frontend Developer",
-      company: "Qwik IT",
-      website: "https://qwokit.com",
+      title: "Flutter Developer",
+      company: "Softvence Agency",
+      website: "https://softvence.agency",
+      experienceId: "softvence",
+    },
+    {
+      title: "Flutter Developer",
+      company: "Qwik IT Services",
+      website: "https://www.qwikit.ca",
       experienceId: "qwik-it",
     },
   ],
   about: `
-- **Full-Stack Developer** with expertise in building responsive, scalable, and high-performance web applications.
-- Skilled in translating Figma designs into pixel-perfect user interfaces, optimizing performance, and writing clean, maintainable code. 
-- Experienced in **React**, **Next.js**, **REST API integration**, state management, and cross-functional collaboration.
-- Adept at solving complex problems and delivering seamless digital experiences in fast-paced environments.
-- Creator of [QuickHire](https://quickhire-bd.vercel.app): comprehensive job portal
-- Creator of [Zentask](https://zentask-bd.vercel.app): full-stack project management application
+- **Passionate Flutter Developer** with strong expertise in building high-performance, cross-platform mobile applications for **Android** and **iOS** using **Flutter** and **Dart**.
+- Skilled in translating Figma designs into pixel-perfect, responsive UI, integrating REST APIs and Firebase services, and writing clean, maintainable, and scalable code.
+- Experienced in state management (**Provider**, **Riverpod**, **Bloc/Cubit**), native platform channels, and CI/CD deployment pipelines (**Google Play Store** & **Apple App Store**).
+- Adept at solving complex problems, optimizing app performance (rendering, lazy loading, memory management), and delivering seamless mobile experiences in fast-paced environments.
+- Creator of [Demoulinn](https://apps.apple.com/ae/app/demoulinn/id6756694988): cross-platform social media and video sharing mobile application live on the App Store and Google Play.
 
 <p class="text-muted-foreground">* Peak metrics recorded; actual current figures may vary.</p>
 `,
@@ -52,9 +58,16 @@ export const USER: User = {
     "billal",
     "shakildev",
     "shakilahmedbillal",
-    "fullstack",
-    "react",
-    "nextjs",
+    "flutter",
+    "dart",
+    "flutter developer",
+    "mobile app developer",
+    "cross-platform",
+    "android",
+    "ios",
+    "bloc",
+    "riverpod",
+    "firebase",
   ],
   dateCreated: "2023-10-20", // YYYY-MM-DD
 }

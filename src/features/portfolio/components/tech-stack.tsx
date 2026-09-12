@@ -1,11 +1,5 @@
 import Image from "next/image"
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-
 import { TECH_STACK } from "../data/tech-stack"
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel"
 
