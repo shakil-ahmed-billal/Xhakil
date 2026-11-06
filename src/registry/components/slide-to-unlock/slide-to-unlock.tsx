@@ -1,14 +1,14 @@
 "use client"
 
+import type { ComponentProps, ComponentPropsWithoutRef, JSX } from "react"
+import { createContext, useCallback, useContext, useRef, useState } from "react"
 import {
   animate,
   motion,
-  type MotionValue,
   useMotionValue,
   useTransform,
+  type MotionValue,
 } from "motion/react"
-import type { ComponentProps, ComponentPropsWithoutRef, JSX } from "react"
-import { createContext, useCallback, useContext, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -37,12 +37,8 @@ function useSlideToUnlock() {
 }
 
 export type SlideToUnlockRootProps = ComponentProps<"div"> & {
-  /**
-   * Width of the drag handle in pixels.
-   * @defaultValue 56
-   * */
   handleWidth?: number
-  /** Called when the handle is dragged fully to the end. */
+
   onUnlock?: () => void
 }
 
@@ -92,7 +88,7 @@ export function SlideToUnlock({
       <div
         data-slot="slide-to-unlock"
         className={cn(
-          "w-54 rounded-xl bg-muted p-1 shadow-inner ring-1 ring-foreground/10 ring-inset",
+          "w-54 rounded-xl bg-muted p-1 shadow-inner inset-ring-1 inset-ring-foreground/10",
           className
         )}
         {...props}
@@ -131,16 +127,6 @@ export type SlideToUnlockTextProps = Omit<
   ComponentPropsWithoutRef<typeof motion.div>,
   "children"
 > & {
-  /**
-   * Accepts a render function as `children` to react to the dragging state.
-   *
-   * @example
-   * ```tsx
-   * <SlideToUnlockText>
-   *   {({ isDragging }) => <span>{isDragging ? "Release..." : "Slide to unlock"}</span>}
-   * </SlideToUnlockText>
-   * ```
-   */
   children: JSX.Element | ((props: { isDragging: boolean }) => JSX.Element)
 }
 

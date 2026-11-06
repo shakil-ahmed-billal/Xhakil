@@ -4,7 +4,7 @@ A beautifully designed collection of reusable components and production-ready bl
 
 → Browse components and blocks:
 
-- https://xhakil.vercel.app/components
-- https://xhakil.vercel.app/blocks
+- https://www.xhakil.site/components
+- https://www.xhakil.site/blocks
 
-[![screenshot](https://assets.xhakil.vercel.app/images/ui-og-image-dark.webp)](https://xhakil.vercel.app/components)
+[![screenshot](https://assets.www.xhakil.site/images/ui-og-image-dark.webp)](https://www.xhakil.site/components)

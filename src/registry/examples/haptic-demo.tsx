@@ -26,7 +26,7 @@ function ScanToTryOnMobile() {
 
       <Image
         className="rounded-lg border dark:border-transparent"
-        src="https://xhakil.vercel.app/images/blog/haptic-qr-code.webp"
+        src="/images/screenshot-desktop-dark.png"
         alt="QR code"
         width={96}
         height={96}

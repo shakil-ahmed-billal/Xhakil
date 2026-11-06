@@ -1,7 +1,6 @@
 "use client"
 
-import { toast } from "sonner"
-
+import { toast } from "@/components/ui/toast"
 import { ShimmeringText } from "@/registry/components/shimmering-text"
 import {
   SlideToUnlock,
@@ -15,7 +14,7 @@ export default function SlideToUnlockDemo3() {
     <SlideToUnlock
       className="w-45 rounded-full ring-0"
       handleWidth={40}
-      onUnlock={() => toast.success("Stopped")}
+      onUnlock={() => toast.add({ type: "success", title: "Stopped" })}
     >
       <SlideToUnlockTrack>
         <SlideToUnlockText className="pl-0">

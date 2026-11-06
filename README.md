@@ -1,11 +1,11 @@
-# [xhakil.vercel.app](https://xhakil.vercel.app) &middot; [![GitHub License](https://img.shields.io/github/license/shakil-ahmed-billal/xhakil?label=License)](https://github.com/shakil-ahmed-billal/xhakil/blob/main/LICENSE) ![GitHub Repo Views](https://gitviews.com/repo/shakil-ahmed-billal/xhakil.svg?style=flat&label-color=%23555&color=%23f59e0b)
+# [www.xhakil.site](https://www.xhakil.site) &middot; [![GitHub License](https://img.shields.io/github/license/shakil-ahmed-billal/xhakil?label=License)](https://github.com/shakil-ahmed-billal/xhakil/blob/main/LICENSE) ![GitHub Repo Views](https://gitviews.com/repo/shakil-ahmed-billal/xhakil.svg?style=flat&label-color=%23555&color=%23f59e0b)
 
 A minimal, pixel-perfect dev portfolio, shadcn registry, and blog to showcase my work as a Design Engineer.
 
-→ Check out the live site: [xhakil.vercel.app](https://xhakil.vercel.app)
+→ Check out the live site: [www.xhakil.site](https://www.xhakil.site)
 
-[![screenshot-dark](https://assets.xhakil.vercel.app/images/screenshot-desktop-dark.webp?v=7#gh-dark-mode-only)](https://xhakil.vercel.app#gh-dark-mode-only)
-[![screenshot-light](https://assets.xhakil.vercel.app/images/screenshot-desktop-light.webp?v=7#gh-light-mode-only)](https://xhakil.vercel.app#gh-light-mode-only)
+[![screenshot-dark](https://assets.www.xhakil.site/images/screenshot-desktop-dark.webp?v=7#gh-dark-mode-only)](https://www.xhakil.site#gh-dark-mode-only)
+[![screenshot-light](https://assets.www.xhakil.site/images/screenshot-desktop-light.webp?v=7#gh-light-mode-only)](https://www.xhakil.site#gh-light-mode-only)
 
 ## Overview
 
@@ -72,37 +72,37 @@ This project is proudly supported by:
   <tbody>
     <tr>
       <td>
-        <a href="https://shadcnstudio.com?utm_source=xhakil.vercel.app&utm_medium=banner&utm_campaign=github#gh-light-mode-only">
-          <img src="https://assets.xhakil.vercel.app/images/sponsors/shadcnstudio.svg?v=2#gh-light-mode-only" alt="shadcnstudio.com" />
+        <a href="https://shadcnstudio.com?utm_source=www.xhakil.site&utm_medium=banner&utm_campaign=github#gh-light-mode-only">
+          <img src="https://assets.www.xhakil.site/images/sponsors/shadcnstudio.svg?v=2#gh-light-mode-only" alt="shadcnstudio.com" />
         </a>
-        <a href="https://shadcnstudio.com?utm_source=xhakil.vercel.app&utm_medium=banner&utm_campaign=github#gh-dark-mode-only">
-          <img src="https://assets.xhakil.vercel.app/images/sponsors/shadcnstudio-dark.svg?v=2#gh-dark-mode-only" alt="shadcnstudio.com" />
+        <a href="https://shadcnstudio.com?utm_source=www.xhakil.site&utm_medium=banner&utm_campaign=github#gh-dark-mode-only">
+          <img src="https://assets.www.xhakil.site/images/sponsors/shadcnstudio-dark.svg?v=2#gh-dark-mode-only" alt="shadcnstudio.com" />
         </a>
       </td>
       <td>
         <a href="https://shadcnspace.com#gh-light-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/shadcnspace.svg?v=3#gh-light-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/shadcnspace.svg?v=3#gh-light-mode-only"
             alt="Shadcn Space"
           />
         </a>
         <a href="https://shadcnspace.com#gh-dark-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/shadcnspace-dark.svg?v=3#gh-dark-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/shadcnspace-dark.svg?v=3#gh-dark-mode-only"
             alt="Shadcn Space"
           />
         </a>
       </td>
       <td>
-        <a href="https://shadcraft.com?utm_source=xhakil.vercel.app#gh-light-mode-only">
+        <a href="https://shadcraft.com?utm_source=www.xhakil.site#gh-light-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/shadcraft.svg?v=1#gh-light-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/shadcraft.svg?v=1#gh-light-mode-only"
             alt="Shadcraft"
           />
         </a>
-        <a href="https://shadcraft.com?utm_source=xhakil.vercel.app#gh-dark-mode-only">
+        <a href="https://shadcraft.com?utm_source=www.xhakil.site#gh-dark-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/shadcraft-dark.svg?v=1#gh-dark-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/shadcraft-dark.svg?v=1#gh-dark-mode-only"
             alt="Shadcraft"
           />
         </a>
@@ -110,43 +110,43 @@ This project is proudly supported by:
     </tr>
     <tr>
       <td>
-        <a href="https://www.shadcnblocks.com?utm_source=xhakil.vercel.app#gh-light-mode-only">
+        <a href="https://www.shadcnblocks.com?utm_source=www.xhakil.site#gh-light-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/shadcnblocks.svg?v=1#gh-light-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/shadcnblocks.svg?v=1#gh-light-mode-only"
             alt="Shadcnblocks"
           />
         </a>
-        <a href="https://www.shadcnblocks.com?utm_source=xhakil.vercel.app#gh-dark-mode-only">
+        <a href="https://www.shadcnblocks.com?utm_source=www.xhakil.site#gh-dark-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/shadcnblocks-dark.svg?v=1#gh-dark-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/shadcnblocks-dark.svg?v=1#gh-dark-mode-only"
             alt="Shadcnblocks"
           />
         </a>
       </td>
       <td>
-        <a href="https://reactbits.dev?utm_source=xhakil.vercel.app#gh-light-mode-only">
+        <a href="https://reactbits.dev?utm_source=www.xhakil.site#gh-light-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/reactbits.svg?v=1#gh-light-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/reactbits.svg?v=1#gh-light-mode-only"
             alt="React Bits"
           />
         </a>
-        <a href="https://reactbits.dev?utm_source=xhakil.vercel.app#gh-dark-mode-only">
+        <a href="https://reactbits.dev?utm_source=www.xhakil.site#gh-dark-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/reactbits-dark.svg?v=1#gh-dark-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/reactbits-dark.svg?v=1#gh-dark-mode-only"
             alt="React Bits"
           />
         </a>
       </td>
       <td>
-        <a href="https://uirules.com?utm_source=xhakil.vercel.app#gh-light-mode-only">
+        <a href="https://uirules.com?utm_source=www.xhakil.site#gh-light-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/uirules.svg?v=1#gh-light-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/uirules.svg?v=1#gh-light-mode-only"
             alt="UI Rules"
           />
         </a>
-        <a href="https://uirules.com?utm_source=xhakil.vercel.app#gh-dark-mode-only">
+        <a href="https://uirules.com?utm_source=www.xhakil.site#gh-dark-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/uirules-dark.svg?v=1#gh-dark-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/uirules-dark.svg?v=1#gh-dark-mode-only"
             alt="UI Rules"
           />
         </a>
@@ -154,15 +154,15 @@ This project is proudly supported by:
     </tr>
     <tr>
       <td>
-        <a href="https://openpanel.dev?utm_source=xhakil.vercel.app#gh-light-mode-only">
+        <a href="https://openpanel.dev?utm_source=www.xhakil.site#gh-light-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/openpanel.svg?v=1#gh-light-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/openpanel.svg?v=1#gh-light-mode-only"
             alt="OpenPanel"
           />
         </a>
-        <a href="https://openpanel.dev?utm_source=xhakil.vercel.app#gh-dark-mode-only">
+        <a href="https://openpanel.dev?utm_source=www.xhakil.site#gh-dark-mode-only">
           <img
-            src="https://assets.xhakil.vercel.app/images/sponsors/openpanel-dark.svg?v=1#gh-dark-mode-only"
+            src="https://assets.www.xhakil.site/images/sponsors/openpanel-dark.svg?v=1#gh-dark-mode-only"
             alt="OpenPanel"
           />
         </a>
@@ -181,5 +181,5 @@ This project is proudly supported by:
 
 ## Star History
 
-[![RepoStars-dark](https://www.repostars.dev/api/embed?repo=shakil-ahmed-billal%2Fxhakil.vercel.app&theme=dark#gh-dark-mode-only)](https://www.repostars.dev/?repos=shakil-ahmed-billal%2Fxhakil.vercel.app&theme=dark#gh-dark-mode-only)
-[![RepoStars-light](https://www.repostars.dev/api/embed?repo=shakil-ahmed-billal%2Fxhakil.vercel.app&theme=light#gh-light-mode-only)](https://www.repostars.dev/?repos=shakil-ahmed-billal%2Fxhakil.vercel.app&theme=light#gh-light-mode-only)
+[![RepoStars-dark](https://www.repostars.dev/api/embed?repo=shakil-ahmed-billal%2Fwww.xhakil.site&theme=dark#gh-dark-mode-only)](https://www.repostars.dev/?repos=shakil-ahmed-billal%2Fwww.xhakil.site&theme=dark#gh-dark-mode-only)
+[![RepoStars-light](https://www.repostars.dev/api/embed?repo=shakil-ahmed-billal%2Fwww.xhakil.site&theme=light#gh-light-mode-only)](https://www.repostars.dev/?repos=shakil-ahmed-billal%2Fwww.xhakil.site&theme=light#gh-light-mode-only)

@@ -1,14 +1,40 @@
-import { GeistMono } from "geist/font/mono"
-import { GeistPixelSquare } from "geist/font/pixel"
+import { Caveat } from "next/font/google"
+import localFont from "next/font/local"
 import { GeistSans } from "geist/font/sans"
-// import localFont from "next/font/local"
+import { GeistSerif } from "geist/font/serif"
 
-export const fontSans = GeistSans
-export const fontMono = GeistMono
-export const fontPixelSquare = GeistPixelSquare
+import { cn } from "@/lib/utils"
 
-// export const fontPixel = localFont({
-//   src: "../assets/fonts/DepartureMono-Regular.woff2",
-//   weight: "400",
-//   variable: "--font-pixel",
-// })
+const fontSans = GeistSans
+
+const fontSerif = GeistSerif
+
+const fontHandwritten = Caveat({
+  weight: "400",
+  display: "swap",
+  variable: "--font-handwritten",
+})
+
+const fontMono = localFont({
+  src: "../assets/fonts/PaperMono[wght].woff2",
+  display: "swap",
+  variable: "--font-mono",
+})
+
+const fontChicagoKare = localFont({
+  src: "../assets/fonts/ChicagoKare-Regular.woff2",
+  weight: "400",
+  display: "block",
+  preload: false,
+  variable: "--font-chicago-kare",
+})
+
+export const fontVariables = cn(
+  fontSans.variable,
+  fontMono.variable,
+  fontSerif.variable,
+  fontHandwritten.variable,
+  fontChicagoKare.variable,
+  "[--font-sans:var(--font-geist-sans)]",
+  "[--font-serif:var(--font-geist-serif)]"
+)

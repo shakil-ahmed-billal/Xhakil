@@ -1,44 +1,22 @@
 "use client"
 
-import { CheckIcon, CircleXIcon, CopyIcon } from "lucide-react"
-import type { HTMLMotionProps, Variants } from "motion/react"
-import { AnimatePresence, motion } from "motion/react"
 import type { ComponentProps } from "react"
+import { CheckIcon, CircleXIcon, CopyIcon } from "lucide-react"
+import { motion } from "motion/react"
 
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import type { CopyState } from "@/hooks/use-copy-to-clipboard"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-
-export const motionIconVariants: Variants = {
-  initial: { opacity: 0, scale: 0.8, filter: "blur(2px)" },
-  animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-  exit: { opacity: 0, scale: 0.8 },
-}
-
-export const motionIconProps: HTMLMotionProps<"span"> = {
-  variants: motionIconVariants,
-  initial: "initial",
-  animate: "animate",
-  exit: "exit",
-  transition: { duration: 0.15, ease: "easeOut" },
-}
+import { Button } from "@/components/ui/button"
+import { IconSwap, IconSwapItem } from "@/registry/components/icon-swap"
 
 export type CopyStateIconProps = {
   state: CopyState
-  /**
-   * Custom icon for idle state.
-   * @defaultValue CopyIcon
-   * */
+
   idleIcon?: React.ReactNode
-  /**
-   * Custom icon for done state.
-   * @defaultValue CheckIcon
-   * */
+
   doneIcon?: React.ReactNode
-  /**
-   * Custom icon for error state.
-   * @defaultValue CircleXIcon
-   * */
+
   errorIcon?: React.ReactNode
 }
 
@@ -49,34 +27,29 @@ export function CopyStateIcon({
   errorIcon,
 }: CopyStateIconProps) {
   return (
-    <AnimatePresence mode="popLayout" initial={false}>
-      {state === "idle" ? (
-        <motion.span key="idle" {...motionIconProps}>
-          {idleIcon ?? <CopyIcon />}
-        </motion.span>
-      ) : state === "done" ? (
-        <motion.span key="done" {...motionIconProps}>
-          {doneIcon ?? <CheckIcon strokeWidth={3} />}
-        </motion.span>
-      ) : state === "error" ? (
-        <motion.span key="error" {...motionIconProps}>
-          {errorIcon ?? <CircleXIcon />}
-        </motion.span>
-      ) : null}
-    </AnimatePresence>
+    <IconSwap>
+      <IconSwapItem key={state} as={motion.span}>
+        {state === "idle" && (idleIcon ?? <CopyIcon data-slot="idle-icon" />)}
+
+        {state === "done" && (doneIcon ?? <CheckIcon data-slot="done-icon" />)}
+
+        {state === "error" &&
+          (errorIcon ?? <CircleXIcon data-slot="error-icon" />)}
+      </IconSwapItem>
+    </IconSwap>
   )
 }
 
 export type CopyButtonProps = ComponentProps<typeof Button> & {
-  /** The text to copy, or a function that returns the text. */
   text: string | (() => string)
-  /** Called with the copied text on successful copy. */
+
   onCopySuccess?: (text: string) => void
-  /** Called with the error if the copy operation fails. */
+
   onCopyError?: (error: Error) => void
-} & Pick<CopyStateIconProps, "idleIcon" | "doneIcon" | "errorIcon">
+} & Omit<CopyStateIconProps, "state">
 
 export function CopyButton({
+  className,
   size = "icon",
   children,
   text,
@@ -95,6 +68,7 @@ export function CopyButton({
 
   return (
     <Button
+      className={cn("will-change-transform", className)}
       size={size}
       onClick={(e) => {
         copy(text)

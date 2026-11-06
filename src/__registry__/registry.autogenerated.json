@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "shakil-ahmed-billal",
-  "homepage": "https://xhakil.vercel.app/components",
+  "homepage": "https://www.xhakil.site/components",
   "items": [
     {
       "name": "utils",
@@ -75,7 +75,7 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://xhakil.vercel.app/components/theme-switcher",
+      "docs": "https://www.xhakil.site/components/theme-switcher",
       "type": "registry:component"
     },
     {
@@ -92,7 +92,7 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://xhakil.vercel.app/components/text-flip",
+      "docs": "https://www.xhakil.site/components/text-flip",
       "type": "registry:component"
     },
     {
@@ -109,7 +109,7 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://xhakil.vercel.app/components/apple-hello-effect",
+      "docs": "https://www.xhakil.site/components/apple-hello-effect",
       "type": "registry:component"
     },
     {
@@ -126,7 +126,7 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://xhakil.vercel.app/components/react-wheel-picker",
+      "docs": "https://www.xhakil.site/components/react-wheel-picker",
       "type": "registry:component"
     },
     {
@@ -164,7 +164,7 @@
       "registryDependencies": [
         "collapsible",
         "separator",
-        "https://xhakil.vercel.app/r/typography.json"
+        "https://www.xhakil.site/r/typography.json"
       ],
       "files": [
         {
@@ -172,7 +172,7 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://xhakil.vercel.app/components/work-experience",
+      "docs": "https://www.xhakil.site/components/work-experience",
       "type": "registry:component"
     },
     {
@@ -200,7 +200,7 @@
         "motion"
       ],
       "registryDependencies": [
-        "https://xhakil.vercel.app/r/shimmering-text.json"
+        "https://www.xhakil.site/r/shimmering-text.json"
       ],
       "files": [
         {
@@ -208,7 +208,7 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://xhakil.vercel.app/components/slide-to-unlock",
+      "docs": "https://www.xhakil.site/components/slide-to-unlock",
       "type": "registry:component"
     },
     {
@@ -218,9 +218,9 @@
       "description": "Scrolling marquee to showcase user testimonials.",
       "registryDependencies": [
         "@kibo-ui/marquee",
-        "https://xhakil.vercel.app/r/testimonial.json"
+        "https://www.xhakil.site/r/testimonial.json"
       ],
-      "docs": "https://xhakil.vercel.app/components/testimonials-marquee",
+      "docs": "https://www.xhakil.site/components/testimonials-marquee",
       "type": "registry:component",
       "files": []
     },
@@ -396,8 +396,8 @@
         "jotai"
       ],
       "registryDependencies": [
-        "https://xhakil.vercel.app/r/copy-button.json",
-        "https://xhakil.vercel.app/r/scroll-fade-effect.json"
+        "https://www.xhakil.site/r/copy-button.json",
+        "https://www.xhakil.site/r/scroll-fade-effect.json"
       ],
       "files": [
         {

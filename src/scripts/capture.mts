@@ -1,26 +1,23 @@
 import fs from "node:fs"
 import path from "node:path"
+import type { Browser } from "puppeteer"
+import puppeteer from "puppeteer"
 
-import type { Browser } from "puppeteer-core"
-import puppeteer from "puppeteer-core"
-
-const executablePath =
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-const url = process.env.URL || "https://shakil-ahmed-billal.localhost:3004"
-const outputDir = path.join(process.cwd(), ".shakil-ahmed-billal/screenshots")
+const url = process.env.URL || "https://xhakil.localhost"
+const outputDir = path.join(process.cwd(), ".screenshots")
 
 const SIZE = {
-  // Full HD
+  
   desktop: {
-    width: 1920,
-    height: 1080,
+    width: 1512,
+    height: 982,
   },
-  // iPhone 16 Pro Max
+  
   mobile: {
     width: 440,
     height: 956,
   },
-  // Open Graph image size
+  
   "og-image": {
     width: 1200,
     height: 630,
@@ -31,18 +28,20 @@ type Theme = "light" | "dark"
 
 async function captureScreenshot({
   browser,
+  name,
   url,
   size,
   themes = ["light"],
   type = "webp",
 }: {
   browser: Browser
+  name: string
   url: string
   size: keyof typeof SIZE
   themes?: Theme[]
   type?: "webp" | "png" | "jpeg"
 }) {
-  // Ensure the output directory exists
+  
   await fs.promises.mkdir(outputDir, { recursive: true })
 
   const page = await browser.newPage()
@@ -53,16 +52,22 @@ async function captureScreenshot({
   await page.goto(url, { waitUntil: "networkidle2" })
 
   for (const theme of themes) {
+    const fileName = `${name}-${size}-${theme}.${type}`
+    const filePath = path.join(outputDir, fileName) as
+      | `${string}.webp`
+      | `${string}.png`
+      | `${string}.jpeg`
+
+    if (fs.existsSync(filePath)) {
+      console.log(`⚠️ Screenshot already exists, skipping:`, filePath)
+      continue
+    }
+
     await page.emulateMediaFeatures([
       { name: "prefers-color-scheme", value: theme },
     ])
 
     await page.reload({ waitUntil: "networkidle0" })
-
-    const filePath = path.join(
-      outputDir,
-      `screenshot-${size}-${theme}.${type}`
-    ) as `${string}.webp` | `${string}.png` | `${string}.jpeg`
 
     await page.screenshot({
       path: filePath,
@@ -77,13 +82,12 @@ async function captureScreenshot({
 }
 
 async function main() {
-  const browser = await puppeteer.launch({
-    executablePath,
-  })
+  const browser = await puppeteer.launch()
 
   try {
     await captureScreenshot({
       browser,
+      name: "screenshot",
       url,
       size: "desktop",
       themes: ["light", "dark"],
@@ -91,6 +95,7 @@ async function main() {
 
     await captureScreenshot({
       browser,
+      name: "screenshot",
       url,
       size: "mobile",
       themes: ["light", "dark"],
@@ -98,6 +103,7 @@ async function main() {
 
     await captureScreenshot({
       browser,
+      name: "screenshot",
       url: `${url}/og`,
       size: "og-image",
       themes: ["light", "dark"],

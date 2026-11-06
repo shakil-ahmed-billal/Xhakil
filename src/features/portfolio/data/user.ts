@@ -8,17 +8,24 @@ export const USER: User = {
   gender: "male",
   pronouns: "he/him",
   bio: "Passionate full-stack developer with strong expertise in building responsive, scalable, and high-performance web applications.",
-  flipSentences: [
+  taglines: [
     "Creating with code. Small details matter.",
-    "Full-Stack Developer",
-    "Open Source Contributor",
+    "Founder & Lead Engineer at NaxtBrand.",
+    "Team Leader at Softvence.",
+    "Open source contributor.",
   ],
   address: "Dhaka, Bangladesh",
-  phoneNumber: "Kzg4MDEzMDgwNDg0Nzg=", // E.164 format, base64 encoded (https://t.io.vn/base64-string-converter)
-  email: "c2hha2lsLmRldjk5QGdtYWlsLmNvbQ==", // base64 encoded
-  website: "https://xhakil.vercel.app",
-  jobTitle: "Team Leader",
+  phoneNumberB64: "Kzg4MDEzMDgwNDg0Nzg=",
+  emailB64: "c2hha2lsLmRldjk5QGdtYWlsLmNvbQ==",
+  website: "https://www.xhakil.site",
+  jobTitle: "Founder & Lead Engineer",
   jobs: [
+    {
+      title: "Founder & Lead Engineer",
+      company: "NaxtBrand",
+      website: "https://naxtbrand.com",
+      experienceId: "naxtbrand",
+    },
     {
       title: "Team Leader",
       company: "Softvence",
@@ -28,33 +35,44 @@ export const USER: User = {
     {
       title: "Frontend Developer",
       company: "Qwik IT",
-      website: "https://qwokit.com",
+      website: "https://www.qwikit.ca",
       experienceId: "qwik-it",
     },
   ],
-  about: `
-- **Full-Stack Developer** with expertise in building responsive, scalable, and high-performance web applications.
-- Skilled in translating Figma designs into pixel-perfect user interfaces, optimizing performance, and writing clean, maintainable code. 
-- Experienced in **React**, **Next.js**, **REST API integration**, state management, and cross-functional collaboration.
-- Adept at solving complex problems and delivering seamless digital experiences in fast-paced environments.
-- Creator of [QuickHire](https://quickhire-bd.vercel.app): comprehensive job portal
-- Creator of [Zentask](https://zentask-bd.vercel.app): full-stack project management application
-
-<p class="text-muted-foreground">* Peak metrics recorded; actual current figures may vary.</p>
+  about: `- I’m Shakil Ahmed Billal — a Full-Stack Developer and Team Leader with expertise in building responsive, scalable, and high-performance web applications.
+- Skilled in translating Figma designs into pixel-perfect user interfaces, optimizing performance, and writing clean, maintainable code.
+- Experienced in **React**, **Next.js**, **TypeScript**, **REST API integration**, state management, and leading development teams.
+- Creator of [QuickHire](https://quickhire-bd.vercel.app), [Zentask](https://zentask-bd.vercel.app), and [PMS](https://pms-tau-ten.vercel.app).
 `,
-  avatar: "/profile/shakil.webp", // Use github avatar instead
+  avatar: "/profile/shakil.webp",
+  avatarOutline: "/profile/shakil.webp",
+  avatarMonochrome: "/profile/shakil.webp",
+  avatarVariants: {
+    lightOff: "/profile/shakil.webp",
+    lightOn: "/profile/shakil.webp",
+    darkOff: "/profile/shakil.webp",
+    darkOn: "/profile/shakil.webp",
+  },
   ogImage: "/images/screenshot-desktop-dark.png",
   namePronunciationUrl: "/voice/shakil-ahmed-billal.mp3",
   timeZone: "Asia/Dhaka",
   keywords: [
-    "shakil",
-    "ahmed",
-    "billal",
+    "Shakil Ahmed Billal",
+    "Shakil",
     "shakildev",
     "shakilahmedbillal",
-    "fullstack",
-    "react",
-    "nextjs",
+    "Full-Stack Developer",
+    "Frontend Engineer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "Node.js",
+    "Tailwind CSS",
+    "NaxtBrand",
+    "Softvence",
+    "Dhaka Bangladesh Developer",
+    "Software Engineer Portfolio",
   ],
-  dateCreated: "2023-10-20", // YYYY-MM-DD
+  dateCreated: "2023-10-20",
+  dateModified: "2026-03-24",
 }

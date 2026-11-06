@@ -1,91 +1,54 @@
 "use client"
 
-import { TerminalSquareIcon } from "lucide-react"
 import { useMemo } from "react"
+import { ScrollArea } from "@base-ui/react/scroll-area"
+import { useAtom } from "jotai"
+import { atomWithStorage } from "jotai/utils"
+import { TerminalIcon, TextAlignStartIcon } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import {
   Tabs,
   TabsContent,
   TabsIndicator,
   TabsList,
   TabsTrigger,
-} from "@/components/base/ui/tabs"
-import {
-  type PackageManager,
-  usePackageManager,
-} from "@/hooks/use-package-manager"
+} from "@/components/ui/tabs"
 import { CopyButton } from "@/registry/components/copy-button"
+import { IconSwap, IconSwapItem } from "@/registry/components/icon-swap"
 
-/**
- * Props for the CodeBlockCommand component.
- */
+export type PackageManager = "prompt" | "pnpm" | "yarn" | "npm" | "bun"
+
+const packageManagerAtom = atomWithStorage<PackageManager>(
+  "packageManager",
+  "pnpm"
+)
+
+export function usePackageManager() {
+  return useAtom(packageManagerAtom)
+}
+
 export type CodeBlockCommandProps = {
-  /**
-   * Command to execute with pnpm package manager.
-   */
+  prompt?: string
+
   pnpm?: string
 
-  /**
-   * Command to execute with yarn package manager.
-   */
   yarn?: string
 
-  /**
-   * Command to execute with npm package manager.
-   */
   npm?: string
 
-  /**
-   * Command to execute with bun package manager.
-   */
   bun?: string
 
-  /**
-   * Callback invoked when a command is successfully copied to clipboard.
-   *
-   * Receives an object containing the selected package manager and the copied command text.
-   * Useful for tracking user interactions or showing custom success notifications.
-   *
-   * @param data - Object containing copy operation details
-   * @param data.packageManager - The package manager that was selected when copying
-   * @param data.command - The actual command text that was copied
-   *
-   * @example
-   * ```tsx
-   * <CodeBlockCommand
-   *   pnpm="pnpm add react"
-   *   onCopySuccess={({ packageManager, command }) => {
-   *     console.log(`Copied ${command} for ${packageManager}`)
-   *   }}
-   * />
-   * ```
-   */
   onCopySuccess?: (data: {
     packageManager: PackageManager
     command: string
   }) => void
 
-  /**
-   * Callback invoked when copying to clipboard fails.
-   *
-   * Receives the error object for debugging or showing custom error messages.
-   *
-   * @param error - The error that occurred during the copy operation
-   *
-   * @example
-   * ```tsx
-   * <CodeBlockCommand
-   *   pnpm="pnpm add react"
-   *   onCopyError={(error) => {
-   *     console.error('Copy failed:', error)
-   *   }}
-   * />
-   * ```
-   */
   onCopyError?: (error: Error) => void
 }
 
 export function CodeBlockCommand({
+  prompt,
   pnpm,
   yarn,
   npm,
@@ -97,12 +60,18 @@ export function CodeBlockCommand({
 
   const tabs = useMemo(() => {
     return {
-      pnpm: pnpm,
-      yarn: yarn,
-      npm: npm,
-      bun: bun,
+      prompt,
+      pnpm,
+      yarn,
+      npm,
+      bun,
     }
-  }, [pnpm, yarn, npm, bun])
+  }, [prompt, pnpm, yarn, npm, bun])
+
+  const tabsFiltered = useMemo(
+    () => Object.entries(tabs).filter(([, value]) => !!value),
+    [tabs]
+  )
 
   return (
     <div className="relative overflow-hidden rounded-xl bg-code">
@@ -113,11 +82,22 @@ export function CodeBlockCommand({
           setPackageManager(value as PackageManager)
         }}
       >
-        <div className="px-4 shadow-[inset_0_-1px_0_0] shadow-border">
-          <TabsList className="h-10 rounded-none bg-transparent p-0 dark:bg-transparent [&_svg]:me-2 [&_svg]:size-4 [&_svg]:text-muted-foreground">
-            {getIconForPackageManager(packageManager)}
+        <ScrollArea.Root className="w-full pr-10 shadow-[inset_0_-1px_0_0] shadow-border">
+          <TabsList
+            className={cn(
+              "h-10 max-w-full justify-start rounded-none bg-transparent p-0 pl-4 inset-ring-0 dark:bg-transparent [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground",
+              "[--scroll-area-overflow-x-end:inherit] [--scroll-area-overflow-x-start:inherit]",
+              "mask-linear-[to_right,transparent_0,black_min(2.5rem,var(--scroll-area-overflow-x-start)),black_calc(100%-min(2.5rem,var(--scroll-area-overflow-x-end,2.5rem))),transparent_100%]"
+            )}
+            render={<ScrollArea.Viewport />}
+          >
+            <IconSwap>
+              <IconSwapItem className="mr-2" key={packageManager}>
+                {getIconForPackageManager(packageManager)}
+              </IconSwapItem>
+            </IconSwap>
 
-            {Object.entries(tabs).map(([key]) => {
+            {tabsFiltered.map(([key]) => {
               return (
                 <TabsTrigger
                   key={key}
@@ -129,20 +109,25 @@ export function CodeBlockCommand({
               )
             })}
 
-            <TabsIndicator className="h-0.5 translate-y-0 rounded-none bg-foreground shadow-none dark:bg-foreground" />
+            <TabsIndicator className="h-0.5 translate-y-0 rounded-none bg-foreground ring-0 dark:bg-foreground" />
           </TabsList>
-        </div>
+        </ScrollArea.Root>
 
-        {Object.entries(tabs).map(([key, value]) => {
+        {tabsFiltered.map(([key, value]) => {
           return (
             <TabsContent key={key} value={key}>
-              <pre className="overflow-x-auto overscroll-x-contain scroll-fade-effect-x p-4">
+              <pre
+                data-pm={key}
+                className="group/tabs-content-pre overscroll-x-contain p-4 leading-6 not-data-[pm=prompt]:overflow-x-auto"
+              >
                 <code
                   data-slot="code-block"
                   data-language="bash"
-                  className="font-mono text-sm leading-none text-muted-foreground"
+                  className="font-mono text-sm/none text-muted-foreground group-data-[pm=prompt]/tabs-content-pre:whitespace-normal"
                 >
-                  <span className="select-none">$ </span>
+                  <span className="select-none group-data-[pm=prompt]/tabs-content-pre:hidden">
+                    ${" "}
+                  </span>
                   {value}
                 </code>
               </pre>
@@ -152,9 +137,9 @@ export function CodeBlockCommand({
       </Tabs>
 
       <CopyButton
-        className="absolute top-2 right-2 z-10 rounded-md border-none"
-        variant="secondary"
-        size="icon-xs"
+        className="absolute top-2 right-2 z-10 size-6 rounded-md border-none [&_svg:not([class*='size-'])]:size-3.5"
+        variant="ghost"
+        size="icon-sm"
         text={tabs[packageManager] || ""}
         onCopySuccess={(copiedCommand) => {
           onCopySuccess?.({
@@ -170,6 +155,8 @@ export function CodeBlockCommand({
 
 function getIconForPackageManager(manager: PackageManager) {
   switch (manager) {
+    case "prompt":
+      return <TextAlignStartIcon />
     case "pnpm":
       return (
         <svg viewBox="0 0 24 24">
@@ -207,60 +194,21 @@ function getIconForPackageManager(manager: PackageManager) {
         </svg>
       )
     default:
-      return <TerminalSquareIcon />
+      return <TerminalIcon />
   }
 }
 
-/**
- * Result of converting an npm command to all package managers.
- */
 export type ConvertNpmCommandResult = {
-  /**
-   * Command for pnpm package manager.
-   */
   pnpm: string
 
-  /**
-   * Command for yarn package manager.
-   */
   yarn: string
 
-  /**
-   * Command for npm package manager.
-   */
   npm: string
 
-  /**
-   * Command for bun package manager.
-   */
   bun: string
 }
 
-/**
- * Converts a standard npm command into equivalent commands for pnpm, yarn, npm,
- * and bun. The result can be spread directly into `CodeBlockCommand` props.
- *
- * Supported command patterns:
- * - `npm install <pkg>` -> add commands for each manager
- * - `npx create-<name>` -> create commands for each manager
- * - `npm create <name>` -> create commands for each manager
- * - `npx <command>` -> execute commands for each manager
- * - `npm run <script>` -> run commands for each manager
- *
- * Unrecognized commands are returned as-is for all package managers.
- *
- * @param npmCommand - A standard npm/npx command string.
- * @returns An object with `pnpm`, `yarn`, `npm`, and `bun` command strings.
- *
- * @example
- * ```tsx
- * import { CodeBlockCommand, convertNpmCommand } from "@/components/shakil-ahmed-billal/code-block-command"
- *
- * <CodeBlockCommand {...convertNpmCommand("npx shadcn add button")} />
- * ```
- */
 export function convertNpmCommand(npmCommand: string): ConvertNpmCommandResult {
-  // npm install
   if (npmCommand.startsWith("npm install")) {
     return {
       pnpm: npmCommand.replaceAll("npm install", "pnpm add"),
@@ -270,7 +218,6 @@ export function convertNpmCommand(npmCommand: string): ConvertNpmCommandResult {
     }
   }
 
-  // npx create- (must be checked before generic npx)
   if (npmCommand.startsWith("npx create-")) {
     return {
       pnpm: npmCommand.replace("npx create-", "pnpm create "),
@@ -280,7 +227,6 @@ export function convertNpmCommand(npmCommand: string): ConvertNpmCommandResult {
     }
   }
 
-  // npm create
   if (npmCommand.startsWith("npm create")) {
     return {
       pnpm: npmCommand.replace("npm create", "pnpm create"),
@@ -290,17 +236,15 @@ export function convertNpmCommand(npmCommand: string): ConvertNpmCommandResult {
     }
   }
 
-  // npx (general)
   if (npmCommand.startsWith("npx")) {
     return {
       pnpm: npmCommand.replace("npx", "pnpm dlx"),
-      yarn: npmCommand.replace("npx", "yarn"),
+      yarn: npmCommand.replace("npx", "yarn dlx"),
       npm: npmCommand,
       bun: npmCommand.replace("npx", "bunx --bun"),
     }
   }
 
-  // npm run
   if (npmCommand.startsWith("npm run")) {
     return {
       pnpm: npmCommand.replace("npm run", "pnpm"),

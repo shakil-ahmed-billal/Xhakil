@@ -6,16 +6,18 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
-      className="my-[1.25em] w-full max-w-none overflow-x-auto prose-table:m-0"
+      className="-mx-(--page-padding) my-[1.25em] flex overflow-x-auto prose-table:m-0"
     >
-      <table
-        data-slot="table"
-        className={cn(
-          "w-full max-w-none min-w-full [&_td]:min-w-37.5 [&_th]:text-left",
-          className
-        )}
-        {...props}
-      />
+      <div className="grow px-(--page-padding)">
+        <table
+          data-slot="table"
+          className={cn(
+            "min-w-full [&_td]:min-w-37.5 [&_th]:text-left",
+            className
+          )}
+          {...props}
+        />
+      </div>
     </div>
   )
 }
@@ -44,7 +46,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <tr
       data-slot="table-row"
-      className={cn("border-b border-edge", className)}
+      className={cn("border-b border-line", className)}
       {...props}
     />
   )
@@ -54,7 +56,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th
       data-slot="table-head"
-      className={cn("p-2 font-semibold text-foreground first:ps-0", className)}
+      className={cn("p-2 font-medium text-foreground first:ps-0", className)}
       {...props}
     />
   )

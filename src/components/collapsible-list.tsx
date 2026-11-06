@@ -1,13 +1,12 @@
-import { ChevronDownIcon } from "lucide-react"
-import { Slot } from "radix-ui"
 import React from "react"
+import { ChevronDownIcon } from "lucide-react"
 
-import { Button } from "@/components/base/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/base/ui/collapsible"
+} from "@/components/ui/collapsible"
 
 export function CollapsibleList<T>({
   items,
@@ -24,41 +23,49 @@ export function CollapsibleList<T>({
 }) {
   return (
     <Collapsible className="group/collapsible">
-      {items.slice(0, max).map((award, index) => (
-        <Slot.Root
-          key={typeof keyExtractor === "function" ? keyExtractor(award) : index}
-          className="border-b border-edge"
-        >
-          {renderItem(award)}
-        </Slot.Root>
-      ))}
+      <ul>
+        {items.slice(0, max).map((item, index) => (
+          <li
+            key={
+              typeof keyExtractor === "function" ? keyExtractor(item) : index
+            }
+            className="border-b border-line"
+          >
+            {renderItem(item)}
+          </li>
+        ))}
+      </ul>
 
-      <CollapsibleContent>
-        {items.slice(max).map((award, index) => (
-          <Slot.Root
+      <CollapsibleContent render={<ul />}>
+        {items.slice(max).map((item, index) => (
+          <li
             key={
               typeof keyExtractor === "function"
-                ? keyExtractor(award)
+                ? keyExtractor(item)
                 : max + index
             }
-            className="border-b border-edge"
+            className="border-b border-line"
           >
-            {renderItem(award)}
-          </Slot.Root>
+            {renderItem(item)}
+          </li>
         ))}
       </CollapsibleContent>
 
       {items.length > max && (
-        <div className="flex h-12 items-center justify-center pb-px">
+        <div className="screen-line-top -mt-px flex items-center justify-center py-4">
           <CollapsibleTrigger
             render={
-              <Button className="gap-2 border-none px-3" size="sm">
+              <Button
+                className="gap-2 pr-2.5 pl-3 shadow-[inset_0_0_1px] shadow-foreground/20"
+                variant="secondary"
+                size="sm"
+              >
                 <span className="hidden group-data-closed/collapsible:block">
-                  Show More
+                  Show more
                 </span>
 
                 <span className="hidden group-data-open/collapsible:block">
-                  Show Less
+                  Show less
                 </span>
 
                 <ChevronDownIcon className="group-data-open/collapsible:rotate-180" />

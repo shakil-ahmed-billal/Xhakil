@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+import emailjs from "@emailjs/browser"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { toast } from "sonner"
 import { Loader2Icon, SendIcon } from "lucide-react"
+import { useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -17,7 +17,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import emailjs from "@emailjs/browser"
+import { toast } from "@/components/ui/toast"
+
 import { contactSchema, type ContactFormData } from "../validators/contact"
 
 export function ContactForm() {
@@ -40,7 +41,9 @@ export function ContactForm() {
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error("EmailJS environment variables are not properly configured.")
+        throw new Error(
+          "EmailJS environment variables are not properly configured."
+        )
       }
 
       const templateParams = {
@@ -51,13 +54,17 @@ export function ContactForm() {
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
 
-      toast.success("Message sent successfully!", {
+      toast.add({
+        type: "success",
+        title: "Message sent successfully!",
         description: "I will get back to you as soon as possible.",
       })
       form.reset()
     } catch (error) {
       console.error("EmailJS Error:", error)
-      toast.error("Failed to send message", {
+      toast.add({
+        type: "error",
+        title: "Failed to send message",
         description: "Please try again later or contact me via email directly.",
       })
     } finally {
@@ -89,7 +96,11 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="john@example.com" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="john@example.com"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,15 +124,19 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isSubmitting} className="w-full sm:w-full">
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full sm:w-full"
+        >
           {isSubmitting ? (
             <>
-              <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2Icon className="mr-2 size-4 animate-spin" />
               Sending...
             </>
           ) : (
             <>
-              <SendIcon className="mr-2 h-4 w-4" />
+              <SendIcon className="mr-2 size-4" />
               Send Message
             </>
           )}

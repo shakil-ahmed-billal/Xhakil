@@ -2,10 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 
-/**
- * Cache storage for loaded audio buffers to prevent duplicate network requests and memory usage.
- * Maps audio URL to its decoded AudioBuffer.
- */
 const audioCache = new Map<
   string,
   {
@@ -14,15 +10,8 @@ const audioCache = new Map<
   } | null
 >()
 
-/**
- * Shared AudioContext instance to avoid creating multiple contexts.
- * Multiple AudioContexts can cause performance issues and resource exhaustion.
- */
 let sharedAudioContext: AudioContext | null = null
 
-/**
- * Gets or creates a shared AudioContext instance.
- */
 function getAudioContext(): AudioContext | null {
   if (sharedAudioContext) return sharedAudioContext
 
@@ -40,28 +29,6 @@ function getAudioContext(): AudioContext | null {
   return sharedAudioContext
 }
 
-/**
- * Custom React hook to load and play a sound from a given URL using the Web Audio API.
- *
- * This hook implements caching to prevent duplicate network requests and memory usage
- * when the same audio file is used across multiple components.
- *
- * @param url - The URL of the audio file to load and play.
- * @returns A function that, when called, plays the loaded sound.
- *
- * @remarks
- * - Audio buffers are cached globally, so the same file is only loaded once
- * - Uses a shared AudioContext to avoid resource exhaustion
- * - If the Web Audio API is not supported in the browser, a warning is logged and playback is disabled
- * - Errors during fetching or decoding the audio are logged to the console
- *
- * @example
- * ```tsx
- * const playClick = useSound('/sounds/click.mp3');
- * // Later in an event handler:
- * playClick();
- * ```
- */
 export function useSound(url: string) {
   const audioCtxRef = useRef<AudioContext | null>(null)
   const bufferRef = useRef<AudioBuffer | null>(null)
@@ -72,43 +39,36 @@ export function useSound(url: string) {
 
     audioCtxRef.current = audioCtx
 
-    // Check if already cached
     const cached = audioCache.get(url)
     if (cached?.buffer) {
       bufferRef.current = cached.buffer
       return
     }
 
-    // Check if already loading
     if (cached?.loading) {
       cached.loading
         .then((decoded) => {
           bufferRef.current = decoded
         })
-        .catch(() => {
-          // Error already logged during fetch
-        })
+        .catch(() => {})
       return
     }
 
-    // Start loading
     const loadingPromise = fetch(url)
       .then((res) => res.arrayBuffer())
       .then((data) => audioCtx.decodeAudioData(data))
       .then((decoded) => {
-        // Store in cache
         audioCache.set(url, { buffer: decoded, loading: loadingPromise })
         bufferRef.current = decoded
         return decoded
       })
       .catch((err) => {
         console.log(`Failed to load sound from ${url}:`, err)
-        // Mark as failed in cache
+
         audioCache.set(url, null)
         throw err
       })
 
-    // Mark as loading in cache
     audioCache.set(url, { buffer: null!, loading: loadingPromise })
   }, [url])
 
@@ -129,56 +89,22 @@ export function useSound(url: string) {
   return play
 }
 
-/**
- * Custom React hook for lazy loading and playing sounds with manual preload control.
- *
- * Unlike `useSound()`, this hook does NOT load audio on mount. Audio is only fetched when:
- * - `preload()` is manually called (e.g., on hover)
- * - `play()` is called and audio is not yet loaded (auto-load fallback)
- *
- * This is ideal for audio that may not be needed by most users, saving initial bandwidth and memory.
- *
- * @param url - The URL of the audio file to load and play.
- * @returns Object with play function, preload function, and loading states.
- *
- * @remarks
- * - Audio buffers are cached globally and shared with `useSound()`
- * - Uses a shared AudioContext to avoid resource exhaustion
- * - If the Web Audio API is not supported, warnings are logged and playback is disabled
- * - Errors during fetching or decoding are logged to the console
- *
- * @example
- * ```tsx
- * const { play, preload, isLoading, isLoaded } = useSoundLazy('/sounds/rare.mp3');
- *
- * // Preload on hover for instant playback on click
- * <button
- *   onPointerEnter={() => preload()}
- *   onClick={() => play()}
- * >
- *   Play Sound
- * </button>
- * ```
- */
 export function useSoundLazy(url: string) {
   const audioCtxRef = useRef<AudioContext | null>(null)
   const bufferRef = useRef<AudioBuffer | null>(null)
   const loadingPromiseRef = useRef<Promise<AudioBuffer | void> | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isLoaded, setIsLoaded] = useState(() => {
-    // Check if already cached on initial render
     const cached = audioCache.get(url)
     return !!cached?.buffer
   })
 
   useEffect(() => {
-    // Initialize AudioContext reference
     const audioCtx = getAudioContext()
     if (audioCtx) {
       audioCtxRef.current = audioCtx
     }
 
-    // Check if already cached (e.g., loaded by another component)
     const cached = audioCache.get(url)
     if (cached?.buffer) {
       bufferRef.current = cached.buffer
@@ -186,12 +112,10 @@ export function useSoundLazy(url: string) {
   }, [url])
 
   const load = useCallback(() => {
-    // Early return if already loaded
     if (bufferRef.current) {
       return Promise.resolve(bufferRef.current)
     }
 
-    // Return existing loading promise if already loading
     if (loadingPromiseRef.current) {
       return loadingPromiseRef.current
     }
@@ -203,7 +127,6 @@ export function useSoundLazy(url: string) {
 
     audioCtxRef.current = audioCtx
 
-    // Check cache
     const cached = audioCache.get(url)
     if (cached?.buffer) {
       bufferRef.current = cached.buffer
@@ -211,7 +134,6 @@ export function useSoundLazy(url: string) {
       return Promise.resolve(cached.buffer)
     }
 
-    // Check if already loading by another component
     if (cached?.loading) {
       setIsLoading(true)
       const promise = cached.loading
@@ -221,7 +143,6 @@ export function useSoundLazy(url: string) {
           return decoded
         })
         .catch((err) => {
-          // Error already logged during fetch
           throw err
         })
         .finally(() => {
@@ -233,7 +154,6 @@ export function useSoundLazy(url: string) {
       return promise
     }
 
-    // Start new load
     setIsLoading(true)
     const loadingPromise = fetch(url)
       .then((res) => res.arrayBuffer())
@@ -254,16 +174,13 @@ export function useSoundLazy(url: string) {
         loadingPromiseRef.current = null
       })
 
-    // Mark as loading in cache
     audioCache.set(url, { buffer: null!, loading: loadingPromise })
     loadingPromiseRef.current = loadingPromise
     return loadingPromise
   }, [url])
 
   const preload = useCallback(() => {
-    load().catch(() => {
-      // Error already logged in load()
-    })
+    load().catch(() => {})
   }, [load])
 
   const play = useCallback(
@@ -282,20 +199,16 @@ export function useSoundLazy(url: string) {
         }
       }
 
-      // If already loaded, play immediately
       if (bufferRef.current) {
         playSound()
         return
       }
 
-      // Auto-load fallback: load then play
       load()
         .then(() => {
           playSound()
         })
-        .catch(() => {
-          // Error already logged in load()
-        })
+        .catch(() => {})
     },
     [load]
   )

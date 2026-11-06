@@ -1,176 +1,279 @@
-import type { Registry } from "shadcn/schema"
-
 import { getRegistryItemUrl } from "@/utils/registry"
+import type { Registry } from "shadcn/schema"
 
 export const components: Registry["items"] = [
   {
     name: "theme-switcher",
     type: "registry:component",
     title: "Theme Switcher",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Toggle between system, light, and dark themes in Next.js apps.",
-    dependencies: ["next-themes", "lucide-react", "motion"],
+    dependencies: ["next-themes", "motion", "lucide-react"],
     files: [
       {
         path: "components/theme-switcher/theme-switcher.tsx",
         type: "registry:component",
+        target: "@components/theme-switcher.tsx",
       },
     ],
-    docs: "https://xhakil.vercel.app/components/theme-switcher",
+    categories: ["controls"],
+    docs: "https://www.xhakil.site/components/theme-switcher",
   },
   {
-    name: "text-flip",
+    name: "text-swap",
     type: "registry:component",
-    title: "Text Flip",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
+    title: "Text Swap",
     description:
-      "Animated text that cycles through items with a smooth flip transition.",
+      "Animated text that swaps through items with a fade transition.",
     dependencies: ["motion"],
     files: [
       {
-        path: "components/text-flip/text-flip.tsx",
+        path: "components/text-swap/text-swap.tsx",
         type: "registry:component",
+        target: "@components/text-swap.tsx",
       },
     ],
-    docs: "https://xhakil.vercel.app/components/text-flip",
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/text-swap",
   },
   {
     name: "apple-hello-effect",
     type: "registry:component",
     title: "Apple Hello Effect",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
-    description: "SVG writing animation inspired by Apple's Hello screen.",
+    description: "SVG writing animation inspired by Apple’s Hello screen.",
     dependencies: ["motion"],
     files: [
       {
-        path: "components/apple-hello-effect/apple-hello-effect.tsx",
+        path: "components/apple-hello-effect/apple-hello-effect-english.tsx",
         type: "registry:component",
+        target: "@components/apple-hello-effect-english.tsx",
       },
     ],
-    docs: "https://xhakil.vercel.app/components/apple-hello-effect",
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/apple-hello-effect",
+  },
+  {
+    name: "apple-hello-effect-hindi",
+    type: "registry:component",
+    title: "Apple Hello Effect - Hindi",
+    description: "SVG writing animation inspired by Apple’s Hello screen.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/apple-hello-effect/apple-hello-effect-hindi.tsx",
+        type: "registry:component",
+        target: "@components/apple-hello-effect-hindi.tsx",
+      },
+    ],
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/apple-hello-effect",
+  },
+  {
+    name: "apple-hello-effect-spanish",
+    type: "registry:component",
+    title: "Apple Hello Effect - Spanish",
+    description: "SVG writing animation inspired by Apple’s Hello screen.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/apple-hello-effect/apple-hello-effect-spanish.tsx",
+        type: "registry:component",
+        target: "@components/apple-hello-effect-spanish.tsx",
+      },
+    ],
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/apple-hello-effect",
+  },
+  {
+    name: "apple-hello-effect-vietnamese",
+    type: "registry:component",
+    title: "Apple Hello Effect - Vietnamese",
+    description: "SVG writing animation inspired by Apple’s Hello screen.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/apple-hello-effect/apple-hello-effect-vietnamese.tsx",
+        type: "registry:component",
+        target: "@components/apple-hello-effect-vietnamese.tsx",
+      },
+    ],
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/apple-hello-effect",
+  },
+  {
+    name: "swipe-actions",
+    type: "registry:component",
+    title: "Swipe Actions",
+    description:
+      "Swipe a row in a list to reveal actions on the left or right.",
+    dependencies: ["@ncdai/react-swipe-actions", "motion"],
+    files: [
+      {
+        path: "components/swipe-actions/swipe-actions.tsx",
+        type: "registry:component",
+        target: "@components/swipe-actions.tsx",
+      },
+    ],
+    categories: ["controls"],
+    docs: "https://www.xhakil.site/components/swipe-actions",
   },
   {
     name: "wheel-picker",
     type: "registry:component",
     title: "Wheel Picker",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "iOS-like wheel picker for React with smooth inertia scrolling and infinite loop support.",
-    dependencies: ["@shakil-ahmed-billal/react-wheel-picker"],
+    dependencies: ["@ncdai/react-wheel-picker"],
     files: [
       {
         path: "components/wheel-picker/wheel-picker.tsx",
         type: "registry:component",
+        target: "@components/wheel-picker.tsx",
       },
     ],
-    docs: "https://xhakil.vercel.app/components/react-wheel-picker",
+    categories: ["controls"],
+    docs: "https://www.xhakil.site/components/react-wheel-picker",
+  },
+  {
+    name: "chevrons-up-down-icon",
+    type: "registry:component",
+    description:
+      "Animated chevrons icon that morphs between up and down directions.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/chevrons-up-down-icon/chevrons-up-down-icon.tsx",
+        type: "registry:component",
+        target: "@components/chevrons-up-down-icon.tsx",
+      },
+    ],
+    categories: ["effects"],
+    docs: "https://www.xhakil.site/components/chevrons-up-down-icon",
   },
   {
     name: "typography",
     type: "registry:component",
     title: "Typography",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Custom prose styles for headings, links, inline code, and emphasis.",
     devDependencies: ["@tailwindcss/typography"],
     css: {
       "@plugin @tailwindcss/typography": {},
-      "@utility prose-shakil-ahmed-billal": {
-        "@apply prose-headings:tracking-tight prose-headings:text-balance prose-h2:font-semibold":
+      "@custom-variant retina": {
+        "@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2x)": {
+          "@slot": {},
+        },
+      },
+      "@utility link": {
+        "@apply decoration-1 underline-offset-3 hover:underline": {},
+      },
+      "@utility link-underline": {
+        "@apply underline decoration-current/30 decoration-1 underline-offset-3 transition-colors hover:decoration-current":
           {},
-        "@apply prose-a:font-medium prose-a:wrap-break-word prose-a:text-foreground prose-a:underline prose-a:underline-offset-4":
+      },
+      "@utility prose-custom": {
+        "@apply prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-pretty md:prose-headings:text-balance":
           {},
-        "@apply prose-code:rounded-md prose-code:border prose-code:bg-muted/50 prose-code:px-[0.3rem] prose-code:py-[0.2rem] prose-code:text-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none":
+        "@apply prose-a:font-normal prose-a:wrap-break-word prose-a:text-foreground prose-a:link-underline":
+          {},
+        "@apply prose-code:rounded-md prose-code:border prose-code:bg-muted/50 prose-code:px-1 prose-code:py-px prose-code:text-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none retina:prose-code:border-[0.5px]":
           {},
         "@apply prose-strong:font-medium": {},
+        "@apply prose-blockquote:border-l prose-blockquote:font-normal prose-blockquote:text-muted-foreground prose-blockquote:not-italic prose-blockquote:[&_p:first-of-type]:before:content-none prose-blockquote:[&_p:last-of-type]:after:content-none":
+          {},
       },
     },
+    categories: ["typography"],
   },
   {
     name: "work-experience",
     type: "registry:component",
     title: "Work Experience",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display work experiences with role details, company logos, and durations.",
-    dependencies: ["react-markdown", "lucide-react"],
-    devDependencies: ["@tailwindcss/typography"],
+    dependencies: ["react-markdown", "date-fns", "lucide-react"],
     registryDependencies: [
       "collapsible",
       "separator",
+      getRegistryItemUrl("chevrons-up-down-icon"),
       getRegistryItemUrl("typography"),
     ],
     files: [
       {
         path: "components/work-experience/work-experience.tsx",
         type: "registry:component",
+        target: "@components/work-experience.tsx",
       },
     ],
-    docs: "https://xhakil.vercel.app/components/work-experience",
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/work-experience-component",
   },
   {
     name: "shimmering-text",
     type: "registry:component",
     title: "Shimmering Text",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description: "Smooth, light-sweeping shimmer animation for text.",
     dependencies: ["motion"],
     files: [
       {
         path: "components/shimmering-text/shimmering-text.tsx",
         type: "registry:component",
+        target: "@components/shimmering-text.tsx",
       },
     ],
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/shimmering-text",
   },
   {
     name: "slide-to-unlock",
     type: "registry:component",
     title: "Slide to Unlock",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
-      "Interactive slider inspired by the classic iPhone 'slide to unlock' gesture.",
+      "Interactive slider inspired by the classic iPhone “slide to unlock” gesture.",
     dependencies: ["motion"],
     registryDependencies: [getRegistryItemUrl("shimmering-text")],
     files: [
       {
         path: "components/slide-to-unlock/slide-to-unlock.tsx",
         type: "registry:component",
+        target: "@components/slide-to-unlock.tsx",
       },
     ],
-    docs: "https://xhakil.vercel.app/components/slide-to-unlock",
+    categories: ["controls"],
+    docs: "https://www.xhakil.site/components/slide-to-unlock",
   },
   {
     name: "testimonials-marquee",
     type: "registry:component",
     title: "Testimonials Marquee",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description: "Scrolling marquee to showcase user testimonials.",
     registryDependencies: [
       "@kibo-ui/marquee",
       getRegistryItemUrl("testimonial"),
     ],
-    docs: "https://xhakil.vercel.app/components/testimonials-marquee",
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/testimonials-marquee",
   },
   {
     name: "testimonial",
     type: "registry:component",
     title: "Testimonial",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display user feedback with author info, avatar, and verified badge.",
     files: [
       {
         path: "components/testimonial/testimonial.tsx",
         type: "registry:component",
+        target: "@components/testimonial.tsx",
       },
     ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/testimonial",
   },
   {
     name: "github-stars",
     type: "registry:component",
     title: "GitHub Stars",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display GitHub repo star count with formatted numbers and full-count tooltip.",
     registryDependencies: ["button", "tooltip"],
@@ -178,20 +281,23 @@ export const components: Registry["items"] = [
       {
         path: "components/github-stars/github-stars.tsx",
         type: "registry:component",
+        target: "@components/github-stars.tsx",
       },
     ],
+    categories: ["data-display"],
+    docs: "https://www.xhakil.site/components/github-stars",
   },
   {
     name: "scroll-fade-effect",
     type: "registry:component",
     title: "Scroll Fade Effect",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Fade content edges as you scroll, for both vertical and horizontal layouts.",
     files: [
       {
         path: "components/scroll-fade-effect/scroll-fade-effect.tsx",
         type: "registry:component",
+        target: "@components/scroll-fade-effect.tsx",
       },
     ],
     css: {
@@ -276,12 +382,13 @@ export const components: Registry["items"] = [
         "animation-fill-mode": "both",
       },
     },
+    categories: ["effects"],
+    docs: "https://www.xhakil.site/components/scroll-fade-effect",
   },
   {
     name: "consent-manager",
     type: "registry:component",
     title: "Consent Manager",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Cookie and tracking consent banner for Next.js, built on c15t.",
     dependencies: ["@c15t/nextjs"],
@@ -290,52 +397,61 @@ export const components: Registry["items"] = [
       {
         path: "components/consent-manager/consent-manager.tsx",
         type: "registry:component",
+        target: "@components/consent-manager.tsx",
       },
     ],
+    categories: ["utilities"],
+    docs: "https://www.xhakil.site/components/consent-manager",
   },
   {
     name: "copy-button",
     type: "registry:component",
     title: "Copy Button",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
-    description: "Copy text to clipboard with visual feedback and animation.",
-    dependencies: ["lucide-react", "motion"],
-    registryDependencies: ["button"],
+    description:
+      "Copy text to clipboard with visual, haptic, and audio feedback.",
+    dependencies: [
+      "motion",
+      "@rexa-developer/tiks",
+      "web-haptics",
+      "lucide-react",
+    ],
+    registryDependencies: ["button", getRegistryItemUrl("icon-swap")],
     files: [
       {
         path: "components/copy-button/copy-button.tsx",
         type: "registry:component",
+        target: "@components/copy-button.tsx",
       },
       {
         path: "src/hooks/use-copy-to-clipboard.ts",
         type: "registry:hook",
+        target: "@hooks/use-copy-to-clipboard.ts",
       },
     ],
+    categories: ["utilities"],
+    docs: "https://www.xhakil.site/components/copy-button",
   },
   {
     name: "code-block-command",
     type: "registry:component",
     title: "Code Block Command",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description:
       "Display install commands with package manager switcher and copy button.",
-    dependencies: ["@base-ui/react", "lucide-react", "motion", "jotai"],
+    dependencies: ["@base-ui/react", "motion", "jotai", "lucide-react"],
     registryDependencies: [
+      getRegistryItemUrl("icon-swap"),
       getRegistryItemUrl("copy-button"),
-      getRegistryItemUrl("scroll-fade-effect"),
     ],
     files: [
       {
         path: "components/code-block-command/code-block-command.tsx",
         type: "registry:component",
+        target: "@components/code-block-command.tsx",
       },
       {
-        path: "src/components/base/ui/tabs.tsx",
+        path: "src/components/ui/tabs.tsx",
         type: "registry:component",
-      },
-      {
-        path: "src/hooks/use-package-manager.ts",
-        type: "registry:hook",
+        target: "@components/tabs.tsx",
       },
     ],
     cssVars: {
@@ -352,5 +468,613 @@ export const components: Registry["items"] = [
         "color-code-foreground": "var(--code-foreground)",
       },
     },
+    categories: ["data-display"],
+    docs: "https://www.xhakil.site/components/code-block-command",
+  },
+  {
+    name: "testimonial-spotlight",
+    type: "registry:component",
+    title: "Testimonial Spotlight",
+    description: "Testimonial card with spotlight effect on hover.",
+    registryDependencies: [getRegistryItemUrl("testimonial")],
+    files: [
+      {
+        path: "components/testimonial-spotlight/testimonial-spotlight.tsx",
+        type: "registry:component",
+        target: "@components/testimonial-spotlight.tsx",
+      },
+    ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/testimonial-spotlight",
+  },
+  {
+    name: "glow-card-grid",
+    type: "registry:component",
+    title: "Glow Card Grid",
+    description: "Display cards with glowing border and background effects.",
+    files: [
+      {
+        path: "components/glow-card-grid/glow-card-grid.tsx",
+        type: "registry:component",
+        target: "@components/glow-card-grid.tsx",
+      },
+    ],
+    categories: ["effects"],
+    docs: "https://www.xhakil.site/components/glow-card-grid",
+  },
+  {
+    name: "middle-truncation",
+    type: "registry:component",
+    title: "Middle Truncation",
+    description: "Truncate text in the middle while preserving start and end.",
+    files: [
+      {
+        path: "components/middle-truncation/middle-truncation.tsx",
+        type: "registry:component",
+        target: "@components/middle-truncation.tsx",
+      },
+    ],
+    categories: ["typography"],
+    docs: "https://www.xhakil.site/components/middle-truncation",
+  },
+  {
+    name: "twemoji",
+    type: "registry:component",
+    title: "Twemoji",
+    description: "Render Unicode emoji as Twemoji SVG images inline with text.",
+    files: [
+      {
+        path: "components/twemoji/twemoji.tsx",
+        type: "registry:component",
+        target: "@components/twemoji.tsx",
+      },
+      {
+        path: "components/twemoji/lib/twemoji-regex.ts",
+        type: "registry:lib",
+        target: "@lib/twemoji-regex.ts",
+      },
+    ],
+    css: {
+      "@layer base": {
+        ".twemoji": {
+          display: "inline-block",
+          height: "1em",
+          width: "1em",
+          margin: "0 0.05em 0 0.1em",
+          "vertical-align": "-0.1em",
+        },
+      },
+    },
+    categories: ["typography"],
+    docs: "https://www.xhakil.site/components/twemoji",
+  },
+  {
+    name: "elastic-slider",
+    type: "registry:component",
+    title: "Elastic Slider",
+    description:
+      "Slider with elastic rubber-band drag and magnetic snap feedback.",
+    dependencies: ["motion"],
+    registryDependencies: [getRegistryItemUrl("use-controllable-state")],
+    files: [
+      {
+        path: "components/elastic-slider/elastic-slider.tsx",
+        type: "registry:component",
+        target: "@components/elastic-slider.tsx",
+      },
+    ],
+    categories: ["controls"],
+    docs: "https://www.xhakil.site/components/elastic-slider",
+  },
+  {
+    name: "contribution-graph",
+    type: "registry:component",
+    title: "Contribution Graph",
+    description:
+      "A GitHub-style contribution graph component that displays activity levels over time.",
+    dependencies: ["date-fns"],
+    files: [
+      {
+        path: "components/contribution-graph/contribution-graph.tsx",
+        type: "registry:component",
+        target: "@components/contribution-graph.tsx",
+      },
+    ],
+    categories: ["data-display"],
+    docs: "https://www.kibo-ui.com/components/contribution-graph",
+  },
+  {
+    name: "github-contributions",
+    type: "registry:component",
+    title: "GitHub Contributions",
+    description:
+      "Visualize year-long GitHub contribution activity with daily counts, tooltips, and a profile link.",
+    dependencies: ["date-fns"],
+    registryDependencies: [
+      "tooltip",
+      "spinner",
+      getRegistryItemUrl("contribution-graph"),
+    ],
+    files: [
+      {
+        path: "components/github-contributions/github-contributions.tsx",
+        type: "registry:component",
+        target: "@components/github-contributions.tsx",
+      },
+      {
+        path: "components/github-contributions/lib/get-cached-contributions.ts",
+        type: "registry:lib",
+        target: "@lib/get-cached-contributions.ts",
+      },
+    ],
+    css: {
+      "@utility link-underline": {
+        "@apply underline decoration-current/30 decoration-1 underline-offset-3 transition-colors hover:decoration-current":
+          {},
+      },
+    },
+    categories: ["data-display"],
+    docs: "https://www.xhakil.site/components/github-contributions",
+  },
+  {
+    name: "toc-minimap",
+    type: "registry:component",
+    title: "TOC Minimap",
+    description:
+      "Navigate page sections with a compact, hoverable TOC minimap.",
+    registryDependencies: ["hover-card", "@soundcn/u-mini-map-open"],
+    files: [
+      {
+        path: "components/toc-minimap/toc-minimap.tsx",
+        type: "registry:component",
+        target: "@components/toc-minimap.tsx",
+      },
+    ],
+    categories: ["navigation"],
+    docs: "https://www.xhakil.site/components/toc-minimap",
+  },
+  {
+    name: "fluid-gradient-text",
+    type: "registry:component",
+    title: "Fluid Gradient Text",
+    description:
+      "Render text with a fluid gradient that shifts with pointer movement.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/fluid-gradient-text/fluid-gradient-text.tsx",
+        type: "registry:component",
+        target: "@components/fluid-gradient-text.tsx",
+      },
+    ],
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/fluid-gradient-text",
+  },
+  {
+    name: "brand-assets-menu",
+    type: "registry:component",
+    title: "Brand Assets Menu",
+    description: "Context menu for copying brand SVGs and opening asset links.",
+    registryDependencies: ["context-menu", "toast"],
+    dependencies: ["@rexa-developer/tiks", "lucide-react"],
+    files: [
+      {
+        path: "components/brand-assets-menu/brand-assets-menu.tsx",
+        type: "registry:component",
+        target: "@components/brand-assets-menu.tsx",
+      },
+    ],
+    categories: ["menus"],
+    docs: "https://www.xhakil.site/components/brand-assets-menu",
+  },
+  {
+    name: "icon-swap",
+    type: "registry:component",
+    title: "Icon Swap",
+    description: "Animate icon swaps with scale, blur, and fade transitions.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/icon-swap/icon-swap.tsx",
+        type: "registry:component",
+        target: "@components/icon-swap.tsx",
+      },
+    ],
+    categories: ["effects"],
+    docs: "https://www.xhakil.site/components/icon-swap",
+  },
+  {
+    name: "dot-grid-spotlight",
+    type: "registry:component",
+    title: "Dot Grid Spotlight",
+    description:
+      "Interactive dot grid with a cursor-tracking spotlight effect.",
+    files: [
+      {
+        path: "components/dot-grid-spotlight/dot-grid-spotlight.tsx",
+        type: "registry:component",
+        target: "@components/dot-grid-spotlight.tsx",
+      },
+    ],
+    categories: ["effects"],
+    docs: "https://www.xhakil.site/components/dot-grid-spotlight",
+  },
+  {
+    name: "spinning-circular-text",
+    type: "registry:component",
+    title: "Spinning Circular Text",
+    description:
+      "Text arranged in a circle with a continuous spinning animation.",
+    files: [
+      {
+        path: "components/spinning-circular-text/spinning-circular-text.tsx",
+        type: "registry:component",
+        target: "@components/spinning-circular-text.tsx",
+      },
+    ],
+    cssVars: {
+      theme: {
+        "--animate-spin-ccw":
+          "spin-ccw var(--tw-animation-duration, var(--tw-duration, 6s)) linear infinite",
+      },
+    },
+    css: {
+      "@keyframes spin-ccw": {
+        to: {
+          rotate: "-360deg",
+        },
+      },
+    },
+    categories: ["text-effects"],
+    docs: "https://www.xhakil.site/components/spinning-circular-text",
+  },
+  {
+    name: "mobius-loop-icon",
+    type: "registry:component",
+    title: "Mobius Loop Icon",
+    description:
+      "Animated Mobius loop icon that morphs between circles and infinity shape.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/mobius-loop-icon/mobius-loop-icon.tsx",
+        type: "registry:component",
+        target: "@components/mobius-loop-icon.tsx",
+      },
+    ],
+    categories: ["effects"],
+    docs: "https://www.xhakil.site/components/mobius-loop-icon",
+  },
+  {
+    name: "logos-carousel",
+    type: "registry:component",
+    title: "Logos Carousel",
+    description: "Cycle through logos column by column in a staggered wave.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/logos-carousel/logos-carousel.tsx",
+        type: "registry:component",
+        target: "@components/logos-carousel.tsx",
+      },
+    ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/logos-carousel",
+  },
+  {
+    name: "logos-flip",
+    type: "registry:component",
+    title: "Logos Flip",
+    description:
+      "Flip cards in a staggered wave to reveal the next batch of logos.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/logos-flip/logos-flip.tsx",
+        type: "registry:component",
+        target: "@components/logos-flip.tsx",
+      },
+    ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/logos-flip",
+  },
+  {
+    name: "logos-swap",
+    type: "registry:component",
+    title: "Logos Swap",
+    description: "Swap logos one at a time in a scattered order.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/logos-swap/logos-swap.tsx",
+        type: "registry:component",
+        target: "@components/logos-swap.tsx",
+      },
+    ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/logos-swap",
+  },
+  {
+    name: "pull-quote",
+    type: "registry:component",
+    title: "Pull Quote",
+    description:
+      "Display a testimonial quote with author attribution and source link.",
+    files: [
+      {
+        path: "components/pull-quote/pull-quote.tsx",
+        type: "registry:component",
+        target: "@components/pull-quote.tsx",
+      },
+    ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/pull-quote",
+  },
+  {
+    name: "line-nav",
+    type: "registry:component",
+    title: "Line Nav",
+    description:
+      "Vertical navigation with a line marker that expands on hover and active state.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/line-nav/line-nav.tsx",
+        type: "registry:component",
+        target: "@components/line-nav.tsx",
+      },
+    ],
+    categories: ["navigation"],
+    docs: "https://www.xhakil.site/components/line-nav",
+  },
+  {
+    name: "share-menu",
+    type: "registry:component",
+    title: "Share Menu",
+    description:
+      "Share menu to copy a link or post to X, LinkedIn, and the native share sheet.",
+    dependencies: ["lucide-react"],
+    registryDependencies: ["button", "dropdown-menu", "toast"],
+    files: [
+      {
+        path: "components/share-menu/share-menu.tsx",
+        type: "registry:component",
+        target: "@components/share-menu.tsx",
+      },
+    ],
+    categories: ["menus"],
+    docs: "https://www.xhakil.site/components/share-menu",
+  },
+  {
+    name: "spotlight-logo",
+    type: "registry:component",
+    title: "Spotlight Logo",
+    description:
+      "SVG logo with a cursor-tracking gradient highlight and tactile press.",
+    dependencies: ["motion"],
+    registryDependencies: ["@soundcn/metal-click"],
+    files: [
+      {
+        path: "components/spotlight-logo/spotlight-logo.tsx",
+        type: "registry:component",
+        target: "@components/spotlight-logo.tsx",
+      },
+    ],
+    categories: ["effects"],
+    docs: "https://www.xhakil.site/components/spotlight-logo",
+  },
+  {
+    name: "timescale",
+    type: "registry:component",
+    title: "Timescale",
+    description:
+      "Ruler-style timeline for plotting milestones along a horizontal or vertical axis.",
+    files: [
+      {
+        path: "components/timescale/timescale.tsx",
+        type: "registry:component",
+        target: "@components/timescale.tsx",
+      },
+    ],
+    categories: ["data-display"],
+    docs: "https://www.xhakil.site/components/timescale",
+  },
+  {
+    name: "status-button",
+    type: "registry:component",
+    title: "Status Button",
+    description:
+      "Button that shows loading and success feedback for async actions.",
+    dependencies: ["motion", "lucide-react"],
+    registryDependencies: [
+      "button",
+      getRegistryItemUrl("use-controllable-state"),
+    ],
+    files: [
+      {
+        path: "components/status-button/status-button.tsx",
+        type: "registry:component",
+        target: "@components/status-button.tsx",
+      },
+    ],
+    cssVars: {
+      theme: {
+        "--animate-spinner-opacity":
+          "spinner-opacity var(--tw-animation-duration, var(--tw-duration, 1s)) linear infinite",
+      },
+    },
+    css: {
+      "@keyframes spinner-opacity": {
+        from: {
+          opacity: "1",
+        },
+        to: {
+          opacity: "0.15",
+        },
+      },
+    },
+    categories: ["controls"],
+    docs: "https://www.xhakil.site/components/status-button",
+  },
+  {
+    name: "carbon-ads",
+    type: "registry:component",
+    title: "Carbon Ads",
+    description:
+      "Display a Carbon Ads unit in Next.js apps, styled to match your shadcn/ui theme.",
+    files: [
+      {
+        path: "components/carbon-ads/carbon-ads.tsx",
+        type: "registry:component",
+        target: "@components/carbon-ads.tsx",
+      },
+    ],
+    css: {
+      "#carbonads #carbon-responsive": {
+        "--carbon-padding": "calc(var(--spacing) * 3)",
+        "--carbon-bg-primary":
+          "color-mix(in oklab, var(--muted) 50%, var(--background))",
+        "--carbon-bg-secondary": "var(--border)",
+        "--carbon-text-color": "var(--foreground)",
+        "@apply gap-2 font-sans": {},
+      },
+      "#carbonads #carbon-responsive .carbon-poweredby": {
+        "@apply text-xs text-muted-foreground/80 opacity-100": {},
+      },
+    },
+    categories: ["utilities"],
+    docs: "https://www.xhakil.site/components/carbon-ads",
+  },
+  {
+    name: "apple-carousel",
+    type: "registry:component",
+    title: "Apple Carousel",
+    description:
+      "Infinite autoplay carousel with progress dots, inspired by Apple’s website.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/apple-carousel/apple-carousel.tsx",
+        type: "registry:component",
+        target: "@components/apple-carousel.tsx",
+      },
+    ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/apple-carousel",
+  },
+  {
+    name: "apple-accordion",
+    type: "registry:component",
+    title: "Apple Accordion",
+    description:
+      "Accordion whose items morph from pills into cards, inspired by Apple’s product pages.",
+    dependencies: ["@base-ui/react", "lucide-react"],
+    files: [
+      {
+        path: "components/apple-accordion/apple-accordion.tsx",
+        type: "registry:component",
+        target: "@components/apple-accordion.tsx",
+      },
+    ],
+    categories: ["marketing"],
+    docs: "https://www.xhakil.site/components/apple-accordion",
+  },
+  {
+    name: "jpg-card-holder",
+    type: "registry:component",
+    title: "JPG Card Holder",
+    description:
+      "Leather card holder shaped like a JPG file, with cards you can pull out.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/jpg-card-holder/jpg-card-holder.tsx",
+        type: "registry:component",
+        target: "@components/jpg-card-holder.tsx",
+      },
+    ],
+    categories: ["illustrations"],
+    docs: "https://www.xhakil.site/components/jpg-card-holder",
+  },
+  {
+    name: "foldable",
+    type: "registry:component",
+    title: "Foldable",
+    description:
+      "Folded card that opens like the iPhone Duo, blurring as the cover turns.",
+    dependencies: ["motion"],
+    registryDependencies: ["slider"],
+    files: [
+      {
+        path: "components/foldable/foldable.tsx",
+        type: "registry:component",
+        target: "@components/foldable.tsx",
+      },
+    ],
+    categories: ["illustrations"],
+    docs: "https://www.xhakil.site/components/foldable",
+  },
+  {
+    name: "ipod-classic",
+    type: "registry:component",
+    title: "iPod Classic",
+    description:
+      "iPod classic with a working click wheel, menus, and music playback.",
+    dependencies: ["jotai", "motion"],
+
+    files: [
+      "index.ts",
+      "components/brick-game.tsx",
+      "components/click-wheel.tsx",
+      "components/icons.tsx",
+      "components/marquee.tsx",
+      "components/menu-list.tsx",
+      "components/now-playing.tsx",
+      "components/progress-bar.tsx",
+      "components/screen.tsx",
+      "components/title-bar.tsx",
+      "components/use-screen-keyboard.ts",
+      "ipod-classic.module.css",
+      "ipod-classic.tsx",
+      "lib/acceleration.ts",
+      "lib/assets.ts",
+      "lib/atoms.ts",
+      "lib/brick-engine.ts",
+      "lib/catalog.ts",
+      "lib/click-sound.ts",
+      "lib/constants.ts",
+      "lib/engine.ts",
+      "lib/menu-controller.ts",
+      "lib/menu.ts",
+      "lib/now-playing-modes.ts",
+      "lib/playback.ts",
+      "lib/player.ts",
+      "lib/timers.ts",
+      "lib/types.ts",
+      "lib/wheel-gesture.ts",
+      "lib/wheel-scroll.ts",
+    ].map((file) => ({
+      path: `components/ipod-classic/${file}`,
+      type: file.endsWith(".css") ? "registry:file" : "registry:component",
+      target: `@components/ipod-classic/${file}`,
+    })),
+    categories: ["illustrations"],
+    docs: "https://www.xhakil.site/components/ipod-classic",
+  },
+  {
+    name: "wallet",
+    type: "registry:component",
+    title: "Wallet",
+    description: "Leather wallet with cards you can peek at and pull out.",
+    dependencies: ["@base-ui/react", "motion"],
+    files: [
+      {
+        path: "components/wallet/wallet.tsx",
+        type: "registry:component",
+        target: "@components/wallet.tsx",
+      },
+    ],
+    categories: ["illustrations"],
+    docs: "https://www.xhakil.site/components/wallet",
   },
 ]

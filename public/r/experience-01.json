@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "experience-01",
+  "title": "Experience 01",
+  "author": "Shakil Ahmed Billal <itzxhakil@gmail.com>",
+  "description": "A work experience section with a lined layout.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://acme.com/r/style.json",
+    "https://acme.com/r/work-experience.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/experience-01/experience-01.tsx",
+      "content": "import { CodeXmlIcon, LightbulbIcon } from \"lucide-react\"\n\nimport type { ExperienceItemType } from \"@/registry/components/work-experience\"\nimport { WorkExperience } from \"@/registry/components/work-experience\"\n\nexport function Experience01() {\n  return (\n    <div className=\"max-w-screen overflow-x-clip\">\n      <div className=\"container mx-auto px-4\">\n        <div className=\"border-x border-line py-8\">\n          <h2 className=\"screen-line-top screen-line-bottom ml-4 font-heading text-3xl font-medium tracking-tight\">\n            Experience\n          </h2>\n\n          <WorkExperience\n            className=\"bg-transparent *:screen-line-bottom\"\n            experiences={EXPERIENCE}\n          />\n        </div>\n      </div>\n    </div>\n  )\n}\n\nconst EXPERIENCE: ExperienceItemType[] = [\n  {\n    id: \"naxtbrand\",\n    companyName: \"NaxtBrand\",\n    companyLogo: \"/experience/naxtbrand.webp\",\n    companyWebsite: \"https://naxtbrand.com\",\n    positions: [\n      {\n        id: \"1\",\n        title: \"Founder & Lead Engineer\",\n        employmentPeriod: {\n          start: \"10.2026\",\n        },\n        employmentType: \"Self-employed\",\n        icon: <LightbulbIcon />,\n        description:\n          \"- Leads technical vision, web architecture, and full-stack engineering operations.\\n- Directs modern UI systems and robust web applications for clients.\",\n        skills: [\n          \"Technical Vision\",\n          \"Software Architecture\",\n          \"Next.js\",\n          \"TypeScript\",\n          \"Tailwind CSS\",\n        ],\n        isExpanded: true,\n      },\n    ],\n    isCurrentEmployer: true,\n  },\n  {\n    id: \"softvence\",\n    companyName: \"Softvence\",\n    companyLogo: \"/experience/softvence.webp\",\n    companyWebsite: \"https://softvence.agency\",\n    positions: [\n      {\n        id: \"2\",\n        title: \"Team Leader\",\n        employmentPeriod: {\n          start: \"01.2026\",\n          end: \"09.2026\",\n        },\n        employmentType: \"Full-time\",\n        icon: <CodeXmlIcon />,\n        description:\n          \"- Overseeing the development team and managing project deliverables.\\n- Mentoring junior and mid-level developers to enhance code quality and best practices.\",\n        skills: [\n          \"Team Leadership\",\n          \"Project Management\",\n          \"Code Review\",\n          \"Mentoring\",\n        ],\n      },\n      {\n        id: \"1\",\n        title: \"Front-End Developer\",\n        employmentPeriod: {\n          start: \"04.2025\",\n          end: \"01.2026\",\n        },\n        employmentType: \"Full-time\",\n        icon: <CodeXmlIcon />,\n        description:\n          \"- Developed responsive user interfaces and modular component systems.\\n- Integrated REST APIs and optimized web performance across client portals.\",\n        skills: [\"React\", \"Next.js\", \"TypeScript\", \"Tailwind CSS\"],\n      },\n    ],\n  },\n]\n",
+      "type": "registry:component",
+      "target": "@components/experience-01.tsx"
+    }
+  ],
+  "meta": {
+    "createdAt": "2026-03-28"
+  },
+  "categories": [
+    "marketing"
+  ],
+  "type": "registry:block"
+}

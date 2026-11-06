@@ -1,0 +1,99 @@
+import { ArrowUpRightIcon } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+export function SocialLinks01() {
+  return (
+    <div className="max-w-screen overflow-x-clip">
+      <div className="container mx-auto px-4">
+        <div className="relative border-x border-line">
+          <div className="pointer-events-none absolute inset-0 -z-1 hidden gap-2 sm:grid sm:grid-cols-2 md:grid-cols-3">
+            <div className="border-r border-line" />
+            <div className="border-l border-line md:border-x" />
+            <div className="border-l border-line max-md:hidden" />
+          </div>
+
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+            {SOCIAL_LINKS.map((link, index) => {
+              return (
+                <li
+                  key={index}
+                  className={cn(
+                    "max-sm:screen-line-top max-sm:screen-line-bottom",
+                    "sm:max-md:nth-[2n+1]:screen-line-top sm:max-md:nth-[2n+1]:screen-line-bottom",
+                    "md:nth-[3n+1]:screen-line-top md:nth-[3n+1]:screen-line-bottom"
+                  )}
+                >
+                  <SocialLinkItem {...link} />
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+type SocialLink = {
+  icon: string
+  title: string
+  href: string
+}
+
+function SocialLinkItem({ icon, title, href }: SocialLink) {
+  return (
+    <div className="relative flex cursor-pointer items-center gap-4 p-4 pr-2 transition-[background-color] ease-out hover:bg-accent/50 dark:hover:bg-accent/20">
+      <div className="relative shrink-0 [--image-radius:var(--radius-lg)]">
+        <img
+          className="size-8 rounded-(--image-radius) select-none"
+          src={icon}
+          alt={`${title} logo`}
+        />
+        <div className="pointer-events-none absolute inset-0 rounded-(--image-radius) inset-ring-1 inset-ring-black/10 dark:inset-ring-white/15" />
+      </div>
+
+      <h3 className="flex-1 font-medium">
+        <a href={href} target="_blank" rel="noopener">
+          <span className="absolute inset-0" aria-hidden />
+          {title}
+        </a>
+      </h3>
+
+      <ArrowUpRightIcon className="size-4 shrink-0 text-muted-foreground" />
+    </div>
+  )
+}
+
+const SOCIAL_LINKS: SocialLink[] = [
+  {
+    icon: "/images/link-icons/x.webp",
+    title: "X",
+    href: "https://x.com/itzxhakil",
+  },
+  {
+    icon: "/images/link-icons/github.webp",
+    title: "GitHub",
+    href: "https://github.com/shakil-ahmed-billal",
+  },
+  {
+    icon: "/images/link-icons/linkedin.webp",
+    title: "LinkedIn",
+    href: "https://linkedin.com/in/shakil-ahmed-billal",
+  },
+  {
+    icon: "/images/link-icons/gmail.webp",
+    title: "Gmail",
+    href: "mailto:shakil.dev99@gmail.com",
+  },
+  {
+    icon: "/images/link-icons/whatsapp.webp",
+    title: "WhatsApp",
+    href: "https://wa.me/8801308048478",
+  },
+  {
+    icon: "/images/link-icons/facebook.webp",
+    title: "Facebook",
+    href: "https://facebook.com",
+  },
+]

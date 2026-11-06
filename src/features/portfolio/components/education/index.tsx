@@ -1,21 +1,35 @@
-import React from "react"
+import {
+  Panel,
+  PanelHeader,
+  PanelTitle,
+} from "@/features/portfolio/components/panel"
+import { PanelTitleCopy } from "@/features/portfolio/components/panel-title-copy"
+import { EDUCATION } from "@/features/portfolio/data/education"
+import type { Education } from "@/features/portfolio/types/education"
 
-import { EDUCATION } from "../../data/education"
-import { Panel, PanelHeader, PanelTitle } from "../panel"
 import { EducationItem } from "./education-item"
+
+const ID = "education"
 
 export function Education() {
   return (
-    <Panel id="education">
+    <Panel id={ID}>
       <PanelHeader>
-        <PanelTitle>Education</PanelTitle>
+        <PanelTitle>
+          <a href={`#${ID}`}>Education</a>
+          <PanelTitleCopy id={ID} />
+        </PanelTitle>
       </PanelHeader>
 
-      <div className="pr-2 pl-4">
-        {EDUCATION.map((edu) => (
-          <EducationItem key={edu.id} education={edu} />
-        ))}
-      </div>
+      {EDUCATION.map((item) => (
+        <div
+          key={item.id}
+          id={`education-${item.id}`}
+          className="screen-line-bottom scroll-mt-14 p-4"
+        >
+          <EducationItem key={item.id} item={item} />
+        </div>
+      ))}
     </Panel>
   )
 }

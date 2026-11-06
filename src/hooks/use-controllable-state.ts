@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// This code comes from https://github.com/radix-ui/primitives/blob/main/packages/react/use-controllable-state/src/use-controllable-state.tsx
 
 import * as React from "react"
 
 import { useLayoutEffect } from "@/hooks/use-layout-effect"
 
-// Prevent bundlers from trying to optimize the import
 const useInsertionEffect: typeof useLayoutEffect =
   (React as any)[" useInsertionEffect ".trim().toString()] || useLayoutEffect
 
@@ -33,9 +31,6 @@ export function useControllableState<T>({
   const isControlled = prop !== undefined
   const value = isControlled ? prop : uncontrolledProp
 
-  // OK to disable conditionally calling hooks here because they will always run
-  // consistently in the same environment. Bundlers should be able to remove the
-  // code block entirely in production.
   /* eslint-disable react-hooks/rules-of-hooks */
   if (process.env.NODE_ENV !== "production") {
     const isControlledRef = React.useRef(prop !== undefined)

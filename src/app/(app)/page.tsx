@@ -1,125 +1,95 @@
 import type { Metadata } from "next"
-import type { ProfilePage as PageSchema, WithContext } from "schema-dts"
+import type { ProfilePage, WithContext } from "schema-dts"
 
-import { About } from "@/features/portfolio/components/about"
+import { AD_PLACEMENTS, CARBON_ADS } from "@/config/ads"
+import { JSON_LD_ID } from "@/config/json-ld"
+import { JsonLdScript } from "@/lib/json-ld"
+import { absoluteUrl, cn } from "@/lib/utils"
+import { FloatingCarbonAds } from "@/components/floating-carbon-ads"
 import { Blog } from "@/features/portfolio/components/blog"
-import { Certifications } from "@/features/portfolio/components/certifications"
 import { Education } from "@/features/portfolio/components/education"
 import { Experiences } from "@/features/portfolio/components/experiences"
+import { FrameWidthDimension } from "@/features/portfolio/components/frame-width-dimension"
 import { GitHubContributions } from "@/features/portfolio/components/github-contributions"
+import { Hello } from "@/features/portfolio/components/hello"
 import { Overview } from "@/features/portfolio/components/overview"
-import { ProfileCover } from "@/features/portfolio/components/profile-cover"
 import { ProfileHeader } from "@/features/portfolio/components/profile-header"
 import { Projects } from "@/features/portfolio/components/projects"
-import { SocialLinks } from "@/features/portfolio/components/social-links-v2"
+import { SeparatorHeightDimension } from "@/features/portfolio/components/separator-height-dimension"
+import { SocialLinks } from "@/features/portfolio/components/social-links"
 import { TechStack } from "@/features/portfolio/components/tech-stack"
-import { TestimonialsMarquee } from "@/features/portfolio/components/testimonials-marquee"
-import { SITE_INFO } from "@/config/site"
+import { Testimonials } from "@/features/portfolio/components/testimonials"
 import { USER } from "@/features/portfolio/data/user"
-import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
-  title: `${USER.displayName} – ${USER.jobTitle}`,
-  description: USER.bio,
   alternates: {
     canonical: "/",
   },
 }
 
-export default function Page() {
+export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getPageJsonLd()).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLdScript data={getProfilePageJsonLd()} />
+      {CARBON_ADS && AD_PLACEMENTS.home && <FloatingCarbonAds />}
 
-      <div className="mx-auto md:max-w-3xl *:[[id]]:scroll-mt-22">
-        <ProfileCover />
-        <ProfileHeader />
-        <Separator />
+      <div className="[--separator-height:--spacing(8)] **:data-[slot=panel]:scroll-mt-[calc(var(--header-height)+var(--separator-height))]">
+        <div className="mx-auto md:max-w-3xl">
+          <FrameWidthDimension />
+          <ProfileHeader />
+          <Separator>
+            <SeparatorHeightDimension className="hidden lg:block" height={32} />
+          </Separator>
 
-        <Overview />
-        <SocialLinks />
-        <Separator />
+          <Overview />
+          <SocialLinks />
+          <GitHubContributions />
+          <Separator />
 
-        <About />
-        <div className="flex h-2 w-full border-x border-edge" />
+          <Hello />
+          <Testimonials />
+          <Separator />
 
-        <TestimonialsMarquee />
-        <div className="flex h-2 w-full border-x border-edge" />
+          <Blog />
+          <Separator />
 
-        <GitHubContributions />
-        <Separator />
+          <TechStack />
+          <Separator />
 
-        <TechStack />
-        <Separator />
+          <Experiences />
+          <Separator />
 
-        <Experiences />
-        <Separator />
+          <Education />
+          <Separator />
 
-        <Education />
-        <Separator />
-
-        <Projects />
-        <Separator />
-
-        <Certifications />
-        <Separator />
-
-        <Blog />
-        <Separator />
+          <Projects />
+        </div>
       </div>
     </>
   )
 }
 
-function getPageJsonLd(): WithContext<PageSchema> {
+function getProfilePageJsonLd(): WithContext<ProfilePage> {
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
+    "@id": absoluteUrl("/"),
     dateCreated: new Date(USER.dateCreated).toISOString(),
-    dateModified: new Date().toISOString(),
-    mainEntity: {
-      "@type": "Person",
-      name: USER.displayName,
-      givenName: USER.firstName,
-      familyName: USER.lastName,
-      jobTitle: USER.jobTitle,
-      worksFor: {
-        "@type": "Organization",
-        name: USER.jobs[0].company,
-        url: USER.jobs[0].website,
-      },
-      url: SITE_INFO.url,
-      identifier: USER.username,
-      image: USER.avatar,
-      description: USER.bio,
-      gender: USER.gender,
-      sameAs: [
-        "https://github.com/shakil-ahmed-billal",
-        "https://linkedin.com/in/shakil-ahmed-billal",
-      ],
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Dhaka",
-        addressCountry: "Bangladesh",
-      },
-    },
+    dateModified: new Date(USER.dateModified || "2026-03-24").toISOString(),
+
+    mainEntity: { "@id": JSON_LD_ID.person },
   }
 }
 
-function Separator({ className }: { className?: string }) {
+function Separator({ className, children }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "relative flex h-8 w-full border-x border-edge",
-        "before:absolute before:-left-[100vw] before:-z-1 before:h-8 before:w-[200vw]",
-        "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:var(--color-edge)]/56",
+        "stripe-divider h-(--separator-height) w-full border-x border-x-line",
         className
       )}
-    />
+    >
+      {children}
+    </div>
   )
 }

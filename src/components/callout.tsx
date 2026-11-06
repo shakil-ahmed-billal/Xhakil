@@ -1,5 +1,5 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { cn } from "@/lib/utils"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 export function Callout({
   title,
@@ -13,16 +13,16 @@ export function Callout({
   return (
     <Alert
       className={cn(
-        "not-prose rounded-xl bg-surface text-surface-foreground",
+        "not-prose rounded-xl border-none bg-surface text-surface-foreground inset-ring-1 inset-ring-border/64",
         className
       )}
       {...props}
     >
       {icon}
       {title && (
-        <AlertTitle className="[&_a]:underline-offset-4">{title}</AlertTitle>
+        <AlertTitle className="[&_a]:link-underline">{title}</AlertTitle>
       )}
-      <AlertDescription className="text-surface-foreground/80 [&_a]:underline-offset-4">
+      <AlertDescription className="text-surface-foreground/80 [&_a]:link-underline [&_strong]:font-medium">
         {children}
       </AlertDescription>
     </Alert>

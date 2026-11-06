@@ -1,13 +1,12 @@
 "use client"
 
-import { AppProgressProvider } from "@bprogress/next"
+import { ProgressProvider } from "@bprogress/next/app"
 import { Provider as JotaiProvider } from "jotai"
 import { ThemeProvider } from "next-themes"
 
-import { TooltipProvider as BaseTooltipProvider } from "@/components/base/ui/tooltip"
-import { TooltipProvider as RadixTooltipProvider } from "@/components/ui/tooltip"
-
-import { Toaster } from "./ui/sonner"
+import { Toaster } from "@/components/ui/toast"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { KeyboardShortcuts } from "@/components/keyboard-shortcuts"
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -20,18 +19,18 @@ export function Providers({ children }: { children: React.ReactNode }) {
         defaultTheme="system"
         attribute="class"
       >
-        <AppProgressProvider
+        <ProgressProvider
           color="var(--foreground)"
           height="2px"
           delay={500}
           options={{ showSpinner: false }}
         >
-          <BaseTooltipProvider>
-            <RadixTooltipProvider>{children}</RadixTooltipProvider>
-          </BaseTooltipProvider>
-        </AppProgressProvider>
+          <TooltipProvider>{children}</TooltipProvider>
 
-        <Toaster position="top-center" />
+          <KeyboardShortcuts />
+        </ProgressProvider>
+
+        <Toaster />
       </ThemeProvider>
     </JotaiProvider>
   )

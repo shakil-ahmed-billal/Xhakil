@@ -1,9 +1,15 @@
+import type { Metadata } from "next"
+
 import { NotFound as PageNotFound } from "@/components/not-found"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Page Not Found",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function NotFound() {
-  return <PageNotFound className="h-screen" />
+  return <PageNotFound />
 }

@@ -4,6 +4,8 @@ import { visit } from "unist-util-visit"
 
 import type { UnistNode, UnistTree } from "@/types/unist"
 
+import { CODE_THEMES } from "./highlight-code"
+
 export function rehypeCodeRawString() {
   return (tree: UnistTree) => {
     visit(tree, (node: UnistNode) => {
@@ -25,14 +27,9 @@ export function rehypeCodeRawString() {
 
 export function rehypeHighlightCode() {
   return rehypePrettyCode({
-    theme: {
-      dark: "github-dark",
-      light: "github-light",
-    },
+    theme: CODE_THEMES,
     keepBackground: false,
     onVisitLine(node: LineElement) {
-      // Prevent lines from collapsing in `display: grid` mode, and allow empty
-      // lines to be copy/pasted
       if (node.children.length === 0) {
         node.children = [{ type: "text", value: " " }]
       }

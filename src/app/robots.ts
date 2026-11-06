@@ -1,16 +1,31 @@
-import type { MetadataRoute } from "next";
-import { SITE_INFO } from "@/config/site";
+import type { MetadataRoute } from "next"
+
+import { SITE_INFO } from "@/config/site"
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = SITE_INFO.url.endsWith("/")
-    ? SITE_INFO.url.slice(0, -1)
-    : SITE_INFO.url
-
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/og/"],
+      },
+      {
+        userAgent: [
+          "Googlebot",
+          "Bingbot",
+          "Applebot",
+          "GPTBot",
+          "ChatGPT-User",
+          "ClaudeBot",
+          "PerplexityBot",
+          "Google-Extended",
+        ],
+        allow: "/",
+        disallow: ["/api/", "/og/"],
+      },
+    ],
+    sitemap: `${SITE_INFO.url}/sitemap.xml`,
+    host: SITE_INFO.url,
   }
 }

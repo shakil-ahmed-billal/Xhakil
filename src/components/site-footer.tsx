@@ -1,105 +1,165 @@
-import { RssIcon } from "lucide-react"
-
-import { SITE_INFO } from "@/config/site"
+import { LICENSE, SOURCE_CODE_GITHUB_URL } from "@/config/site"
 import { cn } from "@/lib/utils"
+import { DmcaIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"
+import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
+import { SOCIAL } from "@/features/portfolio/data/social-links"
 
-import { Icons } from "./icons"
+export function SiteFooter() {
+  const xLink = SOCIAL.x
+  const githubLink = SOCIAL.github
+  const linkedinLink = SOCIAL.linkedin
 
-export function SiteFooter({
-  width = "default",
-}: {
-  width?: "default" | "wide"
-}) {
   return (
-    <footer className="max-w-screen overflow-x-hidden px-2">
-      <div
-        data-width={width}
-        className="screen-line-before mx-auto border-x border-edge pt-4 data-[width=wide]:container data-[width=default]:md:max-w-3xl"
-      >
-        <p className="mb-1 px-4 text-center font-mono text-sm text-balance text-muted-foreground">
-          Inspired by tailwindcss.com & ui.shadcn.com
-        </p>
+    <footer className="max-w-screen overflow-x-clip px-2">
+      <div className="mx-auto border-x border-line group-has-data-[slot=layout-wide]/layout:container md:max-w-3xl">
+        <div className="screen-line-top screen-line-bottom">
+          <div className="stripe-divider h-12" />
+        </div>
 
-        <p className="mb-4 px-4 text-center font-mono text-sm text-balance text-muted-foreground">
-          Built by{" "}
-          <a
-            className="link transition-[color] hover:text-foreground"
-            href="https://www.linkedin.com/in/shakil-ahmed-billal/"
-            target="_blank"
-            rel="noopener"
-          >
-            Shakil Ahmed Billal
-          </a>
-        </p>
+        <dl className="flex flex-col gap-4 py-8 font-mono [&_dd]:text-sm [&_dt]:text-right [&_dt]:text-sm [&_dt]:text-muted-foreground [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2">
+          <Item>
+            <dt>Crafted by</dt>
+            <dd>
+              <a
+                className="link-underline"
+                href={xLink.href}
+                target="_blank"
+                rel="noopener"
+              >
+                {xLink.handle}
+              </a>
+            </dd>
+          </Item>
 
-        <div className="screen-line-before screen-line-after flex w-full before:z-1 after:z-1">
-          <div className="mx-auto flex items-center justify-center gap-3 border-x border-edge bg-background px-4">
-            <a
-              className="flex font-mono text-xs font-medium text-muted-foreground transition-[color] hover:text-foreground max-sm:hidden"
-              href={`${SITE_INFO.url}/llms.txt`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              llms.txt
-            </a>
+          <Item>
+            <dt>Inspired by</dt>
+            <dd>
+              <ul>
+                <li>Tailwind CSS</li>
+                <li>shadcn/ui</li>
+                <li>Vercel</li>
+                <li>Evil Charts</li>
+                <li>Devouring Details</li>
+                <li>Skiper UI</li>
+                <li>Making Software</li>
+              </ul>
+            </dd>
+          </Item>
 
-            <Separator className="max-sm:hidden" />
+          <Item>
+            <dt>Deployed on</dt>
+            <dd>Vercel</dd>
+          </Item>
 
+          <Item>
+            <dt>Analytics</dt>
+            <dd>
+              <a
+                className="link-underline"
+                href="https://openpanel.dev?utm_source=www.xhakil.site&utm_medium=referral&utm_campaign=footer"
+                target="_blank"
+                rel="noopener"
+              >
+                OpenPanel
+              </a>
+            </dd>
+          </Item>
+
+          <Item>
+            <dt>Source code</dt>
+            <dd>
+              <a
+                className="link-underline"
+                href={SOURCE_CODE_GITHUB_URL}
+                target="_blank"
+                rel="noopener"
+              >
+                GitHub
+              </a>
+            </dd>
+          </Item>
+
+          <Item>
+            <dt>License</dt>
+            <dd>
+              <a
+                className="link-underline"
+                href={LICENSE.url}
+                target="_blank"
+                rel="noopener"
+              >
+                {LICENSE.name}
+              </a>
+            </dd>
+          </Item>
+        </dl>
+
+        <div className="screen-line-top screen-line-bottom flex w-full before:z-1 after:z-1">
+          <div className="mx-auto flex items-center justify-center gap-3 border-x border-line bg-background px-4">
             <a
               className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href="https://x.com/shakildev99?utm_source=shakil.dev"
+              href={xLink.href}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
+              aria-label="X Profile"
             >
-              <Icons.x className="size-4" />
-              <span className="sr-only">X</span>
+              <XIcon className="size-4" />
             </a>
 
             <Separator />
 
             <a
               className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href="https://github.com/shakil-ahmed-billal?utm_source=shakil.dev"
+              href={githubLink.href}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
+              aria-label="GitHub Profile"
             >
-              <Icons.github className="size-4" />
-              <span className="sr-only">GitHub</span>
+              <GitHubIcon className="size-4" />
             </a>
 
             <Separator />
 
             <a
               className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href="https://www.linkedin.com/in/shakil-ahmed-billal"
+              href={linkedinLink.href}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
+              aria-label="LinkedIn Profile"
             >
-              <Icons.linkedin className="size-4" />
-              <span className="sr-only">LinkedIn</span>
+              <LinkedInIcon className="size-4" />
             </a>
 
             <Separator />
 
             <a
-              className="flex items-center text-muted-foreground transition-[color] hover:text-foreground"
-              href={`${SITE_INFO.url}/rss`}
+              className="flex text-muted-foreground transition-[color] hover:text-foreground"
+              href={
+                process.env.NEXT_PUBLIC_DMCA_URL ||
+                "https://www.dmca.com/ProtectionPro.aspx"
+              }
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
+              aria-label="DMCA.com Protection Status"
             >
-              <RssIcon className="size-4" />
-              <span className="sr-only">RSS</span>
+              <DmcaIcon className="h-4.5 w-auto" />
             </a>
           </div>
         </div>
       </div>
-      <div className="pb-[env(safe-area-inset-bottom,0px)]">
-        <div className="flex h-2" />
-      </div>
+
+      <SiteFooterInteractiveLogotype />
+
+      <div className="h-(--fade-bottom-height)" />
+      <div className="pb-[env(safe-area-inset-bottom,0)]" />
     </footer>
   )
 }
 
 function Separator({ className, ...props }: React.ComponentProps<"div">) {
-  return <div className={cn("flex h-11 w-px bg-edge", className)} {...props} />
+  return <div className={cn("flex h-11 w-px bg-line", className)} {...props} />
+}
+
+function Item({ className, ...props }: React.ComponentProps<"div">) {
+  return <div className={cn("grid grid-cols-2 gap-4", className)} {...props} />
 }

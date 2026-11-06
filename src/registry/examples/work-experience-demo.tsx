@@ -1,4 +1,4 @@
-import { BriefcaseBusinessIcon, CodeXmlIcon } from "lucide-react"
+import { CodeXmlIcon, LightbulbIcon } from "lucide-react"
 
 import type { ExperienceItemType } from "@/registry/components/work-experience"
 import { WorkExperience } from "@/registry/components/work-experience"
@@ -9,44 +9,57 @@ export default function WorkExperienceDemo() {
 
 const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
-    id: "quaric",
-    companyName: "Quaric",
-    companyLogo: "https://xhakil.vercel.app/images/companies/quaric.svg",
+    id: "naxtbrand",
+    companyName: "NaxtBrand",
+    companyLogo: "/experience/naxtbrand.webp",
+    companyWebsite: "https://naxtbrand.com",
     positions: [
       {
-        id: "2",
-        title: "Design Engineer",
-        employmentPeriod: "03.2024 — present",
-        employmentType: "Part-time",
-        icon: CodeXmlIcon,
-        description: `- Integrated VNPAY-QR for secure transactions.
-- Registered the e-commerce site with [online.gov.vn](https://online.gov.vn) for compliance.
-- Developed online ordering to streamline purchases.
-- Build and maintain ZaDark.com with Docusaurus, integrating AdSense.
-- Develop and maintain the ZaDark extension for Zalo Web on Chrome, Safari, Edge, and Firefox — with 15,000+ active users via Chrome Web Store.`,
-        skills: [
-          "Next.js",
-          "Strapi",
-          "Auth0",
-          "VNPAY-QR",
-          "Docker",
-          "NGINX",
-          "Google Cloud",
-          "Docusaurus",
-          "Extension",
-          "Research",
-          "Project Management",
-        ],
-      },
-      {
         id: "1",
-        title: "Founder",
-        employmentPeriod: "03.2024 — present",
-        employmentType: "Part-time",
-        icon: BriefcaseBusinessIcon,
-        skills: ["Business Ownership", "Business Law", "Business Tax"],
+        title: "Founder & Lead Engineer",
+        employmentPeriod: {
+          start: "10.2026",
+        },
+        employmentType: "Self-employed",
+        icon: <LightbulbIcon />,
+        description:
+          "- Leads technical vision, web architecture, and full-stack engineering operations.\n- Directs modern UI systems and robust web applications for clients.",
+        skills: [
+          "Technical Vision",
+          "Software Architecture",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+        ],
+        isExpanded: true,
       },
     ],
     isCurrentEmployer: true,
+  },
+  {
+    id: "softvence",
+    companyName: "Softvence",
+    companyLogo: "/experience/softvence.webp",
+    companyWebsite: "https://softvence.agency",
+    positions: [
+      {
+        id: "2",
+        title: "Team Leader",
+        employmentPeriod: {
+          start: "01.2026",
+          end: "09.2026",
+        },
+        employmentType: "Full-time",
+        icon: <CodeXmlIcon />,
+        description:
+          "- Overseeing the development team and managing project deliverables.\n- Mentoring junior developers to enhance code quality and best practices.",
+        skills: [
+          "Team Leadership",
+          "Project Management",
+          "Code Review",
+          "Mentoring",
+        ],
+      },
+    ],
   },
 ]

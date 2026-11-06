@@ -1,37 +1,74 @@
-import type { Registry } from "shadcn/schema"
-
 import { getRegistryItemUrl } from "@/utils/registry"
+import type { Registry } from "shadcn/schema"
 
 export const examples: Registry["items"] = [
   {
-    name: "text-flip-demo",
+    name: "text-swap-demo",
     type: "registry:example",
-    registryDependencies: [getRegistryItemUrl("text-flip")],
+    registryDependencies: [getRegistryItemUrl("text-swap")],
     files: [
       {
-        path: "examples/text-flip-demo.tsx",
+        path: "examples/text-swap-demo.tsx",
         type: "registry:example",
       },
     ],
   },
   {
-    name: "apple-hello-effect-vi-demo",
+    name: "apple-hello-effect-english-demo",
     type: "registry:example",
     registryDependencies: [getRegistryItemUrl("apple-hello-effect")],
     files: [
       {
-        path: "examples/apple-hello-effect-vi-demo.tsx",
+        path: "examples/apple-hello-effect-english-demo.tsx",
         type: "registry:example",
       },
     ],
   },
   {
-    name: "apple-hello-effect-en-demo",
+    name: "apple-hello-effect-hindi-demo",
     type: "registry:example",
-    registryDependencies: [getRegistryItemUrl("apple-hello-effect")],
+    registryDependencies: [getRegistryItemUrl("apple-hello-effect-hindi")],
     files: [
       {
-        path: "examples/apple-hello-effect-en-demo.tsx",
+        path: "examples/apple-hello-effect-hindi-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "apple-hello-effect-spanish-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("apple-hello-effect-spanish")],
+    files: [
+      {
+        path: "examples/apple-hello-effect-spanish-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "apple-hello-effect-vietnamese-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("apple-hello-effect-vietnamese")],
+    files: [
+      {
+        path: "examples/apple-hello-effect-vietnamese-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "apple-hello-effect-languages-demo",
+    type: "registry:example",
+    registryDependencies: [
+      getRegistryItemUrl("apple-hello-effect-english"),
+      getRegistryItemUrl("apple-hello-effect-hindi"),
+      getRegistryItemUrl("apple-hello-effect-spanish"),
+      getRegistryItemUrl("apple-hello-effect-vietnamese"),
+    ],
+    files: [
+      {
+        path: "examples/apple-hello-effect-languages-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -43,6 +80,43 @@ export const examples: Registry["items"] = [
     files: [
       {
         path: "examples/theme-switcher-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "swipe-actions-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("swipe-actions")],
+    files: [
+      {
+        path: "examples/swipe-actions-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName:
+        "mx-auto min-h-svh w-full max-w-3xl place-items-center-safe content-center-safe px-4",
+    },
+  },
+  {
+    name: "swipe-actions-full-swipe-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("swipe-actions")],
+    files: [
+      {
+        path: "examples/swipe-actions-full-swipe-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "swipe-actions-minimal-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("swipe-actions")],
+    files: [
+      {
+        path: "examples/swipe-actions-minimal-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -81,12 +155,12 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "shimmering-text-demo-01",
+    name: "shimmering-text-demo",
     type: "registry:example",
     registryDependencies: [getRegistryItemUrl("shimmering-text")],
     files: [
       {
-        path: "examples/shimmering-text-demo-01.tsx",
+        path: "examples/shimmering-text-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -103,7 +177,7 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "slide-to-unlock-demo-01",
+    name: "slide-to-unlock-demo",
     type: "registry:example",
     registryDependencies: [
       getRegistryItemUrl("slide-to-unlock"),
@@ -111,7 +185,7 @@ export const examples: Registry["items"] = [
     ],
     files: [
       {
-        path: "examples/slide-to-unlock-demo-01.tsx",
+        path: "examples/slide-to-unlock-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -150,12 +224,12 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "testimonials-marquee-demo-01",
+    name: "testimonials-marquee-demo",
     type: "registry:example",
     registryDependencies: [getRegistryItemUrl("testimonials-marquee")],
     files: [
       {
-        path: "examples/testimonials-marquee-demo-01.tsx",
+        path: "examples/testimonials-marquee-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -183,12 +257,12 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "scroll-fade-effect-demo-01",
+    name: "scroll-fade-effect-demo",
     type: "registry:example",
     registryDependencies: [getRegistryItemUrl("scroll-fade-effect")],
     files: [
       {
-        path: "examples/scroll-fade-effect-demo-01.tsx",
+        path: "examples/scroll-fade-effect-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -245,12 +319,12 @@ export const examples: Registry["items"] = [
     ],
   },
   {
-    name: "code-block-command-convert-demo",
+    name: "code-block-command-convert",
     type: "registry:example",
     registryDependencies: [getRegistryItemUrl("code-block-command")],
     files: [
       {
-        path: "examples/code-block-command-convert-demo.tsx",
+        path: "examples/code-block-command-convert.tsx",
         type: "registry:example",
       },
     ],
@@ -276,5 +350,511 @@ export const examples: Registry["items"] = [
         type: "registry:example",
       },
     ],
+  },
+  {
+    name: "testimonial-spotlight-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("testimonial-spotlight")],
+    files: [
+      {
+        path: "examples/testimonial-spotlight-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "glow-card-grid-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("glow-card-grid")],
+    files: [
+      {
+        path: "examples/glow-card-grid-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "glow-card-grid-dialkit",
+    type: "registry:example",
+    dependencies: ["dialkit"],
+    registryDependencies: [getRegistryItemUrl("glow-card-grid")],
+    files: [
+      {
+        path: "examples/glow-card-grid-dialkit.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "min-h-svh place-items-center-safe content-center-safe",
+    },
+  },
+  {
+    name: "middle-truncation-demo",
+    type: "registry:example",
+    registryDependencies: [
+      "resizable",
+      getRegistryItemUrl("middle-truncation"),
+    ],
+    files: [
+      {
+        path: "examples/middle-truncation-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "twemoji-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("twemoji")],
+    files: [
+      {
+        path: "examples/twemoji-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "theme-toggle-effect-demo",
+    type: "registry:example",
+    files: [
+      {
+        path: "examples/theme-toggle-effect-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "elastic-slider-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("elastic-slider")],
+    files: [
+      {
+        path: "examples/elastic-slider-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "github-contributions-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("github-contributions")],
+    files: [
+      {
+        path: "examples/github-contributions-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "github-contributions-default-theme",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("github-contributions")],
+    files: [
+      {
+        path: "examples/github-contributions-default-theme.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "github-contributions-winter-theme",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("github-contributions")],
+    files: [
+      {
+        path: "examples/github-contributions-winter-theme.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "github-contributions-halloween-theme",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("github-contributions")],
+    files: [
+      {
+        path: "examples/github-contributions-halloween-theme.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "toc-minimap-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("toc-minimap")],
+    files: [
+      {
+        path: "examples/toc-minimap-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "fluid-gradient-text-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("fluid-gradient-text")],
+    files: [
+      {
+        path: "examples/fluid-gradient-text-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "fluid-gradient-text-dialkit",
+    type: "registry:example",
+    dependencies: ["dialkit"],
+    registryDependencies: [getRegistryItemUrl("fluid-gradient-text")],
+    files: [
+      {
+        path: "examples/fluid-gradient-text-dialkit.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "min-h-svh place-items-center-safe content-center-safe",
+    },
+  },
+  {
+    name: "brand-assets-menu-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("brand-assets-menu")],
+    files: [
+      {
+        path: "examples/brand-assets-menu-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "icon-swap-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("icon-swap")],
+    files: [
+      {
+        path: "examples/icon-swap-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "dot-grid-spotlight-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("dot-grid-spotlight")],
+    files: [
+      {
+        path: "examples/dot-grid-spotlight-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "spinning-circular-text-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("spinning-circular-text")],
+    files: [
+      {
+        path: "examples/spinning-circular-text-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "spinning-circular-text-demo-2",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("spinning-circular-text")],
+    files: [
+      {
+        path: "examples/spinning-circular-text-demo-2.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "mobius-loop-icon-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("mobius-loop-icon")],
+    files: [
+      {
+        path: "examples/mobius-loop-icon-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "chevrons-up-down-icon-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("chevrons-up-down-icon")],
+    files: [
+      {
+        path: "examples/chevrons-up-down-icon-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "logos-carousel-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("logos-carousel")],
+    files: [
+      {
+        path: "examples/logos-carousel-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "min-h-svh place-items-center-safe content-center-safe",
+    },
+  },
+  {
+    name: "logos-flip-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("logos-flip")],
+    files: [
+      {
+        path: "examples/logos-flip-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName:
+        "container mx-auto min-h-svh place-items-center-safe content-center-safe",
+    },
+  },
+  {
+    name: "logos-swap-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("logos-swap")],
+    files: [
+      {
+        path: "examples/logos-swap-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName:
+        "container mx-auto min-h-svh place-items-center-safe content-center-safe",
+    },
+  },
+  {
+    name: "pull-quote-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("pull-quote")],
+    files: [
+      {
+        path: "examples/pull-quote-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "line-nav-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("line-nav")],
+    files: [
+      {
+        path: "examples/line-nav-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "min-h-svh place-items-center-safe content-center-safe",
+    },
+  },
+  {
+    name: "share-menu-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("share-menu")],
+    files: [
+      {
+        path: "examples/share-menu-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "spotlight-logo-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("spotlight-logo")],
+    files: [
+      {
+        path: "examples/spotlight-logo-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "timescale-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("timescale")],
+    files: [
+      {
+        path: "examples/timescale-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "status-button-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("status-button")],
+    files: [
+      {
+        path: "examples/status-button-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "status-button-form-demo",
+    type: "registry:example",
+    registryDependencies: [
+      "field",
+      "input",
+      getRegistryItemUrl("status-button"),
+    ],
+    files: [
+      {
+        path: "examples/status-button-form-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "carbon-ads-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("carbon-ads")],
+    files: [
+      {
+        path: "examples/carbon-ads-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "apple-carousel-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("apple-carousel")],
+    files: [
+      {
+        path: "examples/apple-carousel-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "min-h-svh content-center-safe py-8",
+    },
+  },
+  {
+    name: "apple-carousel-caption-demo",
+    type: "registry:example",
+    registryDependencies: ["button", getRegistryItemUrl("apple-carousel")],
+    files: [
+      {
+        path: "examples/apple-carousel-caption-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "min-h-svh content-center-safe py-8",
+    },
+  },
+  {
+    name: "apple-accordion-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("apple-accordion")],
+    files: [
+      {
+        path: "examples/apple-accordion-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "min-h-svh content-center-safe px-4 py-8 sm:px-8",
+    },
+  },
+  {
+    name: "jpg-card-holder-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("jpg-card-holder")],
+    files: [
+      {
+        path: "examples/jpg-card-holder-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "flex min-h-svh items-center justify-center",
+    },
+  },
+  {
+    name: "foldable-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("foldable")],
+    files: [
+      {
+        path: "examples/foldable-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "flex min-h-svh items-center justify-center",
+    },
+  },
+  {
+    name: "foldable-spread-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("foldable")],
+    files: [
+      {
+        path: "examples/foldable-spread-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "flex min-h-svh items-center justify-center",
+    },
+  },
+  {
+    name: "ipod-classic-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("ipod-classic")],
+    files: [
+      {
+        path: "examples/ipod-classic-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "flex min-h-svh items-center justify-center",
+    },
+  },
+  {
+    name: "wallet-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("wallet")],
+    files: [
+      {
+        path: "examples/wallet-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "flex min-h-svh items-center justify-center",
+    },
+  },
+  {
+    name: "wallet-passes-demo",
+    type: "registry:example",
+    registryDependencies: [getRegistryItemUrl("wallet")],
+    files: [
+      {
+        path: "examples/wallet-passes-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+    meta: {
+      previewClassName: "flex min-h-svh items-center justify-center",
+    },
   },
 ]

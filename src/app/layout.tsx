@@ -5,24 +5,24 @@ import Script from "next/script"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import type { WebSite, WithContext } from "schema-dts"
 
-import { DuckFollower } from "@/components/duck-follower"
+import { JSON_LD_ID, personJsonLd } from "@/config/json-ld"
+import { META_THEME_COLORS, SITE_INFO, X_HANDLE } from "@/config/site"
+import { fontVariables } from "@/lib/fonts"
+import { JsonLdScript } from "@/lib/json-ld"
 import { Providers } from "@/components/providers"
-import { META_THEME_COLORS, SITE_INFO, X_USERNAME } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
-import { fontMono, fontPixelSquare, fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": JSON_LD_ID.website,
     name: SITE_INFO.name,
     url: SITE_INFO.url,
-    alternateName: [USER.username],
+    author: personJsonLd,
   }
 }
 
-// Thanks @shadcn-ui, @tailwindcss
 const darkModeScript = String.raw`
   try {
     if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -54,9 +54,13 @@ export const metadata: Metadata = {
   creator: USER.displayName,
   openGraph: {
     siteName: SITE_INFO.name,
-    url: SITE_INFO.url,
-    type: "website",
+    url: "/",
+    type: "profile",
     locale: "en_US",
+    firstName: USER.firstName,
+    lastName: USER.lastName,
+    username: USER.username,
+    gender: USER.gender,
     images: [
       {
         url: SITE_INFO.ogImage,
@@ -68,47 +72,27 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: X_USERNAME,
-    creator: X_USERNAME,
+    site: X_HANDLE,
+    creator: X_HANDLE,
     images: [SITE_INFO.ogImage],
   },
   icons: {
     icon: [
       {
-        url: "/shakil/favicon_io/favicon.ico",
-        sizes: "any",
-      },
-      {
-        url: "/shakil/favicon_io/favicon-32x32.png",
-        type: "image/png",
+        url: "/favicon.ico",
         sizes: "32x32",
       },
       {
-        url: "/shakil/favicon_io/favicon-16x16.png",
+        url: "/icon.png",
+        sizes: "any",
         type: "image/png",
-        sizes: "16x16",
       },
     ],
     apple: {
-      url: "/shakil/favicon_io/apple-touch-icon.png",
+      url: "/apple-touch-icon.png",
       type: "image/png",
       sizes: "180x180",
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  manifest: "/manifest.webmanifest",
-  verification: {
-    google: "dZkZPVPwFyN2ooLmk5LtOaPscW92DBHGbmwMwG3Dr_0",
   },
 }
 
@@ -125,39 +109,42 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        fontSans.variable,
-        fontMono.variable,
-        fontPixelSquare.variable
-      )}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={fontVariables} suppressHydrationWarning>
       <head>
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{ __html: darkModeScript }}
         />
-        {/*
-          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
-          since we found the regular `<script>` tag to not execute when rendering a not-found page.
-         */}
+
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
         <script
-          type="application/ld+json"
+          type="text/javascript"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+            __html: `
+              try {
+                var value = localStorage.getItem('avatarLights');
+                document.documentElement.dataset.avatarLights = JSON.parse(value || '"on"');
+              } catch(_) {}
+            `,
           }}
         />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var value = localStorage.getItem('sidebarOpen');
+                document.documentElement.dataset.sidebarOpen = JSON.parse(value || 'true');
+              } catch(_) {}
+            `,
+          }}
+        />
+        <JsonLdScript data={getWebSiteJsonLd()} />
       </head>
 
       <body>
         <Providers>
-          <NuqsAdapter>
-            {children}
-            <DuckFollower />
-          </NuqsAdapter>
+          <NuqsAdapter>{children}</NuqsAdapter>
         </Providers>
       </body>
     </html>

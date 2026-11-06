@@ -2,29 +2,18 @@ import type { Registry } from "shadcn/schema"
 
 export const lib: Registry["items"] = [
   {
-    name: "utils",
-    type: "registry:lib",
-    title: "Utility Functions",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
-    dependencies: ["clsx", "tailwind-merge"],
-    files: [
-      {
-        path: "src/lib/utils.ts",
-        type: "registry:lib",
-      },
-    ],
-  },
-  {
     name: "haptic",
     type: "registry:lib",
     title: "Haptic Feedback",
-    author: "shakil-ahmed-billal <shakil.dev99@gmail.com>",
     description: "Trigger haptic feedback on mobile devices.",
     files: [
       {
         path: "lib/haptic/haptic.ts",
         type: "registry:lib",
+        target: "@lib/haptic.ts",
       },
     ],
+    categories: ["utilities"],
+    docs: "https://www.xhakil.site/components/haptic",
   },
 ]

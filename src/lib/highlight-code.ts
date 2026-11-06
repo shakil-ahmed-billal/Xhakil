@@ -3,11 +3,9 @@ import { LRUCache } from "lru-cache"
 import type { ShikiTransformer } from "shiki"
 import { codeToHtml } from "shiki"
 
-// LRU cache for cross-request caching of highlighted code.
-// Shiki highlighting is CPU-intensive and deterministic, so caching is safe.
 const highlightCache = new LRUCache<string, string>({
   max: 500,
-  ttl: 1000 * 60 * 60, // 1 hour.
+  ttl: 1000 * 60 * 60,
 })
 
 export const transformers = [
@@ -37,7 +35,6 @@ export const transformers = [
           node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
         }
 
-        // npm create.
         if (raw.startsWith("npm create")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace("npm create", "yarn create")
@@ -45,7 +42,6 @@ export const transformers = [
           node.properties["__bun__"] = raw.replace("npm create", "bun create")
         }
 
-        // npx.
         if (raw.startsWith("npx")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace("npx", "yarn")
@@ -53,7 +49,6 @@ export const transformers = [
           node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
         }
 
-        // npm run.
         if (raw.startsWith("npm run")) {
           node.properties["__npm__"] = raw
           node.properties["__yarn__"] = raw.replace("npm run", "yarn")
@@ -65,42 +60,65 @@ export const transformers = [
   },
 ] as ShikiTransformer[]
 
-export async function highlightCode(code: string, language: string = "tsx") {
-  // Create cache key from code content and language.
+export const CODE_THEMES = {
+  dark: "vesper",
+  light: "github-light-default",
+} as const
+
+export type HighlightCodeOptions = {
+  showLineNumbers?: boolean
+
+  highlightedLines?: number[]
+}
+
+export async function highlightCode(
+  code: string,
+  language: string = "tsx",
+  { showLineNumbers = false, highlightedLines = [] }: HighlightCodeOptions = {}
+) {
   const cacheKey = createHash("sha256")
-    .update(`${language}:${code}`)
+    .update(JSON.stringify([language, showLineNumbers, highlightedLines, code]))
     .digest("hex")
 
-  // Check cache first.
   const cached = highlightCache.get(cacheKey)
   if (cached) {
     return cached
   }
 
-  const html = await codeToHtml(code, {
+  const html = await codeToHtml(code.replace(/\n$/, ""), {
     lang: language,
-    themes: {
-      dark: "github-dark",
-      light: "github-light",
-    },
+    themes: CODE_THEMES,
     defaultColor: false,
     transformers: [
       {
         pre(node) {
-          node.properties["style"] = ""
+          delete node.properties["class"]
+          delete node.properties["style"]
+          node.properties["data-language"] = language
         },
         code(node) {
-          node.properties["data-line-numbers"] = ""
+          if (showLineNumbers) {
+            node.properties["data-line-numbers"] = ""
+          }
+          node.properties["data-language"] = language
           node.properties["style"] = "display: grid"
         },
-        line(node) {
+        line(node, line) {
+          delete node.properties["class"]
           node.properties["data-line"] = ""
+
+          if (highlightedLines.includes(line)) {
+            node.properties["data-highlighted-line"] = ""
+          }
+
+          if (node.children.length === 0) {
+            node.children = [{ type: "text", value: " " }]
+          }
         },
       },
     ],
   })
 
-  // Cache the result.
   highlightCache.set(cacheKey, html)
 
   return html

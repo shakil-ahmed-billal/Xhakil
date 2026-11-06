@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { SubmitHandler } from "react-hook-form"
 import { Controller, useForm } from "react-hook-form"
-import { toast } from "sonner"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -13,6 +12,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
+import { toast } from "@/components/ui/toast"
 import type { WheelPickerOption } from "@/registry/components/wheel-picker"
 import {
   WheelPicker,
@@ -38,15 +38,14 @@ export default function WheelPickerFormDemo() {
   })
 
   const onSubmit: SubmitHandler<FormSchema> = (values) => {
-    toast("You submitted the following values:", {
+    toast.add({
+      title: "You submitted the following values:",
+
       description: (
-        <pre className="mt-2 w-full rounded-md border p-4">
-          <code>{JSON.stringify(values, null, 2)}</code>
-        </pre>
+        <code className="mt-2 block w-full rounded-md border p-4 whitespace-pre">
+          {JSON.stringify(values, null, 2)}
+        </code>
       ),
-      classNames: {
-        content: "flex-1",
-      },
     })
   }
 

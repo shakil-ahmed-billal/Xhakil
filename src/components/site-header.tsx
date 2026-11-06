@@ -1,77 +1,59 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
 
-import { DesktopNav } from "@/components/desktop-nav"
-import { NavItemGitHub } from "@/components/nav-item-github"
 import { MAIN_NAV } from "@/config/site"
+import { Separator } from "@/components/ui/separator"
+import { NavDesktop } from "@/components/nav-desktop"
+import { NavItemGitHub } from "@/components/nav-item-github"
+import { SiteMark } from "@/components/site-mark"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { getAllDocs } from "@/features/doc/data/documents"
-import { cn } from "@/lib/utils"
+import type { DocPreview } from "@/features/doc/types/document"
 
-import { SiteHeaderMark } from "./site-header-mark"
-import { ThemeToggle } from "./theme-toggle"
-import { Separator } from "./ui/separator"
-
-const BrandContextMenu = dynamic(() =>
-  import("@/components/brand-context-menu").then((mod) => mod.BrandContextMenu)
+const BrandContextMenu = dynamic(
+  () => import("@/components/brand-context-menu")
 )
 
-const CommandMenu = dynamic(() =>
-  import("@/components/command-menu").then((mod) => mod.CommandMenu)
-)
+const CommandMenu = dynamic(() => import("@/components/command-menu"))
 
-const MobileNav = dynamic(() =>
-  import("@/components/mobile-nav-v2").then((mod) => mod.MobileNavV2)
-)
+export function SiteHeader() {
+  const docs = getAllDocs()
 
-export function SiteHeader({
-  width = "default",
-}: {
-  width?: "default" | "wide"
-}) {
-  const allPosts = getAllDocs().map((doc) => ({
-    slug: `/blog/${doc.slug}`,
+  const docPreviews: DocPreview[] = docs.map((doc) => ({
+    slug: doc.slug,
     title: doc.metadata.title,
     category: doc.metadata.category,
   }))
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 max-w-screen overflow-x-hidden bg-background px-2 pt-2"
-        // "data-[affix=true]:shadow-[0_0_16px_0_black]/8 dark:data-[affix=true]:shadow-[0_0_16px_0_black]",
-        // "not-dark:data-[affix=true]:**:data-header-container:after:bg-border",
-        // "transition-shadow duration-300"
-      )}
-    >
-      <div
-        data-slot="site-header-container"
-        data-width={width}
-        className="screen-line-before screen-line-after mx-auto flex h-12 items-center justify-between gap-2 border-x border-edge px-2 after:z-1 after:transition-[background-color] data-[width=wide]:container sm:gap-4 data-[width=default]:md:max-w-3xl"
-        data-header-container
-      >
+    <header className="sticky top-0 z-50 h-(--header-height) max-w-screen overflow-x-clip bg-background px-2 pt-1">
+      <div className="screen-line-top screen-line-bottom mx-auto flex h-full items-center gap-2 border-x border-x-line pr-2 pl-4 group-has-data-[slot=layout-wide]/layout:container after:z-1 sm:gap-4 md:max-w-3xl">
         <BrandContextMenu>
-          <Link
-            className="transition-[scale] ease-out active:scale-[0.98] has-data-[visible=false]:pointer-events-none [&_svg]:h-8"
-            href="/"
-            aria-label="Home"
-          >
-            <SiteHeaderMark />
+          <Link href="/" aria-label="Home">
+            <SiteMark className="h-6 w-auto shrink-0" />
           </Link>
         </BrandContextMenu>
 
         <div className="flex-1" />
 
-        <DesktopNav items={MAIN_NAV} />
+        <NavDesktop items={MAIN_NAV} />
 
-        <div className="flex items-center *:first:mr-2">
-          <CommandMenu posts={allPosts} />
+        <div className="flex items-center max-sm:*:data-[slot=command-menu-trigger]:hidden">
+          <Separator
+            orientation="vertical"
+            className="mr-2 max-sm:hidden data-vertical:h-5 data-vertical:self-center"
+          />
+          <CommandMenu docs={docPreviews} enabledHotkeys />
+          <Separator
+            orientation="vertical"
+            className="mx-2 max-sm:hidden data-vertical:h-5 data-vertical:self-center"
+          />
           <NavItemGitHub />
           <Separator
             orientation="vertical"
-            className="mx-2 data-vertical:h-4 data-vertical:self-center"
+            className="mx-2 data-vertical:h-5 data-vertical:self-center"
           />
           <ThemeToggle />
-          <MobileNav items={MAIN_NAV} />
         </div>
       </div>
     </header>

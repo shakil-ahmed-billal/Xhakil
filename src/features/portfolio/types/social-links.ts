@@ -1,11 +1,7 @@
-export type SocialLink = {
-  /** Icon image URL (absolute or path under /public) shown beside the title. */
-  icon: string
+export type SocialProfile = {
   title: string
-  /** Optional handle/username or subtitle displayed under the title. */
-  subtitle?: string
-  /** External profile URL opened when the item is clicked. */
+  handle: string
   href: string
-  /** Whether the icon has light and dark theme versions. */
-  theme?: boolean
+
+  sameAs?: boolean
 }

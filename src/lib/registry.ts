@@ -1,24 +1,21 @@
 import { promises as fs } from "fs"
-import { LRUCache } from "lru-cache"
 import path from "path"
+import { LRUCache } from "lru-cache"
 import type { registryItemFileSchema } from "shadcn/schema"
 import { registryItemSchema } from "shadcn/schema"
 import type { z } from "zod"
 
-import { Index } from "@/__registry__"
+import { Index } from "@/registry/__index__"
 
-// LRU cache for cross-request caching of registry items.
-// File reads are I/O-bound, so caching improves dev server performance.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const registryCache = new LRUCache<string, any>({
   max: 500,
-  ttl: 1000 * 60 * 5, // 5 minutes (shorter for dev to pick up changes).
+  ttl: 1000 * 60 * 5,
 })
 
 export async function getRegistryItem(name: string) {
   const cacheKey = name
 
-  // Check cache first.
   if (registryCache.has(cacheKey)) {
     return registryCache.get(cacheKey)
   }
@@ -30,7 +27,6 @@ export async function getRegistryItem(name: string) {
     return null
   }
 
-  // Fail early before doing expensive file operations.
   const result = registryItemSchema.safeParse(item)
 
   if (!result.success) {
@@ -38,7 +34,6 @@ export async function getRegistryItem(name: string) {
     return null
   }
 
-  // Read all files in parallel.
   let files: typeof result.data.files = await Promise.all(
     item.files.map(async (file: z.infer<typeof registryItemFileSchema>) => {
       const content = await getFileContent(file)
@@ -52,7 +47,6 @@ export async function getRegistryItem(name: string) {
     })
   )
 
-  // Fix file paths.
   files = fixFilePaths(files)
 
   const parsed = registryItemSchema.safeParse({
@@ -66,7 +60,6 @@ export async function getRegistryItem(name: string) {
     return null
   }
 
-  // Cache the result.
   registryCache.set(cacheKey, parsed.data)
 
   return parsed.data
@@ -75,13 +68,10 @@ export async function getRegistryItem(name: string) {
 async function getFileContent(file: z.infer<typeof registryItemFileSchema>) {
   let code = await fs.readFile(file.path, "utf-8")
 
-  // Some registry items uses default export.
-  // We want to use named export instead.
   if (file.type !== "registry:page") {
     code = code.replaceAll("export default", "export")
   }
 
-  // Fix imports.
   code = fixImport(code)
 
   return code
@@ -112,12 +102,13 @@ export function fixImport(content: string) {
   return content.replace(regex, replacement)
 }
 
-function fixFilePaths(files: z.infer<typeof registryItemSchema>["files"]) {
+export function fixFilePaths(
+  files: z.infer<typeof registryItemSchema>["files"]
+) {
   if (!files) {
     return []
   }
 
-  // Resolve all paths relative to the first file's directory.
   const firstFilePath = files[0].path
   const firstFilePathDir = path.dirname(firstFilePath)
 
@@ -130,7 +121,7 @@ function fixFilePaths(files: z.infer<typeof registryItemSchema>["files"]) {
   })
 }
 
-function getFileTarget(file: z.infer<typeof registryItemFileSchema>) {
+export function getFileTarget(file: z.infer<typeof registryItemFileSchema>) {
   let target = file.target
 
   if (!target || target === "") {
@@ -154,9 +145,35 @@ function getFileTarget(file: z.infer<typeof registryItemFileSchema>) {
     if (file.type === "registry:lib") {
       target = `lib/${fileName}`
     }
+
+    return target ?? ""
   }
 
-  return target ?? ""
+  return normalizeAliasTarget(target)
+}
+
+export function normalizeAliasTarget(target: string) {
+  const regex = /^@(components|ui|hooks|lib)\/(.+)$/
+
+  return target.replace(regex, (_, type, rest) => {
+    if (type === "components") {
+      return `components/${rest}`
+    }
+
+    if (type === "ui") {
+      return `components/ui/${rest}`
+    }
+
+    if (type === "hooks") {
+      return `hooks/${rest}`
+    }
+
+    if (type === "lib") {
+      return `lib/${rest}`
+    }
+
+    return target
+  })
 }
 
 export type FileTree = {
@@ -182,10 +199,8 @@ export function createFileTreeForRegistryItemFiles(
 
       if (existingNode) {
         if (isFile) {
-          // Update existing file node with full path
           existingNode.path = path
         } else {
-          // Move to next level in the tree
           currentLevel = existingNode.children!
         }
       } else {

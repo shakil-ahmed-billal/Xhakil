@@ -1,7 +1,7 @@
 import fs from "fs"
-import matter from "gray-matter"
 import path from "path"
 import { cache } from "react"
+import matter from "gray-matter"
 
 import type { Doc, DocMetadata } from "@/features/doc/types/document"
 
@@ -24,18 +24,25 @@ function readMDXFile(filePath: string) {
 }
 
 function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir)
+  const categoryDirs = fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
 
-  return mdxFiles.map<Doc>((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file))
+  return categoryDirs.flatMap((categoryDir) => {
+    const category = categoryDir.name
+    const categoryPath = path.join(dir, category)
 
-    const slug = path.basename(file, path.extname(file))
+    return getMDXFiles(categoryPath).map<Doc>((file) => {
+      const { metadata, content } = readMDXFile(path.join(categoryPath, file))
 
-    return {
-      metadata,
-      slug,
-      content,
-    }
+      const slug = path.basename(file, path.extname(file))
+
+      return {
+        metadata: { ...metadata, category },
+        slug,
+        content,
+      }
+    })
   })
 }
 
@@ -59,6 +66,17 @@ export function getDocBySlug(slug: string) {
 
 export function getDocsByCategory(category: string) {
   return getAllDocs().filter((doc) => doc.metadata?.category === category)
+}
+
+export const BLOG_CATEGORY = "blog"
+export const COMPONENTS_CATEGORY = "components"
+
+export function getBlogPosts() {
+  return getDocsByCategory(BLOG_CATEGORY)
+}
+
+export function getComponentDocs() {
+  return getDocsByCategory(COMPONENTS_CATEGORY)
 }
 
 export function findNeighbour(docs: Doc[], slug: string) {

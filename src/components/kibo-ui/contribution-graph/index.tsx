@@ -1,7 +1,14 @@
-// Thanks https://www.kibo-ui.com/components/contribution-graph
-
 "use client"
 
+import {
+  createContext,
+  Fragment,
+  useContext,
+  useMemo,
+  type CSSProperties,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react"
 import type { Day as WeekDay } from "date-fns"
 import {
   differenceInCalendarDays,
@@ -14,15 +21,6 @@ import {
   parseISO,
   subWeeks,
 } from "date-fns"
-import {
-  createContext,
-  type CSSProperties,
-  Fragment,
-  type HTMLAttributes,
-  type ReactNode,
-  useContext,
-  useMemo,
-} from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -119,7 +117,6 @@ const fillHoles = (activities: Activity[]): Activity[] => {
     return []
   }
 
-  // Sort activities by date to ensure correct date range
   const sortedActivities = [...activities].sort((a, b) =>
     a.date.localeCompare(b.date)
   )

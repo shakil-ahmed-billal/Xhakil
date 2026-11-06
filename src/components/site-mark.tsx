@@ -1,27 +1,20 @@
 import { cn } from "@/lib/utils"
 
-export function SiteMark({
-  className,
-  ...props
-}: React.ComponentProps<"img">) {
+export function SiteMark({ className, ...props }: React.ComponentProps<"svg">) {
   return (
-    <>
-      <img
-        src="/shakil/shakil-light.svg"
-        alt="Shakil Logo"
-        className={cn("hidden h-4 w-auto object-contain dark:block", className)}
-        {...props}
-      />
-      <img
-        src="/shakil/shakil-dark.svg"
-        alt="Shakil Logo"
-        className={cn("block h-4 w-auto object-contain dark:hidden", className)}
-        {...props}
-      />
-    </>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1600 1000"
+      fill="currentColor"
+      aria-hidden
+      className={cn("h-6 w-auto shrink-0", className)}
+      {...props}
+    >
+      <path d="M200 0h400v200H200ZM1000 0h400v200H1000ZM0 800h400v200H0ZM1000 500h400v200H1000ZM0 200h200v400H0ZM400 400h200v400H400ZM800 200h200v800H800ZM1400 200h200v800H1400ZM200 400h200v200H200Z" />
+    </svg>
   )
 }
 
-export function getMarkSVG(color: string) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="50" y="50" fill="${color}">S</text></svg>`
+export function getMarkSVG() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="currentColor"><path d="M200 0h400v200H200ZM1000 0h400v200H1000ZM0 800h400v200H0ZM1000 500h400v200H1000ZM0 200h200v400H0ZM400 400h200v400H400ZM800 200h200v800H800ZM1400 200h200v800H1400ZM200 400h200v200H200Z"/></svg>`
 }

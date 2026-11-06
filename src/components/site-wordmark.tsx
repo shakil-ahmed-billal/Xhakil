@@ -1,25 +1,27 @@
+import { cn } from "@/lib/utils"
+
 export function SiteWordmark({
   className,
   ...props
-}: React.ComponentProps<"img">) {
+}: React.ComponentProps<"svg">) {
   return (
-    <>
-      <img
-        src="/shakil/shakil-light.svg"
-        alt="Shakil Wordmark"
-        className={`${className || ""} hidden dark:block`}
-        {...props}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 930 258"
+      fill="currentColor"
+      aria-hidden
+      className={cn("h-6 w-auto shrink-0", className)}
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1 1H33V65H65V97H97V161H129V193H161V257H129V193H97V161H65V97H33V65H1V1ZM129 1H161V65H129V97H97V65H129V1ZM65 161V193H33V257H1V193H33V161H65ZM193 1H225V65H321V97H225V257H193V1ZM321 97H353V257H321V97ZM417 65H545V257H513V225H481V193H513V97H417V65ZM417 225H385V97H417V225ZM417 225V257H481V225H417ZM577 1H609V129H673V161H609V257H577V1ZM705 65H737V97H705V129H673V97H705V65ZM641 161H673V193H705V225H737V257H705V225H673V193H641V161ZM801 1H833V33H801V1ZM769 65V97H801V257H833V65H769ZM865 1H929V257H897V33H865V1Z"
       />
-      <img
-        src="/shakil/shakil-dark.svg"
-        alt="Shakil Wordmark"
-        className={`${className || ""} block dark:hidden`}
-        {...props}
-      />
-    </>
+    </svg>
   )
 }
 
-export function getWordmarkSVG(color: string) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100"><text x="100" y="50" fill="${color}">SHAKIL</text></svg>`
+export function getWordmarkSVG() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 258" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 1H33V65H65V97H97V161H129V193H161V257H129V193H97V161H65V97H33V65H1V1ZM129 1H161V65H129V97H97V65H129V1ZM65 161V193H33V257H1V193H33V161H65ZM193 1H225V65H321V97H225V257H193V1ZM321 97H353V257H321V97ZM417 65H545V257H513V225H481V193H513V97H417V65ZM417 225H385V97H417V225ZM417 225V257H481V225H417ZM577 1H609V129H673V161H609V257H577V1ZM705 65H737V97H705V129H673V97H705V65ZM641 161H673V193H705V225H737V257H705V225H673V193H641V161ZM801 1H833V33H801V1ZM769 65V97H801V257H833V65H769ZM865 1H929V257H897V33H865V1Z"/></svg>`
 }

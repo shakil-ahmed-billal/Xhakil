@@ -1,7 +1,6 @@
 "use client"
 
-import { toast } from "sonner"
-
+import { toast } from "@/components/ui/toast"
 import { ShimmeringText } from "@/registry/components/shimmering-text"
 import {
   SlideToUnlock,

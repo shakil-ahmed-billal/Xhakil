@@ -1,15 +1,16 @@
 "use client"
 
-import { MailIcon } from "lucide-react"
-import { useHotkeys } from "react-hotkeys-hook"
-import { toast } from "sonner"
-import { useWebHaptics } from "web-haptics/react"
-
-import { useIsClient } from "@/hooks/use-is-client"
-import { trackEvent } from "@/lib/events"
-import { CopyButton } from "@/registry/components/copy-button"
+import { useId } from "react"
 import { copyToClipboardWithEvent } from "@/utils/copy"
 import { decodeEmail } from "@/utils/string"
+import { useTiks } from "@rexa-developer/tiks/react"
+import { MailIcon } from "lucide-react"
+import { useHotkeys } from "react-hotkeys-hook"
+
+import { trackEvent } from "@/lib/events"
+import { useIsClient } from "@/hooks/use-is-client"
+import { toast } from "@/components/ui/toast"
+import { CopyButton } from "@/components/copy-button"
 
 import {
   IntroItem,
@@ -17,14 +18,18 @@ import {
   IntroItemIcon,
   IntroItemLink,
 } from "./intro-item"
+import { RevealEncodedTextScript } from "./reveal-encoded-text"
 
 type EmailItemProps = {
-  email: string
+  emailB64: string
 }
 
-export function EmailItem({ email }: EmailItemProps) {
+export function EmailItem({ emailB64 }: EmailItemProps) {
+  const id = useId()
   const isClient = useIsClient()
-  const emailDecoded = decodeEmail(email)
+  const emailDecoded = decodeEmail(emailB64)
+
+  const { success } = useTiks()
 
   useHotkeys("shift+e", () => {
     copyToClipboardWithEvent(emailDecoded, {
@@ -34,10 +39,9 @@ export function EmailItem({ email }: EmailItemProps) {
         key: "shift+e",
       },
     })
-    toast.success("Email copied")
+    success()
+    toast.add({ type: "success", title: "Email copied" })
   })
-
-  const { trigger } = useWebHaptics({ debug: true })
 
   return (
     <IntroItem className="group">
@@ -45,25 +49,23 @@ export function EmailItem({ email }: EmailItemProps) {
         <MailIcon />
       </IntroItemIcon>
 
-      <IntroItemContent>
+      <IntroItemContent className="flex">
         <IntroItemLink
-          href={isClient ? `mailto:${emailDecoded}` : "#"}
-          aria-label={
-            isClient ? `Send email to ${emailDecoded}` : "Email address"
-          }
+          id={id}
+          href={isClient ? `mailto:${emailDecoded}` : ""}
+          suppressHydrationWarning
         >
-          {isClient ? emailDecoded : "[Email protected]"}
+          {isClient ? emailDecoded : ""}
         </IntroItemLink>
       </IntroItemContent>
 
-      <div className="-translate-x-3 translate-y-px opacity-0 transition-opacity ease-out group-hover:opacity-100">
+      <div className="-translate-x-2.5 opacity-0 transition-opacity ease-out group-hover:opacity-100 group-has-focus-visible:opacity-100 pointer-coarse:opacity-100">
         <CopyButton
           className="rounded-md border-none text-muted-foreground [&_svg:not([class*='size-'])]:size-3.5"
           variant="ghost"
           size="icon-xs"
-          text={isClient ? emailDecoded : "[Email protected]"}
+          text={() => emailDecoded}
           onCopySuccess={() => {
-            trigger("success")
             trackEvent({
               name: "copy_email",
               properties: {
@@ -71,9 +73,10 @@ export function EmailItem({ email }: EmailItemProps) {
               },
             })
           }}
-          onCopyError={() => trigger("error")}
         />
       </div>
+
+      <RevealEncodedTextScript id={id} textB64={emailB64} />
     </IntroItem>
   )
 }

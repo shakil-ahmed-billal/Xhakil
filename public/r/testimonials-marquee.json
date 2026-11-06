@@ -2,13 +2,16 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "testimonials-marquee",
   "title": "Testimonials Marquee",
-  "author": "shakil-ahmed-billal <shakil.dev99@gmail.com>",
+  "author": "Shakil Ahmed Billal <itzxhakil@gmail.com>",
   "description": "Scrolling marquee to showcase user testimonials.",
   "registryDependencies": [
     "@kibo-ui/marquee",
-    "https://xhakil.vercel.app/r/testimonial.json"
+    "https://acme.com/r/testimonial.json"
   ],
   "files": [],
-  "docs": "https://xhakil.vercel.app/components/testimonials-marquee",
+  "docs": "https://www.xhakil.site/components/testimonials-marquee",
+  "categories": [
+    "marketing"
+  ],
   "type": "registry:component"
 }

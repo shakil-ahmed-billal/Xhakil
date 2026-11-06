@@ -1,4 +1,4 @@
-# AI Agent Guidelines for xhakil.vercel.app
+# AI Agent Guidelines for www.xhakil.site
 
 Next.js 16 (App Router) portfolio, blog, and shadcn registry website.
 

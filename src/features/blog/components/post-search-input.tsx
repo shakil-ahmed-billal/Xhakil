@@ -1,17 +1,17 @@
 "use client"
 
-import { XIcon } from "lucide-react"
 import { useEffect } from "react"
+import { XIcon } from "lucide-react"
 import { useHotkeys } from "react-hotkeys-hook"
 
-import { Icons } from "@/components/icons"
+import { trackEvent } from "@/lib/events"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
 } from "@/components/ui/input-group"
-import { trackEvent } from "@/lib/events"
+import { SearchIcon } from "@/components/icons"
 
 import { useSearchQuery } from "../hooks/use-search-query"
 
@@ -39,7 +39,7 @@ export function PostSearchInput() {
   return (
     <InputGroup className="rounded-lg shadow-none">
       <InputGroupInput
-        placeholder="Search Blog…"
+        placeholder="Search blog…"
         value={query}
         onChange={(e) => {
           setQuery(e.target.value)
@@ -47,7 +47,7 @@ export function PostSearchInput() {
       />
 
       <InputGroupAddon align="inline-start">
-        <Icons.search />
+        <SearchIcon />
       </InputGroupAddon>
 
       <InputGroupAddon

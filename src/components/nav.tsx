@@ -1,32 +1,40 @@
-import Link from "next/link"
 import React from "react"
+import type { Route } from "next"
+import Link from "next/link"
 
-import { cn } from "@/lib/utils"
 import type { NavItem } from "@/types/nav"
+import { cn } from "@/lib/utils"
 
 export function Nav({
   items,
   activeId,
   className,
+  exactMatch = false,
 }: {
-  items: NavItem[]
+  items: NavItem<Route>[]
   activeId?: string
   className?: string
+  exactMatch?: boolean
 }) {
   return (
     <nav
       data-active-id={activeId}
       className={cn("flex items-center gap-4", className)}
     >
-      {items.map(({ title, href, className }) => {
-        const active =
-          activeId === href ||
-          (href === "/" // Home page
-            ? ["/", "/index"].includes(activeId || "")
-            : activeId?.startsWith(href))
+      {items.map(({ title, href }) => {
+        const isActive = exactMatch
+          ? activeId === href
+          : activeId === href ||
+            (href === "/"
+              ? ["/", "/index"].includes(activeId || "")
+              : activeId?.startsWith(href))
 
         return (
-          <NavItem key={href} className={className} href={href} active={active}>
+          <NavItem
+            key={href}
+            href={href}
+            aria-current={isActive ? "page" : undefined}
+          >
             {title}
           </NavItem>
         )
@@ -37,16 +45,12 @@ export function Nav({
 
 export function NavItem({
   className,
-  active,
   ...props
-}: React.ComponentProps<typeof Link> & {
-  active?: boolean
-}) {
+}: React.ComponentProps<typeof Link>) {
   return (
     <Link
       className={cn(
-        "font-mono text-sm font-medium text-muted-foreground transition-[color] hover:text-foreground",
-        active && "text-foreground",
+        "text-sm font-medium tracking-wide text-muted-foreground transition-[color] hover:text-foreground aria-[current=page]:text-foreground",
         className
       )}
       {...props}

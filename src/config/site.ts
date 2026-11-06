@@ -1,20 +1,20 @@
-import { USER } from "@/features/portfolio/data/user"
-import type { NavItem } from "@/types/nav"
+import type { Route } from "next"
 
-function getSiteUrl() {
-  if (process.env.APP_URL) return process.env.APP_URL
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  }
-  return "https://xhakil.vercel.app"
-}
+import type { NavItem } from "@/types/nav"
+import { SOCIAL } from "@/features/portfolio/data/social-links"
+import { USER } from "@/features/portfolio/data/user"
 
 export const SITE_INFO = {
   name: USER.displayName,
-  url: getSiteUrl(),
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://www.xhakil.site",
   ogImage: USER.ogImage,
   description: USER.bio,
   keywords: USER.keywords,
+}
+
+export const LICENSE = {
+  name: "MIT License",
+  url: "https://github.com/shakil-ahmed-billal/xhakil/blob/main/LICENSE",
 }
 
 export const META_THEME_COLORS = {
@@ -22,11 +22,7 @@ export const META_THEME_COLORS = {
   dark: "#09090b",
 }
 
-export const MAIN_NAV: NavItem[] = [
-  {
-    title: "Projects",
-    href: "/#projects",
-  },
+export const MAIN_NAV: NavItem<Route>[] = [
   {
     title: "Blog",
     href: "/blog",
@@ -37,12 +33,22 @@ export const MAIN_NAV: NavItem[] = [
   },
 ]
 
-export const X_USERNAME = "@shakil.dev99"
-export const GITHUB_USERNAME = "shakil-ahmed-billal"
+export const MOBILE_NAV: NavItem<Route>[] = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  ...MAIN_NAV,
+]
+
+export const X_HANDLE = SOCIAL.x.handle
+export const GITHUB_USERNAME = SOCIAL.github.handle
 export const SOURCE_CODE_GITHUB_REPO = "shakil-ahmed-billal/xhakil"
 export const SOURCE_CODE_GITHUB_URL =
   "https://github.com/shakil-ahmed-billal/xhakil"
 
+export const SPONSORSHIP_URL = "https://github.com/sponsors/shakil-ahmed-billal"
+
 export const UTM_PARAMS = {
-  utm_source: "xhakil.vercel.app",
+  utm_source: "www.xhakil.site",
 }

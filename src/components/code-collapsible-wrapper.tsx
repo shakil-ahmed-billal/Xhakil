@@ -1,10 +1,10 @@
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { cn } from "@/lib/utils"
 
 export function CodeCollapsibleWrapper({
   className,
@@ -14,23 +14,32 @@ export function CodeCollapsibleWrapper({
   return (
     <Collapsible
       className={cn(
-        "group/collapsible not-prose relative my-[1.25em] overflow-hidden rounded-xl",
+        "group/collapsible not-prose relative my-[1.25em]",
         className
       )}
       {...props}
     >
       <CollapsibleContent
-        className="overflow-hidden *:data-rehype-pretty-code-figure:my-0 **:data-rehype-pretty-code-figure:rounded-none data-[state=closed]:max-h-80"
-        forceMount
+        className="overflow-hidden *:data-rehype-pretty-code-figure:my-0 data-closed:max-h-80 data-closed:[contain-intrinsic-size:auto_--spacing(80)] data-closed:[content-visibility:auto]"
+        keepMounted
+        hidden={false}
       >
         {children}
       </CollapsibleContent>
 
-      <div className="absolute inset-x-0 bottom-0 flex h-32 items-end justify-center bg-linear-to-t from-code from-50% to-transparent pb-4 group-data-[state=open]/collapsible:hidden">
-        <CollapsibleTrigger asChild>
-          <Button variant="outline" size="sm">
-            Expand
-          </Button>
+      <div className="absolute inset-x-0 bottom-0 flex h-32 items-end justify-center group-data-open/collapsible:hidden">
+        <div className="absolute inset-0 bg-linear-to-t from-background to-transparent mask-linear-[to_top,var(--background)_25%,transparent] backdrop-blur-[1px]" />
+
+        <CollapsibleTrigger
+          render={
+            <Button
+              className="z-1 shadow-none dark:border-border dark:bg-background dark:hover:bg-zinc-900"
+              variant="outline"
+              size="sm"
+            />
+          }
+        >
+          Expand
         </CollapsibleTrigger>
       </div>
     </Collapsible>

@@ -1,0 +1,155 @@
+/* eslint-disable react-hooks/refs */
+"use client"
+
+import { useMemo } from "react"
+import { format } from "date-fns"
+
+import { cn } from "@/lib/utils"
+import { useIsClient } from "@/hooks/use-is-client"
+
+import { useChart } from "./chart-context"
+
+export interface XAxisProps {
+  numTicks?: number
+
+  tickerHalfWidth?: number
+
+  tickMode?: "domain" | "data"
+}
+
+interface XAxisLabelProps {
+  label: string
+  x: number
+  crosshairX: number | null
+  isHovering: boolean
+  tickerHalfWidth: number
+}
+
+function XAxisLabel({
+  label,
+  x,
+  crosshairX,
+  isHovering,
+  tickerHalfWidth,
+}: XAxisLabelProps) {
+  const fadeBuffer = 20
+  const fadeRadius = tickerHalfWidth + fadeBuffer
+
+  let opacity = 1
+  if (isHovering && crosshairX !== null) {
+    const distance = Math.abs(x - crosshairX)
+    if (distance < tickerHalfWidth) {
+      opacity = 0
+    } else if (distance < fadeRadius) {
+      opacity = (distance - tickerHalfWidth) / fadeBuffer
+    }
+  }
+
+  return (
+    <div
+      className="absolute"
+      style={{
+        left: x,
+        bottom: 12,
+        width: 0,
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <span
+        className={cn("text-xs whitespace-nowrap text-chart-label")}
+        style={{
+          opacity,
+          transition: "opacity 0.4s ease-in-out",
+        }}
+      >
+        {label}
+      </span>
+    </div>
+  )
+}
+
+export function XAxis({
+  numTicks = 5,
+  tickerHalfWidth = 50,
+  tickMode = "domain",
+}: XAxisProps) {
+  const {
+    xScale,
+    margin,
+    tooltipData,
+    containerRef,
+    data,
+    xAccessor,
+    dateLabels,
+  } = useChart()
+  const mounted = useIsClient()
+
+  const labelsToShow = useMemo(() => {
+    if (tickMode === "data") {
+      return data.map((d, i) => ({
+        date: xAccessor(d),
+        x: (xScale(xAccessor(d)) ?? 0) + margin.left,
+        label: dateLabels[i] ?? format(xAccessor(d), "d MMM"),
+      }))
+    }
+
+    const domain = xScale.domain()
+    const startDate = domain[0]
+    const endDate = domain[1]
+
+    if (!(startDate && endDate)) {
+      return []
+    }
+
+    const startTime = startDate.getTime()
+    const endTime = endDate.getTime()
+    const timeRange = endTime - startTime
+
+    const tickCount = Math.max(2, numTicks)
+    const dates: Date[] = []
+
+    for (let i = 0; i < tickCount; i++) {
+      const t = i / (tickCount - 1)
+      const time = startTime + t * timeRange
+      dates.push(new Date(time))
+    }
+
+    return dates.map((date) => ({
+      date,
+      x: (xScale(date) ?? 0) + margin.left,
+      label: format(date, "d MMM"),
+    }))
+  }, [tickMode, data, xAccessor, xScale, margin.left, dateLabels, numTicks])
+
+  const isHovering = tooltipData !== null
+  const crosshairX = tooltipData ? tooltipData.x + margin.left : null
+
+  const container = containerRef.current
+  if (!(mounted && container)) {
+    return null
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/consistent-type-imports
+  const { createPortal } = require("react-dom") as typeof import("react-dom")
+
+  return createPortal(
+    <div className="pointer-events-none absolute inset-0">
+      {labelsToShow.map((item) => (
+        <XAxisLabel
+          crosshairX={crosshairX}
+          isHovering={isHovering}
+          key={`${item.date.getTime()}-${item.x}`}
+          label={item.label}
+          tickerHalfWidth={tickerHalfWidth}
+          x={item.x}
+        />
+      ))}
+    </div>,
+    container
+  )
+}
+
+XAxis.displayName = "XAxis"
+
+export default XAxis

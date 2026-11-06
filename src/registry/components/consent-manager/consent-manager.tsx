@@ -4,8 +4,8 @@ import {
   CookieBanner,
 } from "@c15t/nextjs"
 
-import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 
 export function ConsentManager({ children }: { children: React.ReactNode }) {
   return (
@@ -13,7 +13,6 @@ export function ConsentManager({ children }: { children: React.ReactNode }) {
       options={{
         mode: "offline",
         consentCategories: ["necessary", "measurement"],
-        // ignoreGeoLocation: process.env.NODE_ENV === "development", // Useful for development to always view the banner.
       }}
     >
       <CookieBanner
@@ -22,7 +21,7 @@ export function ConsentManager({ children }: { children: React.ReactNode }) {
             noStyle: true,
             className: cn(
               "relative w-full max-w-(--banner-max-width) divide-y overflow-hidden rounded-2xl",
-              "bg-popover text-popover-foreground shadow-lg ring-1 ring-foreground/10 dark:ring-border"
+              "bg-popover text-popover-foreground shadow-lg ring-1 ring-foreground/10 dark:ring-foreground/20"
             ),
           },
           "banner.header.title": {

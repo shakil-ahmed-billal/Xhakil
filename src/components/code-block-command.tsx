@@ -2,16 +2,17 @@
 
 import { useMemo } from "react"
 
+import type { NpmCommands } from "@/types/unist"
+import type { PackageManager } from "@/hooks/use-package-manager"
+import { usePackageManager } from "@/hooks/use-package-manager"
 import {
   Tabs,
   TabsContent,
   TabsIndicator,
   TabsList,
   TabsTrigger,
-} from "@/components/base/ui/tabs"
-import type { PackageManager } from "@/hooks/use-package-manager"
-import { usePackageManager } from "@/hooks/use-package-manager"
-import type { NpmCommands } from "@/types/unist"
+} from "@/components/ui/tabs"
+import { IconSwap, IconSwapItem } from "@/registry/components/icon-swap"
 
 import { CopyButton } from "./copy-button"
 import { getIconForPackageManager } from "./icons"
@@ -34,7 +35,7 @@ export function CodeBlockCommand({
   }, [__pnpm__, __yarn__, __npm__, __bun__])
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-code">
+    <div data-slot="code-block-command" className="relative">
       <Tabs
         className="gap-0"
         value={packageManager}
@@ -42,9 +43,13 @@ export function CodeBlockCommand({
           setPackageManager(value as PackageManager)
         }}
       >
-        <div className="px-4 shadow-[inset_0_-1px_0_0] shadow-border">
-          <TabsList className="h-10 rounded-none bg-transparent p-0 dark:bg-transparent [&_svg]:me-2 [&_svg]:size-4 [&_svg]:text-muted-foreground">
-            {getIconForPackageManager(packageManager)}
+        <div className="px-3">
+          <TabsList className="h-10 rounded-none bg-transparent p-0 inset-ring-0 dark:bg-transparent [&_svg]:size-4 [&_svg]:text-muted-foreground">
+            <IconSwap>
+              <IconSwapItem className="mr-2" key={packageManager}>
+                {getIconForPackageManager(packageManager)}
+              </IconSwapItem>
+            </IconSwap>
 
             {Object.entries(tabs).map(([key]) => {
               return (
@@ -58,30 +63,33 @@ export function CodeBlockCommand({
               )
             })}
 
-            <TabsIndicator className="h-0.5 translate-y-0 rounded-none bg-foreground shadow-none dark:bg-foreground" />
+            <TabsIndicator className="h-0.5 translate-y-px rounded-none bg-foreground ring-0 dark:bg-foreground" />
           </TabsList>
         </div>
 
         {Object.entries(tabs).map(([key, value]) => {
           return (
             <TabsContent key={key} value={key}>
-              <pre className="scroll-fade-effect-x">
-                <code
-                  data-slot="code-block"
-                  data-language="bash"
-                  className="font-mono text-sm leading-none text-muted-foreground"
-                >
-                  <span className="select-none">$ </span>
-                  {value}
-                </code>
-              </pre>
+              <div className="rounded-[9px] border bg-background">
+                <pre className="overflow-x-auto overscroll-x-contain leading-5">
+                  <code
+                    data-slot="code-block"
+                    data-language="bash"
+                    data-line=""
+                    className="font-mono text-sm/none text-muted-foreground"
+                  >
+                    {value}
+                  </code>
+                </pre>
+              </div>
             </TabsContent>
           )
         })}
       </Tabs>
 
       <CopyButton
-        className="absolute top-2 right-2 z-10 rounded-md border-none"
+        className="absolute top-1.5 right-0.5 z-10 size-7 rounded-md border-none text-muted-foreground [&_svg:not([class*='size-'])]:size-4"
+        variant="ghost"
         size="icon-xs"
         text={tabs[packageManager] || ""}
         event="copy_npm_command"

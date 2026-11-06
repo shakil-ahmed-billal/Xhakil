@@ -5,14 +5,19 @@ This guide provides full instructions on how to create both standard blog posts 
 ---
 
 ## 🚀 1. Basic Blog Post
+
 For regular updates, tutorials, or articles.
 
 ### Step 1: Create File
+
 Add a `.mdx` file to any folder inside `src/features/doc/content/`.
+
 - Blog posts typically go in `src/features/doc/content/blog/` (optional, can be anywhere as long as it's `.mdx`).
 
 ### Step 2: Add Frontmatter
+
 Every post MUST start with this metadata:
+
 ```markdown
 ---
 title: "How to Start a Backend Project"
@@ -25,7 +30,9 @@ updatedAt: "2026-03-15"
 ```
 
 ### Step 3: Write Content
+
 Use standard Markdown:
+
 - `## Heading 2`
 - `### Heading 3`
 - `**bold**`, `*italic*`
@@ -35,23 +42,31 @@ Use standard Markdown:
 ---
 
 ## 🎥 2. Advanced Interactive Components
+
 MDX allows you to use powerful React components directly in your text.
 
 ### YouTube Videos
+
 Embed any YouTube video using only the video ID.
+
 ```markdown
 <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Never Gonna Give You Up" />
 ```
 
 ### Framed Images (with Zoom)
+
 Use this for screenshots or important visuals. It adds a premium frame and click-to-zoom functionality.
+
 ```markdown
 <FramedImage src="/images/your-screenshot.png" alt="Dashboard Preview" />
 ```
-*Tip: Set `canZoom={false}` to disable zoom.*
+
+_Tip: Set `canZoom={false}` to disable zoom._
 
 ### Callouts (Alerts)
+
 Highlight notes, warnings, or tips.
+
 ```markdown
 <Callout>
   **Note:** Make sure to install Node.js before proceeding.
@@ -59,7 +74,9 @@ Highlight notes, warnings, or tips.
 ```
 
 ### Testimonials
+
 Showcase feedback or quotes from others.
+
 ```markdown
 <Testimonial
   authorName="Elon Musk"
@@ -71,7 +88,9 @@ Showcase feedback or quotes from others.
 ```
 
 ### Iframe Embeds
+
 Embed any external website or tool.
+
 ```markdown
 <IframeEmbed src="https://codesandbox.io/embed/xxx" title="Live Demo" />
 ```
@@ -79,10 +98,13 @@ Embed any external website or tool.
 ---
 
 ## 🛠️ 3. Technical Component Documentation
+
 Use this for showcasing code and installation guides for your UI registry.
 
 ### Frontmatter for Components
+
 To make a post appear in the **Registry/Docs** instead of the Blog, add `category: components`.
+
 ```markdown
 ---
 title: "Button Component"
@@ -92,14 +114,18 @@ category: components
 ```
 
 ### Displaying a Component Preview
+
 Show a live demo from your registry.
+
 ```markdown
 <ComponentPreview name="button-demo" />
 ```
 
 ### Installation Steps (Tabs)
+
 Show both CLI and Manual installation options with beautiful tabs.
-```markdown
+
+````markdown
 <CodeTabs>
 
 <TabsListInstallType />
@@ -109,6 +135,7 @@ Show both CLI and Manual installation options with beautiful tabs.
 ```bash
 npx shadcn@latest add @shakil/button
 ```
+````
 
 </TabsContent>
 
@@ -134,7 +161,9 @@ npm install motion clsx
 ```
 
 ### API Reference (Props Table)
+
 Automatically generate a table of props from your TypeScript types.
+
 ```markdown
 <AutoTypeTable path="src/features/doc/content/props.ts" name="ButtonProps" />
 ```
@@ -142,10 +171,11 @@ Automatically generate a table of props from your TypeScript types.
 ---
 
 ## 💡 4. Pro Tips & Rules
-- **Image Hosting**: 
+
+- **Image Hosting**:
   - For external images, use high-quality Unsplash URLs.
   - For local images, place them in `public/images/` and use paths like `/images/my-image.png`.
-- **Slug**: The filename becomes the URL (e.g., `my-post.mdx` -> `xhakil.vercel.app/blog/my-post`).
+- **Slug**: The filename becomes the URL (e.g., `my-post.mdx` -> `www.xhakil.site/blog/my-post`).
 - **Code Blocks**: Always specify the language (e.g., ` ```tsx ` or ` ```bash `).
 - **Auto-Sync**: Saving the file instantly updates:
   - The live website.
@@ -155,6 +185,7 @@ Automatically generate a table of props from your TypeScript types.
 ---
 
 ## 📖 5. Summary Checklist
+
 1. [ ] File created in `src/features/doc/content/`
 2. [ ] Frontmatter includes `title`, `description`, `image`, and `createdAt`
 3. [ ] If it's a component doc, `category: components` is added

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "team-01",
+  "title": "Team 01",
+  "author": "Shakil Ahmed Billal <itzxhakil@gmail.com>",
+  "description": "A team section with glowing cards.",
+  "registryDependencies": [
+    "https://acme.com/r/glow-card-grid.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/blocks/team-01/team-01.tsx",
+      "content": "import { GlowCard, GlowCardGrid } from \"@/registry/components/glow-card-grid\"\n\nexport default function Team01() {\n  return (\n    <div className=\"container px-4 py-8\">\n      <GlowCardGrid className=\"lg:grid-cols-4\">\n        {CARDS.map((card) => (\n          <GlowCard\n            key={card.name}\n            name={card.name}\n            handle={card.handle}\n            avatar={card.avatar}\n          />\n        ))}\n      </GlowCardGrid>\n    </div>\n  )\n}\n\nconst CARDS = [\n  {\n    name: \"shadcn\",\n    handle: \"@shadcn\",\n    avatar: \"/avatars/avatar-01.svg\",\n  },\n  {\n    name: \"Evil Rabbit\",\n    handle: \"@evilrabbit_\",\n    avatar: \"/avatars/avatar-02.svg\",\n  },\n  {\n    name: \"OrcDev\",\n    handle: \"@orcdev\",\n    avatar: \"/avatars/avatar-03.svg\",\n  },\n  {\n    name: \"David Haz\",\n    handle: \"@davidhaz\",\n    avatar: \"/avatars/avatar-04.svg\",\n  },\n  {\n    name: \"Shu\",\n    handle: \"@shuding\",\n    avatar: \"/avatars/avatar-05.svg\",\n  },\n  {\n    name: \"Emil Kowalski\",\n    handle: \"@emilkowalski\",\n    avatar: \"/avatars/avatar-06.svg\",\n  },\n  {\n    name: \"Aaron\",\n    handle: \"@aaronmahlke\",\n    avatar: \"/avatars/avatar-07.svg\",\n  },\n  {\n    name: \"Shakil Ahmed\",\n    handle: \"@itzxhakil\",\n    avatar: \"/profile/shakil.webp\",\n  },\n]\n",
+      "type": "registry:component",
+      "target": "@components/team-01.tsx"
+    }
+  ],
+  "meta": {
+    "createdAt": "2026-03-30",
+    "previewClassName": "min-h-svh place-items-center-safe content-center-safe"
+  },
+  "categories": [
+    "marketing"
+  ],
+  "type": "registry:block"
+}

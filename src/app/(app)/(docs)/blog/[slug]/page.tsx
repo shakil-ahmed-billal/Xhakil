@@ -1,47 +1,57 @@
-import { getTableOfContents } from "fumadocs-core/content/toc"
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
-import type { Metadata } from "next"
+import type { Metadata, Route } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { getTableOfContents } from "fumadocs-core/content/toc"
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 import type { BlogPosting as PageSchema, WithContext } from "schema-dts"
 
+import { JSON_LD_ID } from "@/config/json-ld"
+import { SITE_INFO, X_HANDLE } from "@/config/site"
+import { jsonLdBreadcrumbList, JsonLdScript } from "@/lib/json-ld"
+import { absoluteUrl } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Kbd } from "@/components/ui/kbd"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/base/ui/tooltip"
-import { InlineTOC } from "@/components/inline-toc"
-import { MDX } from "@/components/mdx"
-import { Button } from "@/components/ui/button"
-import { Kbd } from "@/components/ui/kbd"
+} from "@/components/ui/tooltip"
 import { Prose } from "@/components/ui/typography"
-import { SITE_INFO, X_USERNAME } from "@/config/site"
-import { PostKeyboardShortcuts } from "@/features/blog/components/post-keyboard-shortcuts"
-import { LLMCopyButtonWithViewOptions } from "@/features/blog/components/post-page-actions"
-import { PostShareMenu } from "@/features/blog/components/post-share-menu"
+import { CarbonAds } from "@/components/carbon-ads"
+import { MDX } from "@/components/mdx"
+import { TOCInline } from "@/components/toc-inline"
+import { TOCMinimap } from "@/components/toc-minimap"
+import { DocKeyboardShortcuts } from "@/features/doc/components/doc-keyboard-shortcuts"
+import {
+  DocContainer,
+  DocContentCol,
+  DocGrid,
+  DocLeftCol,
+  DocRightCol,
+} from "@/features/doc/components/doc-layout"
+import { LLMCopyButtonWithViewOptions } from "@/features/doc/components/doc-page-actions"
+import { DocPageRoot } from "@/features/doc/components/doc-page-root"
+import { DocShareMenu } from "@/features/doc/components/doc-share-menu"
 import {
   findNeighbour,
-  getAllDocs,
+  getBlogPosts,
   getDocBySlug,
 } from "@/features/doc/data/documents"
 import type { Doc } from "@/features/doc/types/document"
 import { USER } from "@/features/portfolio/data/user"
-import { cn } from "@/lib/utils"
 
 export const revalidate = false
 export const dynamic = "force-static"
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  const docs = getAllDocs()
+  const docs = getBlogPosts()
   return docs.map((doc) => ({ slug: doc.slug }))
 }
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
+}: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const slug = (await params).slug
   const doc = getDocBySlug(slug)
 
@@ -49,10 +59,9 @@ export async function generateMetadata({
     return notFound()
   }
 
-  const { title, description, image, createdAt, updatedAt, keywords } =
-    doc.metadata
+  const { title, description, image, createdAt, updatedAt } = doc.metadata
 
-  const postUrl = getDocUrl(doc)
+  const postUrl = `/blog/${doc.slug}`
   const ogImage =
     image ||
     `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
@@ -60,7 +69,6 @@ export async function generateMetadata({
   return {
     title,
     description,
-    keywords,
     alternates: {
       canonical: postUrl,
     },
@@ -78,86 +86,49 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      site: X_USERNAME,
-      creator: X_USERNAME,
+      site: X_HANDLE,
+      creator: X_HANDLE,
       images: [ogImage],
     },
   }
 }
 
-function getPageJsonLd(doc: Doc): WithContext<PageSchema | any> {
-  const publishedTime = new Date(doc.metadata.createdAt).toISOString()
-  const modifiedTime = new Date(
-    doc.metadata.updatedAt || doc.metadata.createdAt
-  ).toISOString()
+function getPageJsonLd(doc: Doc): WithContext<PageSchema> {
+  const postUrl = `/blog/${doc.slug}`
+  const imageUrl = doc.metadata.image
+    ? absoluteUrl(doc.metadata.image)
+    : absoluteUrl(
+        `/og/simple?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`
+      )
 
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BlogPosting",
-        headline: doc.metadata.title,
-        description: doc.metadata.description,
-        image:
-          doc.metadata.image ||
-          `${SITE_INFO.url}/og/simple?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`,
-        url: `${SITE_INFO.url}${getDocUrl(doc)}`,
-        datePublished: publishedTime,
-        dateModified: modifiedTime,
-        author: {
-          "@type": "Person",
-          name: USER.displayName,
-          url: SITE_INFO.url,
-          identifier: USER.username,
-          image: `${SITE_INFO.url}${USER.avatar}`,
-        },
-        publisher: {
-          "@type": "Person",
-          name: USER.displayName,
-          logo: {
-            "@type": "ImageObject",
-            url: `${SITE_INFO.url}${USER.avatar}`,
-          },
-        },
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": `${SITE_INFO.url}${getDocUrl(doc)}`,
-        },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: SITE_INFO.url,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Blog",
-            item: `${SITE_INFO.url}/blog`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: doc.metadata.title,
-            item: `${SITE_INFO.url}${getDocUrl(doc)}`,
-          },
-        ],
-      },
-    ],
+    "@type": "BlogPosting",
+    "@id": absoluteUrl(postUrl),
+    headline: doc.metadata.title,
+    description: doc.metadata.description,
+    image: imageUrl,
+    url: absoluteUrl(postUrl),
+    datePublished: new Date(doc.metadata.createdAt).toISOString(),
+    dateModified: new Date(doc.metadata.updatedAt).toISOString(),
+    author: { "@id": JSON_LD_ID.person },
+    publisher: {
+      "@type": "Person",
+      "@id": JSON_LD_ID.person,
+      name: USER.displayName,
+      url: SITE_INFO.url,
+    },
+    mainEntityOfPage: absoluteUrl(postUrl),
+    isPartOf: {
+      "@type": "Blog",
+      "@id": absoluteUrl("/blog"),
+      name: "Blog",
+      url: absoluteUrl("/blog"),
+    },
   }
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{
-    slug: string
-  }>
-}) {
+export default async function Page({ params }: PageProps<"/blog/[slug]">) {
   const slug = (await params).slug
   const doc = getDocBySlug(slug)
 
@@ -167,129 +138,169 @@ export default async function Page({
 
   const toc = getTableOfContents(doc.content)
 
-  const allDocs = getAllDocs()
+  const allDocs = getBlogPosts()
   const { previous, next } = findNeighbour(allDocs, slug)
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getPageJsonLd(doc)).replace(/</g, "\\u003c"),
-        }}
+      <JsonLdScript data={getPageJsonLd(doc)} />
+
+      <JsonLdScript
+        data={jsonLdBreadcrumbList([
+          {
+            name: "Home",
+            href: "/",
+          },
+          {
+            name: "Blog",
+            href: "/blog",
+          },
+          {
+            name: doc.metadata.title,
+            href: `/blog/${slug}`,
+          },
+        ])}
       />
 
-      <PostKeyboardShortcuts basePath="/blog" previous={previous} next={next} />
+      <DocKeyboardShortcuts
+        previous={previous ? (`/blog/${previous.slug}` as Route) : null}
+        next={next ? (`/blog/${next.slug}` as Route) : null}
+      />
 
-      <div className="flex items-center justify-between p-2 pl-4">
-        <Button
-          className="h-7 gap-2 border-none px-0 font-mono text-muted-foreground hover:text-foreground"
-          variant="link"
-          size="sm"
-          asChild
-        >
-          <Link href="/blog">
-            <ArrowLeftIcon />
-            Blog
-          </Link>
-        </Button>
+      <DocPageRoot>
+        <DocContainer>
+          <div className="screen-line-bottom h-px" />
 
-        <div className="flex items-center gap-2">
-          <LLMCopyButtonWithViewOptions
-            markdownUrl={`${getDocUrl(doc)}.mdx`}
-            isComponent={doc.metadata.category === "components"}
-          />
+          <div className="flex items-center justify-between p-2 pl-4">
+            <Button
+              className="h-7 gap-2 border-none px-0 tracking-wider text-muted-foreground hover:text-foreground hover:no-underline"
+              variant="link"
+              size="sm"
+              nativeButton={false}
+              render={
+                <Link href="/blog">
+                  <ArrowLeftIcon />
+                  Blog
+                </Link>
+              }
+            />
 
-          <PostShareMenu title={doc.metadata.title} url={getDocUrl(doc)} />
-
-          {previous && (
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Button
-                    className="size-7 border-none"
-                    variant="secondary"
-                    size="icon-sm"
-                    asChild
-                  >
-                    <Link href={`/blog/${previous.slug}`}>
-                      <ArrowLeftIcon />
-                      <span className="sr-only">Previous</span>
-                    </Link>
-                  </Button>
-                }
+            <div className="flex items-center gap-2">
+              <LLMCopyButtonWithViewOptions
+                markdownUrl={`/blog/${doc.slug}.md`}
               />
-              <TooltipContent className="pr-2 pl-3">
-                <div className="flex items-center gap-3">
-                  Previous Post
-                  <Kbd>
-                    <ArrowLeftIcon />
-                  </Kbd>
-                </div>
-              </TooltipContent>
-            </Tooltip>
-          )}
 
-          {next && (
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Button
-                    className="size-7 border-none"
-                    variant="secondary"
-                    size="icon-sm"
-                    asChild
-                  >
-                    <Link href={`/blog/${next.slug}`}>
-                      <span className="sr-only">Next</span>
-                      <ArrowRightIcon />
-                    </Link>
-                  </Button>
-                }
+              <DocShareMenu
+                title={doc.metadata.title}
+                url={`/blog/${doc.slug}`}
               />
-              <TooltipContent className="pr-2 pl-3">
-                <div className="flex items-center gap-3">
-                  Next Post
-                  <Kbd>
-                    <ArrowRightIcon />
-                  </Kbd>
-                </div>
-              </TooltipContent>
-            </Tooltip>
-          )}
-        </div>
-      </div>
 
-      <div className="screen-line-before screen-line-after">
-        <div
-          className={cn(
-            "h-8",
-            "before:absolute before:-left-[100vw] before:-z-1 before:h-full before:w-[200vw]",
-            "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:var(--color-edge)]/56"
-          )}
-        />
-      </div>
+              {previous && (
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <Button
+                        className="size-7 border-none"
+                        variant="secondary"
+                        size="icon-sm"
+                        nativeButton={false}
+                        render={
+                          <Link
+                            href={`/blog/${previous.slug}`}
+                            aria-label="Previous post"
+                          >
+                            <ArrowLeftIcon />
+                          </Link>
+                        }
+                      />
+                    }
+                  />
+                  <TooltipContent className="pr-2 pl-3">
+                    <div className="flex items-center gap-3">
+                      Previous post
+                      <Kbd>
+                        <ArrowLeftIcon />
+                      </Kbd>
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              )}
 
-      <Prose className="px-4">
-        <h1 className="screen-line-after text-3xl font-semibold tracking-tight">
-          {doc.metadata.title}
-        </h1>
+              {next && (
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <Button
+                        className="size-7 border-none"
+                        variant="secondary"
+                        size="icon-sm"
+                        nativeButton={false}
+                        render={
+                          <Link
+                            href={`/blog/${next.slug}`}
+                            aria-label="Next post"
+                          >
+                            <ArrowRightIcon />
+                          </Link>
+                        }
+                      />
+                    }
+                  />
+                  <TooltipContent className="pr-2 pl-3">
+                    <div className="flex items-center gap-3">
+                      Next post
+                      <Kbd>
+                        <ArrowRightIcon />
+                      </Kbd>
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </div>
+          </div>
 
-        <p className="text-muted-foreground">{doc.metadata.description}</p>
+          <div className="screen-line-top screen-line-bottom py-px">
+            <div className="h-4" />
+          </div>
 
-        <InlineTOC items={toc} />
+          <h1
+            data-slot="doc-title"
+            className="screen-line-bottom px-4 text-4xl font-medium tracking-tight text-balance"
+          >
+            {doc.metadata.title}
+          </h1>
+        </DocContainer>
 
-        <div>
-          <MDX code={doc.content} />
-        </div>
-      </Prose>
+        <DocGrid>
+          <DocLeftCol />
 
-      <div className="screen-line-before h-4 w-full" />
+          <DocContentCol>
+            <Prose className="px-(--page-padding) pt-8 [--page-padding:--spacing(4)]">
+              <p className="text-muted-foreground">
+                {doc.metadata.description}
+              </p>
+
+              {doc.metadata.ads !== false && (
+                <CarbonAds className="not-prose my-[1.25em] flex justify-center" />
+              )}
+
+              <TOCInline className="lg:hidden" items={toc} />
+
+              <div>
+                <MDX code={doc.content} />
+              </div>
+            </Prose>
+
+            <div className="screen-line-top h-4" />
+          </DocContentCol>
+
+          <DocRightCol>
+            <div className="sticky top-[calc(var(--doc-cols-top,0)+(--spacing(3)))] translate-x-2 opacity-0 in-data-doc-cols-ready:opacity-100">
+              <TOCMinimap items={toc} />
+            </div>
+          </DocRightCol>
+        </DocGrid>
+      </DocPageRoot>
     </>
   )
-}
-
-function getDocUrl(doc: Doc) {
-  const isComponent = doc.metadata.category === "components"
-  return isComponent ? `/components/${doc.slug}` : `/blog/${doc.slug}`
 }

@@ -1,54 +1,37 @@
 import type { MetadataRoute } from "next"
 
 import { SITE_INFO } from "@/config/site"
-import { getAllDocs } from "@/features/doc/data/documents"
+import { getBlogPosts } from "@/features/doc/data/documents"
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = SITE_INFO.url.endsWith("/")
-    ? SITE_INFO.url.slice(0, -1)
-    : SITE_INFO.url
+export const revalidate = false
+export const dynamic = "force-static"
 
-  const now = new Date().toISOString()
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts: MetadataRoute.Sitemap = getBlogPosts().map((post) => ({
+    url: `${SITE_INFO.url}/blog/${post.slug}`,
+    lastModified: new Date(post.metadata.updatedAt).toISOString(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }))
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
+  const staticRoutes: {
+    path: string
+    priority: number
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]
+  }[] = [
+    { path: "", priority: 1.0, changeFrequency: "weekly" },
+    { path: "/blog", priority: 0.9, changeFrequency: "daily" },
+    { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/timeline", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/testimonials", priority: 0.7, changeFrequency: "monthly" },
   ]
 
-  const allDocs = getAllDocs()
+  const routes: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
+    url: `${SITE_INFO.url}${route.path}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }))
 
-  const docRoutes: MetadataRoute.Sitemap = allDocs.map((doc) => {
-    const isComponent = doc.metadata.category === "components"
-    const path = isComponent
-      ? `/components/${doc.slug}`
-      : `/blog/${doc.slug}`
-
-    const dateStr = doc.metadata.updatedAt || doc.metadata.createdAt
-    const lastModified = dateStr ? new Date(dateStr) : new Date()
-
-    return {
-      url: `${baseUrl}${path}`,
-      lastModified: isNaN(lastModified.getTime()) ? now : lastModified.toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    }
-  })
-
-  return [...staticRoutes, ...docRoutes]
+  return [...routes, ...posts]
 }

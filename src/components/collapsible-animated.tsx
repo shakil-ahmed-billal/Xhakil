@@ -2,17 +2,17 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from "react"
 
+import { Collapsible as CollapsibleRoot } from "@/components/ui/collapsible"
 import type {
   ChevronDownIconHandle,
   ChevronDownIconProps,
 } from "@/components/animated-icons/chevron-down-icon"
 import { ChevronDownIcon } from "@/components/animated-icons/chevron-down-icon"
 import type {
-  ChevronsDownUpIconHandle,
-  ChevronsDownUpIconProps,
-} from "@/components/animated-icons/chevrons-down-up-icon"
-import { ChevronsDownUpIcon } from "@/components/animated-icons/chevrons-down-up-icon"
-import { Collapsible as CollapsibleRoot } from "@/components/ui/collapsible"
+  ChevronsUpDownIconHandle,
+  ChevronsUpDownIconProps,
+} from "@/registry/components/chevrons-up-down-icon"
+import { ChevronsUpDownIcon } from "@/registry/components/chevrons-up-down-icon"
 
 type CollapsibleContextType = {
   open: boolean
@@ -45,11 +45,11 @@ function CollapsibleWithContext({
     <CollapsibleContext.Provider value={{ open }}>
       <CollapsibleRoot
         open={open}
-        onOpenChange={(open) => {
+        onOpenChange={(open, eventDetails) => {
           if (controlledOpen === undefined) {
             setUncontrolledOpen(open)
           }
-          onOpenChange?.(open)
+          onOpenChange?.(open, eventDetails)
         }}
         {...props}
       />
@@ -74,10 +74,12 @@ function useCollapsibleAnimation<
   }, [open, ref])
 }
 
-function CollapsibleChevronsIcon(props: Omit<ChevronsDownUpIconProps, "ref">) {
-  const ref = useRef<ChevronsDownUpIconHandle>(null)
+function CollapsibleChevronsUpDownIcon(
+  props: Omit<ChevronsUpDownIconProps, "ref">
+) {
+  const ref = useRef<ChevronsUpDownIconHandle>(null)
   useCollapsibleAnimation(ref)
-  return <ChevronsDownUpIcon ref={ref} {...props} />
+  return <ChevronsUpDownIcon ref={ref} {...props} />
 }
 
 function CollapsibleChevronDownIcon(props: Omit<ChevronDownIconProps, "ref">) {
@@ -89,7 +91,7 @@ function CollapsibleChevronDownIcon(props: Omit<ChevronDownIconProps, "ref">) {
 export {
   CollapsibleWithContext as Collapsible,
   CollapsibleChevronDownIcon,
-  CollapsibleChevronsIcon,
+  CollapsibleChevronsUpDownIcon,
   useCollapsible,
   useCollapsibleAnimation,
 }

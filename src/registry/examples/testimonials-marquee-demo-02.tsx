@@ -13,14 +13,13 @@ import {
   TestimonialAvatarImg,
   TestimonialAvatarRing,
   TestimonialQuote,
-  TestimonialVerifiedBadge,
 } from "@/registry/components/testimonial"
 
 export default function TestimonialsMarqueeDemo2() {
   return (
     <div className="w-full space-y-4 bg-background [&_.rfm-initial-child-container]:items-stretch! [&_.rfm-marquee]:items-stretch!">
       {[TESTIMONIALS_1, TESTIMONIALS_2].map((list, index) => (
-        <Marquee key={index} className="border-y border-edge">
+        <Marquee key={index} className="border-y border-line">
           <MarqueeFade side="left" />
           <MarqueeFade side="right" />
 
@@ -28,16 +27,16 @@ export default function TestimonialsMarqueeDemo2() {
             {list.map((item) => (
               <MarqueeItem
                 key={item.url}
-                className="mx-0 h-full w-xs border-r border-edge"
+                className="mx-0 h-full w-xs border-r border-line"
               >
                 <a
+                  className="block h-full transition-[background-color] ease-out hover:bg-accent/20"
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block h-full transition-[background-color] ease-out hover:bg-accent/20"
                 >
                   <Testimonial>
-                    <TestimonialQuote>
+                    <TestimonialQuote className="font-serif">
                       <p>{item.quote}</p>
                     </TestimonialQuote>
 
@@ -49,7 +48,6 @@ export default function TestimonialsMarqueeDemo2() {
 
                       <TestimonialAuthorName>
                         {item.authorName}
-                        <TestimonialVerifiedBadge />
                       </TestimonialAuthorName>
 
                       <TestimonialAuthorTagline>
@@ -69,102 +67,104 @@ export default function TestimonialsMarqueeDemo2() {
 
 const TESTIMONIALS_1 = [
   {
-    authorAvatar: "https://unavatar.io/x/rauchg",
-    authorName: "Guillermo Rauch",
-    authorTagline: "CEO @Vercel",
-    url: "https://x.com/rauchg/status/1978913158514237669",
+    authorAvatar: "/avatars/avatar-01.svg",
+    authorName: "Marcus Vance",
+    authorTagline: "CTO at ApexDigital",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
     quote:
-      "awesome. Love the components, especially slide-to-unlock. Great job",
+      "Shakil rebuilt our core SaaS portal with Next.js and Prisma. The architecture is modular and blazingly fast.",
   },
   {
-    authorAvatar: "https://unavatar.io/x/orcdev",
-    authorName: "OrcDev",
-    authorTagline: "Creator of 8bitcn.com",
-    url: "https://x.com/orcdev/status/1980378575170859446",
+    authorAvatar: "/avatars/avatar-02.svg",
+    authorName: "Sarah Jenkins",
+    authorTagline: "VP of Product at CloudNest",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
     quote:
-      "Seriously, this is one of the best portfolio templates I've ever seen.",
+      "One of the most dependable full-stack engineers we’ve worked with. Proactive problem solver with high standards.",
   },
   {
-    authorAvatar: "https://unavatar.io/x/iamsahaj_xyz",
-    authorName: "Sahaj",
-    authorTagline: "Creator of tweakcn.com",
-    url: "https://x.com/iamsahaj_xyz/status/1982814244501381239",
+    authorAvatar: "/avatars/avatar-03.svg",
+    authorName: "Daniel Kim",
+    authorTagline: "Founder & CEO at HyperScale",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
     quote:
-      "remember seeing it on @mannupaaji's review. it's one of the best looking ones I've seen",
+      "Shakil's full-stack expertise is top tier. From Postgres database optimization to backend auth, everything was flawless.",
   },
   {
-    authorAvatar: "https://unavatar.io/x/steventey",
-    authorName: "Steven Tey",
-    authorTagline: "Founder @Dub.co",
-    url: "https://x.com/steventey/status/1936934909370830924",
-    quote: "whoa, this is really dope – needs to get added to @shadcn UI",
-  },
-  {
-    authorAvatar: "https://unavatar.io/x/kapehe_ok",
-    authorName: "Kap",
-    authorTagline: "Head of Developer Community @Vercel",
-    url: "https://x.com/kapehe_ok/status/1948104774358106612",
-    quote: "one of my favorite projects that submitted! you are crushing it!",
-  },
-  {
-    authorAvatar: "https://unavatar.io/x/initjean",
-    authorName: "Jean P.D. Meijer",
-    authorTagline: "Building analog.now",
-    url: "https://x.com/initjean/status/1948159885960438151",
+    authorAvatar: "/avatars/avatar-04.svg",
+    authorName: "Elena Rostova",
+    authorTagline: "Product Lead at Finova",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
     quote:
-      "congrats you deserve it! react wheel picker is so smooth, its insane",
+      "He took our Figma design system and delivered a pixel-perfect, accessible dashboard well ahead of schedule.",
   },
   {
-    authorAvatar: "https://unavatar.io/x/GithubProjects",
-    authorName: "GitHub Projects Community",
-    authorTagline: "UNOFFICIAL, but followed by @github",
-    url: "https://x.com/GithubProjects/status/1931034244337271044",
+    authorAvatar: "/avatars/avatar-05.svg",
+    authorName: "Liam Davies",
+    authorTagline: "Co-Founder at SwiftFlow",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
     quote:
-      "Everything you'd want in a picker, minus the styling headaches. Awesome job!",
+      "Shakil helped us scale our MVP to handle over 100k active users without a hitch. His Next.js skills are world-class.",
+  },
+  {
+    authorAvatar: "/avatars/avatar-06.svg",
+    authorName: "Chloe Martin",
+    authorTagline: "Engineering Manager at SyncWave",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote:
+      "Shakil delivers clean, maintainable TypeScript that our in-house team loved reading. Zero bloat and rock-solid tests.",
+  },
+  {
+    authorAvatar: "/avatars/avatar-07.svg",
+    authorName: "Alex Lindqvist",
+    authorTagline: "Founder at SaaSLaunch",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote:
+      "Shakil engineered our workflow engine from scratch. His speed, architectural clarity, and problem-solving saved us months.",
   },
 ]
 
-export const TESTIMONIALS_2 = [
+const TESTIMONIALS_2 = [
   {
-    authorAvatar: "https://unavatar.io/x/mannupaaji",
-    authorName: "Manu Arora",
-    authorTagline: "Creator of ui.aceternity.com",
-    url: "https://x.com/mannupaaji/status/1944755561117163597",
-    quote: "Great work on the portfolio",
+    authorAvatar: "/avatars/avatar-08.svg",
+    authorName: "Michael Chang",
+    authorTagline: "Founder at QuickSaaS",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote: "Exceptional engineering and super clean code!",
   },
   {
-    authorAvatar: "https://unavatar.io/x/MaxPrilutskiy",
-    authorName: "Max Prilutskiy",
-    authorTagline: "Creator of Lingo.dev",
-    url: "https://x.com/MaxPrilutskiy/status/1923952193893466379",
-    quote: "i like your style! :)",
+    authorAvatar: "/avatars/avatar-09.svg",
+    authorName: "Hannah Schmidt",
+    authorTagline: "Product Lead at BerlinWorks",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote: "Pixel-perfect implementation of our design.",
   },
   {
-    authorAvatar: "https://unavatar.io/x/aaronmahlke",
-    authorName: "Aaron",
-    authorTagline: "Founding Design Engineer @Mail0",
-    url: "https://x.com/aaronmahlke/status/1955606729657344490",
-    quote: "super cool portfolio!",
+    authorAvatar: "/avatars/avatar-10.svg",
+    authorName: "Benjamin Carter",
+    authorTagline: "Head of Growth at ElevateHQ",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote: "Delivered our MVP two weeks ahead of time!",
   },
   {
-    authorAvatar: "https://unavatar.io/x/jordwalke",
-    authorName: "jordwalke",
-    authorTagline: "Creator of React",
-    url: "https://x.com/jordwalke/status/1937165909778657589",
-    quote: "Looks great",
+    authorAvatar: "/avatars/avatar-11.svg",
+    authorName: "Jessica Taylor",
+    authorTagline: "COO at OmniTrack",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote: "Brilliant engineer. The portal is lightning fast.",
   },
   {
-    authorAvatar: "https://unavatar.io/x/YonathanDejene",
-    authorName: "Yonaries",
-    authorTagline: "Making orabrowser.com",
-    url: "https://x.com/YonathanDejene/status/1984529637309886639",
-    quote: "incredible portfolio i've seen by far",
+    authorAvatar: "/avatars/avatar-12.svg",
+    authorName: "Thomas Evans",
+    authorTagline: "Lead Engineer at PeakVelocity",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote: "Top-tier Next.js and TypeScript execution.",
   },
   {
-    authorAvatar: "https://unavatar.io/x/zaidmukaddam",
-    authorName: "Zaid",
-    authorTagline: "Creator of scira.ai",
-    url: "https://x.com/zaidmukaddam/status/1984599685974409374",
-    quote: "super clean",
+    authorAvatar: "/avatars/avatar-13.svg",
+    authorName: "Lucas Rossi",
+    authorTagline: "Founder at ByteCraft Studio",
+    url: "https://linkedin.com/in/shakil-ahmed-billal",
+    quote: "Best contractor experience we have had so far.",
   },
 ]

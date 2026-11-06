@@ -1,19 +1,16 @@
 import fs from "node:fs"
 import path from "node:path"
-
+import { Index } from "@/__registry__/index"
 import { u } from "unist-builder"
 import { visit } from "unist-util-visit"
 
-import { Index } from "@/__registry__/index"
 import type { UnistNode, UnistTree } from "@/types/unist"
 
 import { fixImport } from "./registry"
 
 export function rehypeComponent() {
-  // Thanks @shadcn/ui
   return async (tree: UnistTree) => {
     visit(tree, (node: UnistNode) => {
-      // src prop overrides both name and fileName.
       const { value: srcPath } =
         (getNodeAttributeByName(node, "src") as {
           name: string
@@ -24,8 +21,7 @@ export function rehypeComponent() {
       if (node.name === "ComponentSource") {
         const name = getNodeAttributeByName(node, "name")?.value as string
         const fileName = getNodeAttributeByName(node, "fileName")?.value as
-          | string
-          | undefined
+          string | undefined
 
         if (!name && !srcPath) {
           return null
@@ -51,16 +47,9 @@ export function rehypeComponent() {
               : component.files[0]?.path
           }
 
-          // Read the source file.
           const filePath = src
           let source = fs.readFileSync(filePath, "utf8")
 
-          // Replace imports.
-          // TODO: Use @swc/core and a visitor to replace this.
-          // For now a simple regex should do.
-          // source = source.replaceAll("@/registry/", "@/")
-          // source = source.replaceAll("@/components/base/ui/", "@/components/")
-          // source = source.replaceAll("export default", "export")
           source = fixImport(source)
 
           const title = getNodeAttributeByName(node, "title")
@@ -69,7 +58,6 @@ export function rehypeComponent() {
             "showLineNumbers"
           )
 
-          // Add code as children so that rehype can take over at build time.
           node.children?.push(
             u("element", {
               tagName: "pre",
@@ -113,21 +101,13 @@ export function rehypeComponent() {
 
           const src = component.files[0]?.path
 
-          // Read the source file.
           const filePath = src
           let source = fs.readFileSync(filePath, "utf8")
 
-          // Replace imports.
-          // TODO: Use @swc/core and a visitor to replace this.
-          // For now a simple regex should do.
-          // source = source.replaceAll("@/registry/", "@/")
-          // source = source.replaceAll("@/components/base/ui/", "@/components/")
-          // source = source.replaceAll("export default", "export")
           source = fixImport(source)
 
           const codeMeta = getNodeAttributeByName(node, "data-code-meta")
 
-          // Add code as children so that rehype can take over at build time.
           node.children?.push(
             u("element", {
               tagName: "pre",

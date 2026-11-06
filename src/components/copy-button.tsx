@@ -1,7 +1,5 @@
 "use client"
 
-import { useWebHaptics } from "web-haptics/react"
-
 import type { Event } from "@/lib/events"
 import { trackEvent } from "@/lib/events"
 import type { CopyButtonProps } from "@/registry/components/copy-button"
@@ -14,14 +12,11 @@ export function CopyButton({
 }: CopyButtonProps & {
   event?: Event["name"]
 }) {
-  const { trigger } = useWebHaptics({ debug: true })
-
   return (
     <CopyButtonPrimitive
       variant="secondary"
       size={size}
       onCopySuccess={(copiedValue) => {
-        trigger("success")
         if (event) {
           trackEvent({
             name: event,
@@ -31,7 +26,6 @@ export function CopyButton({
           })
         }
       }}
-      onCopyError={() => trigger("error")}
       {...props}
     />
   )
