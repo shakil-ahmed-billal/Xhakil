@@ -3,12 +3,14 @@ import type { MetadataRoute } from "next"
 import { SITE_INFO } from "@/config/site"
 
 export default function robots(): MetadataRoute.Robots {
+  const host = new URL(SITE_INFO.url).host
+
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/og/"],
+        disallow: ["/api/"],
       },
       {
         userAgent: [
@@ -22,10 +24,10 @@ export default function robots(): MetadataRoute.Robots {
           "Google-Extended",
         ],
         allow: "/",
-        disallow: ["/api/", "/og/"],
+        disallow: ["/api/"],
       },
     ],
     sitemap: `${SITE_INFO.url}/sitemap.xml`,
-    host: SITE_INFO.url,
+    host,
   }
 }

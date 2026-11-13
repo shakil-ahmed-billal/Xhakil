@@ -135,6 +135,28 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "xhakil.site",
+          },
+        ],
+        destination: "https://www.xhakil.site/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "xhakil.vercel.app",
+          },
+        ],
+        destination: "https://www.xhakil.site/:path*",
+        permanent: true,
+      },
+      {
         source: "/components/apple-hello-effect-hindi",
         destination: "/components/apple-hello-effect",
         permanent: true,

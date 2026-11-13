@@ -25,7 +25,7 @@ import {
 import { useTheme } from "next-themes"
 import { useHotkeys } from "react-hotkeys-hook"
 
-import { trackEvent } from "@/lib/events"
+import { trackEvent, trackVCardDownload } from "@/lib/events"
 import { useClickSound } from "@/hooks/soundcn/use-click-sound"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
 import {
@@ -218,6 +218,10 @@ export function CommandMenu({
           open_in_new_tab: openInNewTab,
         },
       })
+
+      if (href === "/vcard") {
+        trackVCardDownload({ source: "command_menu" })
+      }
 
       if (openInNewTab) {
         window.open(href, "_blank", "noopener")

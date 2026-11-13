@@ -118,6 +118,36 @@ export function SiteFooterCad() {
               </a>
             </Field>
 
+            <Field className="col-span-2" label="Pages">
+              <ul className="grid grid-cols-2 gap-x-2 gap-y-1 sm:grid-cols-3">
+                <li>
+                  <Link className="link-underline" href="/">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link-underline" href="/blog">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link-underline" href="/timeline">
+                    Timeline
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link-underline" href="/testimonials">
+                    Testimonials
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link-underline" href="/contact">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </Field>
+
             <Field className="col-span-2" label="Stack">
               <ul className="flex flex-col gap-1">
                 {stack.map(({ name, version }) => (
@@ -139,7 +169,32 @@ export function SiteFooterCad() {
               </a>
             </Field>
 
-            <Field label="For agents">
+            <Field label="Feeds & Sitemaps">
+              <ul className="flex flex-col gap-1">
+                <li>
+                  <a
+                    className="link-underline"
+                    href="/sitemap.xml"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    sitemap.xml
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="link-underline"
+                    href="/blog/rss"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    RSS feed
+                  </a>
+                </li>
+              </ul>
+            </Field>
+
+            <Field className="col-span-2" label="For agents">
               <ul className="flex flex-col gap-1">
                 <li>
                   <a

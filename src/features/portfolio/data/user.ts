@@ -74,5 +74,5 @@ export const USER: User = {
     "Software Engineer Portfolio",
   ],
   dateCreated: "2023-10-20",
-  dateModified: "2026-03-24",
+  dateModified: "2026-11-13",
 }

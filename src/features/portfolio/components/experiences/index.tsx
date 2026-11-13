@@ -1,4 +1,5 @@
-import { ChevronDownIcon } from "lucide-react"
+import Link from "next/link"
+import { ArrowRightIcon, ChevronDownIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -63,6 +64,19 @@ export function Experiences() {
           </div>
         </Collapsible>
       )}
+
+      <div className="screen-line-top flex justify-center py-4">
+        <Button
+          className="gap-2 pr-2.5 pl-3 shadow-[inset_0_0_1px] shadow-foreground/20"
+          variant="secondary"
+          size="sm"
+          nativeButton={false}
+          render={<Link href="/timeline" />}
+        >
+          View career timeline
+          <ArrowRightIcon />
+        </Button>
+      </div>
     </Panel>
   )
 }

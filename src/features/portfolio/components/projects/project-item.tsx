@@ -1,7 +1,10 @@
+"use client"
+
 import { addQueryParams } from "@/utils/url"
 import { BoxIcon, InfinityIcon, LinkIcon } from "lucide-react"
 
 import { UTM_PARAMS } from "@/config/site"
+import { trackProjectClick } from "@/lib/events"
 import {
   CollapsibleContent,
   CollapsibleTrigger,
@@ -76,6 +79,12 @@ export function ProjectItem({
                   target="_blank"
                   rel="noopener"
                   aria-label="Open project"
+                  onClick={() => {
+                    trackProjectClick({
+                      title: project.title,
+                      href: project.link,
+                    })
+                  }}
                 >
                   <LinkIcon className="pointer-events-none size-4" />
                 </a>

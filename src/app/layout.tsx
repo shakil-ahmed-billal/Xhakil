@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 
 import type { Metadata, Viewport } from "next"
 import Script from "next/script"
+import { OpenPanelComponent } from "@openpanel/nextjs"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import type { WebSite, WithContext } from "schema-dts"
 
@@ -9,6 +10,7 @@ import { JSON_LD_ID, personJsonLd } from "@/config/json-ld"
 import { META_THEME_COLORS, SITE_INFO, X_HANDLE } from "@/config/site"
 import { fontVariables } from "@/lib/fonts"
 import { JsonLdScript } from "@/lib/json-ld"
+import { OpenPanelNavigationTracker } from "@/components/analytics/OpenPanelNavigationTracker"
 import { Providers } from "@/components/providers"
 import { USER } from "@/features/portfolio/data/user"
 
@@ -143,6 +145,18 @@ export default function RootLayout({
       </head>
 
       <body>
+        <OpenPanelComponent
+          clientId={
+            process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID ||
+            "14db2126-a68c-4b6c-b3ef-fe43fdece27a"
+          }
+          apiUrl={process.env.NEXT_PUBLIC_OPENPANEL_API_URL || "/api/op"}
+          scriptUrl={process.env.NEXT_PUBLIC_OPENPANEL_SCRIPT_URL || "/op1.js"}
+          trackScreenViews={false}
+          trackAttributes={true}
+          trackOutgoingLinks={true}
+        />
+        <OpenPanelNavigationTracker />
         <Providers>
           <NuqsAdapter>{children}</NuqsAdapter>
         </Providers>

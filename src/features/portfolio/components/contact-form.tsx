@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2Icon, SendIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 
+import { trackContactFormSubmission, trackEvent } from "@/lib/events"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -54,6 +55,12 @@ export function ContactForm() {
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
 
+      trackContactFormSubmission({
+        name: data.name,
+        email: data.email,
+        subject: "Portfolio Contact Form",
+      })
+
       toast.add({
         type: "success",
         title: "Message sent successfully!",
@@ -62,6 +69,12 @@ export function ContactForm() {
       form.reset()
     } catch (error) {
       console.error("EmailJS Error:", error)
+      trackEvent({
+        name: "contact_form_error",
+        properties: {
+          error: error instanceof Error ? error.message : String(error),
+        },
+      })
       toast.add({
         type: "error",
         title: "Failed to send message",

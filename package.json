@@ -56,6 +56,7 @@
     "@ncdai/react-swipe-actions": "^0.3.0",
     "@ncdai/react-wheel-picker": "^1.2.0",
     "@number-flow/react": "^0.6.0",
+    "@openpanel/nextjs": "^1.5.4",
     "@openpanel/web": "^1.4.4",
     "@rexa-developer/tiks": "^0.1.9",
     "@tabler/icons-react": "^3.42.0",

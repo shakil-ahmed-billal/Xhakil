@@ -33,10 +33,10 @@ const eslintConfig = defineConfig([
   },
   
   globalIgnores([
-    
     ".next/**",
     "out/**",
     "build/**",
+    "public/**",
     "next-env.d.ts",
     "templates/**",
   ]),

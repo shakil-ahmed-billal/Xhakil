@@ -1,6 +1,9 @@
+"use client"
+
 import { addQueryParams } from "@/utils/url"
 
 import { UTM_PARAMS } from "@/config/site"
+import { trackSocialClick } from "@/lib/events"
 import { Button } from "@/components/ui/button"
 import {
   Tooltip,
@@ -37,6 +40,13 @@ export function SocialLinks() {
                           href={addQueryParams(item.href, UTM_PARAMS)}
                           target="_blank"
                           rel="noopener"
+                          onClick={() => {
+                            trackSocialClick({
+                              platform: item.name,
+                              href: item.href,
+                              handle: item.handle,
+                            })
+                          }}
                         >
                           {SOCIAL_ICONS[item.name]}
                           <span className="sr-only">{item.title}</span>

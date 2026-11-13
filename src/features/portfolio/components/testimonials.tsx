@@ -1,10 +1,13 @@
 "use client"
 
 import { memo, useRef } from "react"
+import Link from "next/link"
+import { ArrowRightIcon } from "lucide-react"
 import { useInView, usePageInView } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import { Button } from "@/components/ui/button"
 import type { MarqueeProps } from "@/components/marquee"
 import { Marquee, MarqueeContent, MarqueeItem } from "@/components/marquee"
 import {
@@ -99,6 +102,19 @@ export function Testimonials() {
           />
         </div>
       </PanelContent>
+
+      <div className="screen-line-top flex justify-center py-4">
+        <Button
+          className="gap-2 pr-2.5 pl-3 shadow-[inset_0_0_1px] shadow-foreground/20"
+          variant="secondary"
+          size="sm"
+          nativeButton={false}
+          render={<Link href="/testimonials" />}
+        >
+          All testimonials
+          <ArrowRightIcon />
+        </Button>
+      </div>
 
       <HandwrittenNote
         className="top-8 left-full ml-3 hidden w-36 flex-col items-start xl:flex"
